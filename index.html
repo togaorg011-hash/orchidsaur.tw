@@ -3,15 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Orchidsaur 蘭獸 - 品牌與科學教室</title>
+  <title>ORCHIDSAUR - 蘭獸世界探索</title>
   <style>
     :root {
-      --primary: #2d5a27;
-      --accent: #88c438;
-      --bg-color: #f7f9f6;
+      --primary: #1b3d2f;
+      --accent: #d4a359;
+      --bg-color: #f9f8f3;
       --card-bg: #ffffff;
       --text-main: #2b2b2b;
-      --text-sub: #666666;
+      --text-sub: #555555;
+    }
+
+    * {
+      box-sizing: border-box;
     }
 
     body {
@@ -21,41 +25,200 @@
       margin: 0;
       padding: 0;
       line-height: 1.6;
+      scroll-behavior: smooth;
     }
 
+    /* Header 導覽列 */
     header {
-      background-color: var(--primary);
-      color: white;
-      padding: 1.5rem 2rem;
+      background-color: #ffffff;
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 900;
     }
 
-    header h1 {
-      margin: 0;
-      font-size: 1.5rem;
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--primary);
+    }
+
+    .logo-circle {
+      width: 32px;
+      height: 32px;
+      background-color: var(--primary);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    .brand-text strong {
+      display: block;
       letter-spacing: 1px;
+      font-size: 1rem;
+    }
+
+    .brand-text span {
+      font-size: 0.75rem;
+      color: #777;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+      font-weight: bold;
     }
 
     .lang-select-container select {
-      padding: 0.5rem 1rem;
+      padding: 0.4rem 0.8rem;
       border-radius: 20px;
-      border: 1px solid #ffffff;
-      background-color: rgba(255, 255, 255, 0.2);
-      color: white;
-      font-size: 0.9rem;
+      border: 1px solid #ccc;
+      background-color: #fff;
+      font-size: 0.85rem;
       cursor: pointer;
       outline: none;
-      transition: background-color 0.3s;
     }
 
-    .lang-select-container select option {
+    /* Hero Banner 主視覺區 */
+    .hero {
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 4rem 2rem;
+      text-align: left;
+    }
+
+    .hero-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .hero-subtitle {
+      color: var(--accent);
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin: 0 0 1rem 0;
+      font-weight: normal;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      max-width: 600px;
+      color: #d1e0d7;
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1.4rem;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary {
+      background-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .btn-secondary {
       background-color: #ffffff;
-      color: var(--text-main);
+      color: var(--primary);
     }
 
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Choose Your Path 選單導向區 */
+    .path-section {
+      max-width: 1000px;
+      margin: 3rem auto 2rem;
+      padding: 0 1rem;
+    }
+
+    .path-title-sub {
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+      font-weight: bold;
+    }
+
+    .path-section h2 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin: 0.2rem 0 0.5rem;
+    }
+
+    .path-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .path-card {
+      background: var(--card-bg);
+      border-radius: 12px;
+      padding: 1.2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      text-decoration: none;
+      color: var(--text-main);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .path-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .path-card-no {
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .path-card-title {
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    /* 內容模組區 Block */
     .container {
       max-width: 1000px;
       margin: 2rem auto;
@@ -66,8 +229,8 @@
       background: var(--card-bg);
       border-radius: 12px;
       padding: 2rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 2.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.04);
     }
 
     .section-header {
@@ -89,9 +252,29 @@
     }
 
     .section-title {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       margin: 0;
       color: var(--primary);
+    }
+
+    /* 投稿 Banner (用於 04 與獸同行) */
+    .submit-banner {
+      background: #f0f7f2;
+      border: 1px solid #d2e5d7;
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .submit-banner p {
+      margin: 0;
+      color: var(--primary);
+      font-size: 0.9rem;
     }
 
     .card-grid {
@@ -107,6 +290,9 @@
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
       background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .card:hover {
@@ -115,16 +301,125 @@
       border-color: var(--accent);
     }
 
-    .card h4 {
+    .card-body h4 {
       margin: 0 0 0.5rem 0;
       color: var(--primary);
       font-size: 1.1rem;
     }
 
-    .card p {
+    .card-body p {
       margin: 0;
       color: var(--text-sub);
+      font-size: 0.88rem;
+    }
+
+    .card-footer {
+      margin-top: 1rem;
+    }
+
+    .read-more-btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: #fff;
+      padding: 0.35rem 0.9rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      text-decoration: none;
+    }
+
+    /* 加入下一站 / 投稿區塊 */
+    .join-section {
+      background-color: var(--primary);
+      color: #ffffff;
+      padding: 3rem 2rem;
+      border-radius: 12px;
+      margin-bottom: 3rem;
+    }
+
+    .join-header {
+      margin-bottom: 2rem;
+    }
+
+    .join-header .sub {
+      color: var(--accent);
+      font-size: 0.8rem;
+      letter-spacing: 1.5px;
+    }
+
+    .join-header h2 {
+      font-size: 2rem;
+      margin: 0.3rem 0;
+    }
+
+    .form-card {
+      background: #ffffff;
+      color: var(--text-main);
+      border-radius: 12px;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .form-card {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .form-info h3 {
+      font-size: 1.5rem;
+      color: var(--primary);
+      margin-top: 0;
+    }
+
+    .form-info ul {
+      padding-left: 1.2rem;
+      color: var(--text-sub);
       font-size: 0.9rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 0.3rem;
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 0.6rem 0.8rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .file-upload-box {
+      border: 1px dashed #ccc;
+      background: #f9f9f9;
+      padding: 1rem;
+      text-align: center;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      color: #666;
+      cursor: pointer;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 20px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      margin-top: 1rem;
     }
 
     /* Modal 彈窗樣式 */
@@ -178,28 +473,133 @@
       color: var(--text-main);
       font-size: 0.95rem;
     }
-
-    .modal-body ul {
-      padding-left: 1.2rem;
-    }
   </style>
 </head>
 <body>
 
+  <!-- 頂部導覽列 -->
   <header>
-    <h1>Orchidsaur</h1>
+    <a href="#" class="brand-logo">
+      <div class="logo-circle">O</div>
+      <div class="brand-text">
+        <strong>ORCHIDSAUR</strong>
+        <span>蘭獸世界探索</span>
+      </div>
+    </a>
+
+    <nav>
+      <a href="#origin">蘭獸起源</a>
+      <a href="#tour">巡迴展歷</a>
+      <a href="#science">科學教室</a>
+      <a href="#community">與獸同行</a>
+      <a href="#join">加入下一站</a>
+    </nav>
+
     <div class="lang-select-container">
       <select id="langSelect" onchange="switchLanguage(this.value)">
-        <option value="zh" selected>繁體中文</option>
+        <option value="zh" selected>中文</option>
         <option value="en">English</option>
         <option value="ja">日本語</option>
       </select>
     </div>
   </header>
 
+  <!-- Hero 主視覺 Banner -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-subtitle">ORCHID × DINOSAUR × LIFE</div>
+      <h1>跟著蘭獸，探索世界的蘭花</h1>
+      <p>蘭獸承載蘭花跨越八千萬年的生命記憶，從臺灣出發，邀請每一個人為世界地圖留下新的蘭花故事。</p>
+      <div class="hero-btns">
+        <a href="#origin" class="btn btn-primary">開始探索</a>
+        <a href="#join" class="btn btn-secondary">加入下一站</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 選單卡片入口 (Choose Your Path) -->
+  <section class="path-section">
+    <div class="path-title-sub">CHOOSE YOUR PATH</div>
+    <h2>選一條路，進入蘭獸世界</h2>
+    <div class="path-grid">
+      <a href="#origin" class="path-card">
+        <div class="path-card-no">01</div>
+        <div class="path-card-title">蘭獸起源</div>
+      </a>
+      <a href="#tour" class="path-card">
+        <div class="path-card-no">02</div>
+        <div class="path-card-title">巡迴展歷</div>
+      </a>
+      <a href="#science" class="path-card">
+        <div class="path-card-no">03</div>
+        <div class="path-card-title">科學教室</div>
+      </a>
+      <a href="#community" class="path-card">
+        <div class="path-card-no">04</div>
+        <div class="path-card-title">與獸同行</div>
+      </a>
+    </div>
+  </section>
+
+  <!-- 主要內容區塊 -->
   <div class="container" id="app"></div>
 
-  <!-- 彈窗Modal -->
+  <!-- 加入下一站 / 投稿與合作表單區 -->
+  <div class="container">
+    <section id="join" class="join-section">
+      <div class="join-header">
+        <div class="sub">JOIN THE MAP</div>
+        <h2>讓你的城市成為下一站</h2>
+        <p>分享你與蘭獸的照片、城市與故事，經蘭協會審核後加入世界探索地圖。</p>
+      </div>
+
+      <div class="form-card">
+        <div class="form-info">
+          <h3>投稿與合作</h3>
+          <p>填寫下方表單上傳照片與故事，審核通過後，你的紀錄將出現在全球蘭獸地圖上！</p>
+          <ul>
+            <li>📷 帶著蘭獸旅行並留下影像</li>
+            <li>📖 分享地方蘭花與生態故事</li>
+            <li>🛡️ 經蘭協會審核後加入公開地圖</li>
+          </ul>
+        </div>
+
+        <form class="form-body" onsubmit="event.preventDefault(); alert('感謝您的投稿！審核通過後將會發布於【與獸同行】專區。');">
+          <div style="display: flex; gap: 1rem;">
+            <div class="form-group" style="flex: 1;">
+              <label>姓名 / Name</label>
+              <input type="text" placeholder="請輸入姓名" required>
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label>Email</label>
+              <input type="email" placeholder="example@email.com" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>城市與國家 / City & Country</label>
+            <input type="text" placeholder="例如：臺南，臺灣" required>
+          </div>
+
+          <div class="form-group">
+            <label>你的蘭獸故事 / Your story</label>
+            <textarea rows="4" placeholder="分享你遇見蘭獸的故事或地方蘭花體驗..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>照片或影片 / Photo or video</label>
+            <div class="file-upload-box">
+              📁 點擊此處選擇照片或影片檔
+            </div>
+          </div>
+
+          <button type="submit" class="submit-btn">送出探索故事</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <!-- 彈窗 Modal -->
   <div class="modal" id="modal" onclick="closeModal(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
       <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -208,17 +608,17 @@
   </div>
 
   <script>
+    // 多國語言資料集 (更新 01起源、02巡迴展歷、04與獸同行)
     const sectionsData = {
       zh: {
         origin: {
-          no: '01', title: '蘭獸起源',
+          no: '01', title: '蘭獸起源', id: 'origin',
           items: [
             [
               '從遠古傳奇開始', 
               '在恐龍漫步的遠古森林裡，一顆微小的種子正默默醞釀著生命的奇蹟...', 
               `<h3>遠古森林的守護者</h3>
               <p>八千萬年前的白堊紀，大地由巨大恐龍主宰。但在茂密的森林深處，微小的蘭花種子正透過與真菌的奇妙結盟默默萌芽。傳說中，為了陪伴並守護這些微小卻堅韌的生命穿越地質變遷與歲月洗禮，一個融合植物靈魂與遠古生命力量的守護者就此誕生——牠就是 <b>Orchidsaur（蘭獸）</b>。</p>
-              
               <h3>橫跨千萬年的生命見證</h3>
               <p>從封存於琥珀中的遠古花粉，到如今遍布世界各地的千姿百態，蘭獸陪伴著蘭花歷經了冰河期與氣候變遷。牠不只是歷史的記錄者，更是連結大自然與人類文明的溫暖橋樑。</p>`
             ],
@@ -226,163 +626,136 @@
               '藝術與生命的交會：Orchidsaur 誕生', 
               '藝術家陳普結合「蘭花」與「恐龍」線索，賦予遠古記憶嶄新的當代形象...', 
               `<h3>從科學發現到藝術創作</h3>
-              <p>2023年，跨領域藝術家陳普深受蘭花演化史的啟發：如果蘭花早在恐龍時代便已存在，那麼在當代社會中，我們是否能用一種充滿想像力的方式，讓大眾重新認識蘭花的生命力？</p>
-              <p>於是，結合了「蘭花（Orchid）」的溫柔生命與「恐龍（Dinosaur）」的遠古力量，原創生命角色 <b>Orchidsaur（蘭獸 / 暱稱 Okisou）</b> 正式誕生！</p>
-              
+              <p>2023年，跨領域藝術家陳普深受蘭花演化史的啟發：結合了「蘭花（Orchid）」的溫柔生命與「恐龍（Dinosaur）」的遠古力量，原創生命角色 <b>Orchidsaur（蘭獸 / 暱稱 Okisou）</b> 正式誕生！</p>
               <h3>形象密碼：新芽之角與氣生根八足</h3>
-              <p>蘭獸頭頂微小的「角」，代表著植物破土而出的新芽與希望；而牠最顯著的「八隻腳」，靈感則源自於附生蘭發達的<b>氣生根</b>。這八隻腳讓蘭獸能夠靈活地攀附、探索與紮根，象徵著蘭花面對各種環境時強大的適應力與韌性。</p>`
+              <p>蘭獸頭頂微小的「角」，代表著植物破土而出的新芽與希望；而牠最顯著的「八隻腳」，靈感則源自於附生蘭發達的<b>氣生根</b>。這八隻腳讓蘭獸能夠靈活地攀附、探索與紮根。</p>`
             ],
             [
               '守護生命世界：Orchidsaur 的核心精神', 
               'Orchidsaur 代表生態系的共生、生命力的延續與對大自然的敬畏...', 
-              `<h3>Orchidsaur 的名稱由來</h3>
-              <p><b>Orchidsaur</b> 由 <b>Orchid（蘭花）</b> 與 <b>Saur（恐龍意象）</b> 組合而成，親切的角色暱稱 <b>Okisou</b> 讓牠更容易走進大眾的生活。</p>
-              
-              <h3>三大核心生命哲學</h3>
+              `<h3>三大核心生命哲學</h3>
               <ul>
-                <li><b>共生（Symbiosis）：</b>展現蘭花與昆蟲、樹木及真菌緊密相連的生態網絡，傳達萬物共存的理念。</li>
+                <li><b>共生（Symbiosis）：</b>展現蘭花與昆蟲、樹木及真菌緊密相連的生態網絡。</li>
                 <li><b>延續（Continuity）：</b>從白堊紀至今生生不息，象徵生命的堅韌與無限可能。</li>
                 <li><b>探索（Exploration）：</b>運用八隻腳走遍全球，帶著臺灣的蘭花故事與世界交朋友。</li>
-              </ul>
-              
-              <h3>帶著永續訊息前往未來</h3>
-              <p>蘭獸不只是一個吉祥物，更是一位永續大使。牠透過藝術展覽、城市巡迴與跨國交流，引導人們停下腳步，感受微小植物所帶來的龐大生命能量。</p>`
+              </ul>`
             ]
           ]
         },
-        art: {
-          no: '02', title: '美學藝廊',
+        tour: {
+          no: '02', title: '巡迴展歷', id: 'tour',
           items: [
             [
-              '綠色共生哲學', 
-              '將藝術融入自然永續理念...', 
-              `<h3>綠色美學與當代藝術</h3><p>陳普團隊透過有機線條與大型裝置，讓植物美學進入公共空間。</p>`
+              '01. 2023 · 臺南', 
+              '臺灣國際蘭展誕生，12公尺巨型蘭獸首次登場...', 
+              '<h3>2023 臺灣國際蘭展首展</h3><p>【官方紀錄】12公尺巨型蘭獸氣膜首次登場，揭開品牌巡迴序幕。</p>'
             ],
             [
-              '跨界藝術展演', 
-              '從大型氣膜裝置到數位互動...', 
-              `<h3>多元藝術呈現</h3><p>結合當代雕塑、數位影像與生態裝置，帶來沉浸式視覺體驗。</p>`
+              '02. 臺北 · 城市共生', 
+              '從藝術裝置走進城市，與臺北101空間呈現植物意象...', 
+              '<h3>臺北巡迴展</h3><p>【官方紀錄】走入都會商業中心，將自然生態美學融入都市生活。</p>'
+            ],
+            [
+              '03. 高雄 · 佛光山', 
+              '深白身影宛如祥瑞神獸，陪伴大眾感受平靜力量...', 
+              '<h3>高雄佛光山特別展</h3><p>【官方紀錄】巨型蘭獸座落於佛光山，融合宗教與藝術美學。</p>'
+            ],
+            [
+              '04. 日本大阪', 
+              '跨海受日本社群關注，開啟國際交流足跡...', 
+              '<h3>日本大阪展演</h3><p>【官方紀錄】蘭獸海外巡迴第一站，深受日本民眾喜愛。</p>'
             ]
           ]
         },
         science: {
-          no: '03', title: '科學教室',
+          no: '03', title: '科學教室', id: 'science',
           items: [
             [
               '8,000萬年前的白堊紀秘辛：琥珀中的古老蘭花花粉', 
               '一隻封存於琥珀中的古蜜蜂，背負著蘭花化石花粉（Proplebeia dominicana），揭開了蘭花科起源於白堊紀晚期的關鍵證據...', 
               `<h3>琥珀中的古老證據</h3>
-              <p>2007年，科學家 Santiago R. Ramírez 等人在權威國際期刊《Nature》發表了一項震撼學術界的發現：一顆來自多明尼加共和國、距今約 1,500 萬至 2,000 萬年前的中新世琥珀中，發現了一隻古蜜蜂（Proplebeia dominicana）。特別的是，這隻蜜蜂的背上附著了蘭花的花粉塊（Meliorchis caribea）。</p>
-              
+              <p>2007年，科學家 Santiago R. Ramírez 等人在權威國際期刊《Nature》發表發現：在一顆來自多明尼加共和國的中新世琥珀中，發現附著蘭花花粉塊（Meliorchis caribea）的古蜜蜂。</p>
               <h3>解開蘭花起源之謎</h3>
-              <p>透過分子鐘（Molecular Clock）演化推算，這項發現證實了蘭科植物（Orchidaceae）的共同祖先早在距今約 7,600 萬至 8,400 萬年前的<b>白堊紀晚期</b>就已經出現。這意味著，蘭花的祖先曾經與恐龍生存於同一個時代！</p>[cite: 1]
+              <p>演化推算證實，蘭科植物（Orchidaceae）共同祖先早在距今約 7,600 萬至 8,400 萬年前的<b>白堊紀晚期</b>就已出現。</p>`
+            ]
+          ]
+        },
+        community: {
+          no: '04', title: '與獸同行', id: 'community',
+          hasBanner: true,
+          items: [
+            [
+              '「白鹿啊！」— 展場裡的驚喜誤會', 
+              '投稿者：高雄 觀展民眾 / 展場現場側記...', 
+              '<h3>歐巴桑的自然聯想</h3><p>【民眾投稿】在高雄佛光山展出時，一位阿姨指著白色蘭獸大喊：「你看那邊有一隻白鹿！」這樣溫暖又可愛的誤會，成為當天展場最動人的花絮。</p>'
+            ],
+            [
+              '佛光山的祥瑞守望', 
+              '投稿者：展場志工 Alex...', 
+              '<h3>夕陽下的蘭獸</h3><p>【民眾投稿】駐立於佛光山的蘭獸，與夕陽餘暉交織出祥和的畫面，許多遊客紛紛駐足合照。</p>'
             ]
           ]
         }
       },
       en: {
         origin: {
-          no: '01', title: 'Origin',
+          no: '01', title: 'Origin', id: 'origin',
           items: [
             [
               'An Ancient Legend', 
               'In primeval forests where dinosaurs roamed, a tiny seed was quietly preparing a miracle of life...', 
-              `<h3>Guardian of the Ancient Forest</h3>
-              <p>80 million years ago during the Cretaceous period, while giant dinosaurs ruled the Earth, tiny orchid seeds were sprouting deep in the forests. To guard these resilient lives through millions of years of climate change, a mythical guardian was born—<b>Orchidsaur</b>.</p>
-              <h3>A Witness across Eras</h3>
-              <p>From ancient pollen trapped in amber to diverse blossoms today, Orchidsaur accompanies the journey of orchids, bridging nature and human civilization.</p>`
-            ],
-            [
-              'Art Meets Life: Birth of Orchidsaur', 
-              'Artist Chen Pu combines orchids and dinosaurs into a contemporary iconic character...', 
-              `<h3>From Science to Art</h3>
-              <p>In 2023, artist Chen Pu was inspired by orchid evolution. Combining the gentle vital force of "Orchid" with the ancient strength of "Dinosaur", he created the original character <b>Orchidsaur (Okisou)</b>.</p>
-              <h3>Design Elements: Horn & 8 Legs</h3>
-              <p>The small horn on its head represents a sprouting shoot of hope, while its 8 legs are inspired by <b>aerial roots</b> of epiphytic orchids, symbolizing adaptability and resilience.</p>`
-            ],
-            [
-              'Guardian of Life: Core Philosophy', 
-              'Representing ecosystem symbiosis, life continuity, and exploration...', 
-              `<h3>Core Values</h3>
-              <ul>
-                <li><b>Symbiosis:</b> Highlighting the interconnected network of orchids, fungi, trees, and pollinators.</li>
-                <li><b>Continuity:</b> Thriving from the Cretaceous period to modern times.</li>
-                <li><b>Exploration:</b> Traveling the world with 8 legs to spread orchid culture.</li>
-              </ul>`
+              `<h3>Guardian of the Ancient Forest</h3><p>80 million years ago during the Cretaceous period, Orchidsaur was born to guard resilient orchid lives through eras.</p>`
             ]
           ]
         },
-        art: {
-          no: '02', title: 'Art Gallery',
+        tour: {
+          no: '02', title: 'Global Tour', id: 'tour',
           items: [
-            [
-              'Green Symbiosis Philosophy', 
-              'Integrating art with sustainability...', 
-              `<h3>Green Aesthetics</h3><p>Organic forms bring botanical aesthetics to public spaces.</p>`
-            ]
+            ['01. 2023 Tainan', 'Debut at Taiwan International Orchid Show...', '<h3>Official Tour Record</h3><p>12-meter giant Orchidsaur introduced.</p>']
           ]
         },
         science: {
-          no: '03', title: 'Science Class',
+          no: '03', title: 'Science Class', id: 'science',
           items: [
-            [
-              'Cretaceous Secrets: Orchid Pollen in Amber', 
-              'A stingless bee trapped in amber carrying fossilized pollen revealed Cretaceous origins of orchids...', 
-              `<h3>Amber Evidence</h3>
-              <p>In 2007, Santiago R. Ramírez published in Nature a stingless bee preserved in amber bearing orchid pollinia. Molecular clock estimates placed orchid origins in the Late Cretaceous period (76–84 million years ago), proving orchids coexisted with dinosaurs.</p>`
-            ]
+            ['Cretaceous Secrets: Orchid Pollen in Amber', 'A stingless bee trapped in amber carrying orchid pollen...', '<h3>Amber Evidence</h3><p>Published in Nature, 2007.</p>']
+          ]
+        },
+        community: {
+          no: '04', title: 'Community Stories', id: 'community',
+          hasBanner: true,
+          items: [
+            ['"Look, a White Deer!"', 'Submitted by: Visitor in Kaohsiung...', '<h3>Fun Moment</h3><p>A heartwarming misunderstanding from exhibition visitors.</p>']
           ]
         }
       },
       ja: {
         origin: {
-          no: '01', title: '起源',
+          no: '01', title: '起源', id: 'origin',
           items: [
             [
               '太古の伝承', 
               '恐竜が歩き回る太古の森で、小さな種が密かに命の奇跡を育んでいました...', 
-              `<h3>古代の森の見守り人</h3>
-              <p>8,000万年前の白亜紀、巨大な恐竜たちが地球を支配していた頃、小さな蘭の種が静かに芽吹いていました。過酷な環境変化を乗り越える蘭の命を守るため誕生したのが<b>オーキッドソー（蘭獸）</b>です。</p>`
-            ],
-            [
-              'アートと生命の融合', 
-              'アーティスト陳普氏が「蘭」と「恐竜」を融合させ、現代的なキャラクターを創出...', 
-              `<h3>オーキッドソーの誕生</h3>
-              <p>2023年、アーティスト陳普氏の手によって、「Orchid（蘭）」の優しさと「Dinosaur（恐竜）」の強さを併せ持つ<b>オーキッドソー（愛称：Okisou）</b>が誕生しました。</p>
-              <h3>デザインの秘密：新芽の角と8本の足</h3>
-              <p>頭の小さな角は未来への「新芽」を、8本の足は着生蘭の「気生根」を表現し、力強い環境適応力を象徴しています。</p>`
-            ],
-            [
-              '生命を守るメッセージ', 
-              '生態系の共生、生命の継続、そして世界への探求心を表現...', 
-              `<h3>3つのコア精神</h3>
-              <ul>
-                <li><b>共生：</b>植物、昆虫、菌類のつながりを伝えます。</li>
-                <li><b>継続：</b>白亜紀から現代へと続く生命力。</li>
-                <li><b>探求：</b>8本の足で世界中を旅し、蘭の物語を届けます。</li>
-              </ul>`
+              `<h3>古代の森の見守り人</h3><p>白亜紀に誕生したオーキッドソーの物語。</p>`
             ]
           ]
         },
-        art: {
-          no: '02', title: 'アートギャラリー',
+        tour: {
+          no: '02', title: '巡回展歴', id: 'tour',
           items: [
-            [
-              'グリーン共生共創', 
-              '持続可能性とアートの融合...', 
-              `<h3>グリーン美學</h3><p>公共空間に自然の造形美を取り入れます。</p>`
-            ]
+            ['01. 2023 台南', '台湾国際蘭展で12mのオーキッドソーが初登場...', '<h3>公式記録</h3><p>台南での初展示記録。</p>']
           ]
         },
         science: {
-          no: '03', title: 'サイエンス教室',
+          no: '03', title: 'サイエンス教室', id: 'science',
           items: [
-            [
-              '白亜紀の秘密：琥珀の中の化石花粉', 
-              '琥珀に閉じ込められたハチの背中から発見された、8,000万年前の蘭の花粉...', 
-              `<h3>琥珀が語る真実</h3>
-              <p>2007年のNature誌にて、琥珀の中の絶滅したハチから蘭の花粉塊が発見されたことが報告されました。分子時計分析により、蘭の起源は白亜紀後期（約7,600万〜8,400万年前）まで遡ることが判明しました。</p>`
-            ]
+            ['白亜紀の秘密', '琥珀の中の化石花粉...', '<h3>科学的解明</h3><p> Nature誌発表の研究結果。</p>']
+          ]
+        },
+        community: {
+          no: '04', title: 'みんなの物語', id: 'community',
+          hasBanner: true,
+          items: [
+            ['「白鹿だ！」展覧会での出来事', '投稿者：高雄の来場者...', '<h3>現場エピソード</h3><p>来場者との心温まる交流記録。</p>']
           ]
         }
       }
@@ -398,20 +771,33 @@
       for (const key in langData) {
         const sec = langData[key];
         html += `
-          <div class="section-block">
+          <section id="${sec.id}" class="section-block">
             <div class="section-header">
               <span class="section-no">${sec.no}</span>
               <h2 class="section-title">${sec.title}</h2>
             </div>
+
+            ${sec.hasBanner ? `
+              <div class="submit-banner">
+                <p>📸 曾與蘭獸合照或有有趣的故事嗎？投稿後你的紀錄也會出現在這裡！</p>
+                <a href="#join" class="btn btn-primary" style="font-size:0.8rem; padding:0.4rem 1rem;">我要投稿 ➔</a>
+              </div>
+            ` : ''}
+
             <div class="card-grid">
               ${sec.items.map((item, index) => `
                 <div class="card" onclick="openModal('${key}',${index})">
-                  <h4>${item[0]}</h4>
-                  <p>${item[1]}</p>
+                  <div class="card-body">
+                    <h4>${item[0]}</h4>
+                    <p>${item[1]}</p>
+                  </div>
+                  <div class="card-footer">
+                    <span class="read-more-btn">閱讀完整內容 →</span>
+                  </div>
                 </div>
               `).join('')}
             </div>
-          </div>
+          </section>
         `;
       }
       app.innerHTML = html;
@@ -433,7 +819,7 @@
       document.getElementById('modal').classList.remove('active');
     }
 
-    // 初始化渲染
+    // 初始化頁面渲染
     renderApp();
   </script>
 </body>
