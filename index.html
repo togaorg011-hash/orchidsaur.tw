@@ -439,17 +439,17 @@
       }
     };
 
-    /* 完全多語系 8 題問答題庫 */
+    /* 多語系 8 題問答題庫 (已修正月份文字與全世界趴趴走) */
     const multiQuizData = {
       zh: [
         { q: "這隻擁有蘭花身體特徵與遠古記憶的白色吉祥物叫什麼名字？", opts: ["Orchidsaur（蘭獸）", "Pikachu（皮卡丘）", "DinoGreen（綠恐龍）", "FloraBot（花花機器人）"], ans: 0 },
         { q: "Orchidsaur（蘭獸）的名字是由哪兩個英文單字結合而成的？", opts: ["Ocean（海洋）＋ Shark（鯊魚）", "Orchid（蘭花）＋ Dinosaur（恐龍）", "Organic（有機）＋ Solar（太陽能）", "Orient（東方）＋ Sail（航行）"], ans: 1 },
         { q: "蘭獸身上最標誌性的特徵之一是有著「8 隻腳」，這象徵著什麼？", opts: ["方便去搬重物", "跑得跟賽車一樣快", "蘭花的氣生根與強韌的環境適應力", "只是為了穿更多雙鞋子"], ans: 2 },
         { q: "科學家透過什麼線索，推算蘭科植物的祖先早在恐龍時期就已經出現？", opts: ["海底沉積岩中的魚類化石", "封存在琥珀中的蜜蜂花粉", "埃及金字塔內的壁畫圖騰", "古老圖書館書籍"], ans: 1 },
-        { q: "盛大的「臺灣國際蘭展」通常在每年幾月舉行？", opts: ["每年 3 月", "每年 7 月暑假", "每年 10 月國慶", "每年 12 月跨年"], ans: 0 },
+        { q: "盛大的「臺灣國際蘭展」通常在每年幾月舉行？", opts: ["每年 3 月", "每年 7 月", "每年 10 月", "每年 12 月"], ans: 0 },
         { q: "臺灣國際蘭展的經典展場位於哪裡？", opts: ["花蓮太魯閣國家公園", "新竹科學園區", "臺南後壁區（農業部花卉創新園區）", "澎湖花火節主舞台"], ans: 2 },
         { q: "照顧家裡的蝴蝶蘭時，下列哪一種做法是正確的？", opts: ["天天瘋狂澆水把盆栽當水族箱養", "保持通風良好、放置於半陰散射光處，等介質乾了再澆水", "拿海水泡蘭花幫它補鹽分", "放在完全黑漆漆的房間讓它生病"], ans: 1 },
-        { q: "蘭獸曾經在哪裡留下過探索足跡與展出身影呢？", opts: ["臺灣、日本、歐洲波蘭、美國紐約等都有它的身影！", "只在電玩遊戲裡出現過", "只存在於夢境中", "從未對外展示過"], ans: 0 }
+        { q: "蘭獸曾經在哪裡留下過探索足跡與展出身影呢？", opts: ["全世界趴趴走", "只在電玩遊戲裡出現過", "只存在於夢境中", "從未對外展示過"], ans: 0 }
       ],
       en: [
         { q: "What is the name of this white mascot with orchid features?", opts: ["Orchidsaur", "Pikachu", "DinoGreen", "FloraBot"], ans: 0 },
@@ -459,7 +459,7 @@
         { q: "When is the Taiwan International Orchid Show usually held?", opts: ["Every March", "Every July", "Every October", "Every December"], ans: 0 },
         { q: "Where is the main venue for the Taiwan International Orchid Show?", opts: ["Taroko National Park", "Hsinchu Science Park", "Houbi District, Tainan (Flower Innovation Park)", "Penghu Stage"], ans: 2 },
         { q: "Which of the following is correct when caring for a Moth Orchid?", opts: ["Water every day like an aquarium", "Ensure good ventilation, indirect light, water when dry", "Soak in seawater for salt", "Keep in a pitch black room"], ans: 1 },
-        { q: "Where has Orchidsaur travelled and been exhibited?", opts: ["Taiwan, Japan, Poland, USA, and all over the world!", "Only in video games", "Only in dreams", "Never exhibited publicly"], ans: 0 }
+        { q: "Where has Orchidsaur travelled and been exhibited?", opts: ["Traveling all over the world!", "Only in video games", "Only in dreams", "Never exhibited publicly"], ans: 0 }
       ],
       ja: [
         { q: "蘭の特徴と古代の記憶を持つこの白いマスコットの名前は？", opts: ["Orchidsaur（蘭獸）", "Pikachu（ピカチュウ）", "DinoGreen（ディノグリーン）", "FloraBot（フローラボット）"], ans: 0 },
@@ -469,13 +469,44 @@
         { q: "「台湾国際蘭展」は毎年何月に開催されますか？", opts: ["毎年 3月", "毎年 7月", "毎年 10月", "毎年 12月"], ans: 0 },
         { q: "台湾国際蘭展のメイン会場はどこですか？", opts: ["太魯閣国家公園", "新竹サイエンスパーク", "台南市後壁区（農業部花卉創新園區）", "澎湖ステージ"], ans: 2 },
         { q: "家庭で胡蝶蘭を育てる際、正しいお手入れ方法はどれ？", opts: ["水族館のように毎日水やり", "風通しの良い半日陰、乾いたら水やり", "海水に浸す", "真っ暗な部屋に置く"], ans: 1 },
-        { q: "蘭獸はどこで展示されたことがありますか？", opts: ["台湾、日本、ポーランド、アメリカなど世界中！", "ゲームの中だけ", "夢の中だけ", "展示されたことはない"], ans: 0 }
+        { q: "蘭獸はどこで展示されたことがありますか？", opts: ["世界中を駆け回っています！", "ゲームの中だけ", "夢の中だけ", "展示されたことはない"], ans: 0 }
       ]
     };
 
+    let activeShuffledQuiz = [];
     let currentQuizIdx = 0;
     const order = ['origin', 'journey', 'science', 'story', 'adventure'];
     let last = 'home';
+
+    /* 洗牌陣列函式 */
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    /* 初始化並隨機化問答題目與選項位置 */
+    function initShuffledQuiz() {
+      const rawList = multiQuizData[currentLang] || multiQuizData['zh'];
+      const shuffledQuestions = shuffleArray(rawList);
+
+      activeShuffledQuiz = shuffledQuestions.map(item => {
+        const originalAnsText = item.opts[item.ans];
+        const shuffledOpts = shuffleArray(item.opts);
+        const newAnsIdx = shuffledOpts.indexOf(originalAnsText);
+
+        return {
+          q: item.q,
+          opts: shuffledOpts,
+          ans: newAnsIdx
+        };
+      });
+
+      currentQuizIdx = 0;
+    }
 
     function renderUI() {
       const t = translations[currentLang];
@@ -626,6 +657,7 @@
         `;
       });
 
+      initShuffledQuiz();
       loadQuizQuestion();
     }
 
@@ -647,18 +679,17 @@
 
     function loadQuizQuestion() {
       const t = translations[currentLang];
-      const qList = multiQuizData[currentLang] || multiQuizData['zh'];
 
-      if (currentQuizIdx >= qList.length) {
+      if (currentQuizIdx >= activeShuffledQuiz.length) {
         document.getElementById('quizProgress').textContent = t.quizSuccess;
         document.getElementById('quizQText').textContent = t.quizSuccessMsg;
-        document.getElementById('quizOpts').innerHTML = `<button class="btn-submit" onclick="currentQuizIdx=0;loadQuizQuestion()">${t.btnReplay}</button>`;
+        document.getElementById('quizOpts').innerHTML = `<button class="btn-submit" onclick="initShuffledQuiz();loadQuizQuestion()">${t.btnReplay}</button>`;
         document.getElementById('quizResult').textContent = "";
         return;
       }
 
-      const qObj = qList[currentQuizIdx];
-      document.getElementById('quizProgress').textContent = `${t.quizProgressPrefix} ${currentQuizIdx + 1} / ${qList.length}`;
+      const qObj = activeShuffledQuiz[currentQuizIdx];
+      document.getElementById('quizProgress').textContent = `${t.quizProgressPrefix} ${currentQuizIdx + 1} / ${activeShuffledQuiz.length}`;
       document.getElementById('quizQText').textContent = qObj.q;
       document.getElementById('quizResult').textContent = "";
 
@@ -669,8 +700,7 @@
 
     function checkQuizAns(idx) {
       const t = translations[currentLang];
-      const qList = multiQuizData[currentLang] || multiQuizData['zh'];
-      const qObj = qList[currentQuizIdx];
+      const qObj = activeShuffledQuiz[currentQuizIdx];
       const res = document.getElementById('quizResult');
 
       if (idx === qObj.ans) {
