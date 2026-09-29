@@ -3,105 +3,296 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>01. 琥珀與蘭花 - ORCHIDSAUR</title>
+  <title>ORCHIDSAUR 蘭獸世界探索</title>
   <style>
     :root {
       --bg-color: #f7f5eb;
       --header-bg: #1b4332;
-      --text-main: #1a202c;
+      --card-bg: #ffffff;
+      --text-main: #2d3748;
       --text-muted: #718096;
+      --btn-green: #2d6a4f;
+      --btn-green-hover: #1b4332;
       --accent-gold: #d4a373;
     }
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      margin: 0;
-      padding: 0;
-      line-height: 1.8;
-    }
-    header {
-      background: #ffffff;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #e2e8f0;
-    }
-    .back-link {
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.9rem;
-    }
-    .back-link:hover {
-      color: var(--header-bg);
-    }
-    .content-container {
-      max-width: 800px;
-      margin: 3rem auto;
-      padding: 0 1.5rem;
-    }
-    .category-tag {
-      color: var(--accent-gold);
-      font-weight: 600;
-      font-size: 0.95rem;
-      margin-bottom: 0.5rem;
-    }
-    h1 {
-      font-size: 2.5rem;
-      color: var(--header-bg);
-      margin-bottom: 1rem;
-    }
-    .hero-box {
-      width: 100%;
-      height: 320px;
-      background-color: #e2ebdf;
-      border-radius: 20px;
-      margin: 2rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .lead-text {
-      font-size: 1.25rem;
-      font-weight: 600;
-      color: #2d3748;
-      margin-bottom: 1.5rem;
-    }
-    .body-text {
-      font-size: 1.05rem;
-      color: #4a5568;
-    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; }
+
+    /* Header */
+    header { background-color: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+    .logo-container { display: flex; align-items: center; gap: 0.75rem; cursor: pointer; text-decoration: none; }
+    .logo-badge { width: 32px; height: 32px; background-color: var(--header-bg); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
+    .logo-text h1 { font-size: 1.1rem; letter-spacing: 2px; color: #1a202c; }
+    .logo-text p { font-size: 0.75rem; color: var(--text-muted); }
+
+    nav { display: flex; align-items: center; gap: 1.5rem; }
+    nav a { text-decoration: none; color: #4a5568; font-weight: 500; font-size: 0.95rem; cursor: pointer; }
+    nav a:hover, nav a.active { color: var(--header-bg); font-weight: 700; }
+
+    /* Banner */
+    .section-banner { background-color: var(--header-bg); color: white; padding: 3rem 10%; }
+    .section-banner .section-number { color: var(--accent-gold); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .section-banner h2 { font-size: 2.5rem; font-weight: 700; letter-spacing: 2px; }
+
+    /* Cards Layout */
+    .container { max-width: 1200px; margin: 0 auto; padding: 3rem 1.5rem; }
+    .grid-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+    .card { background: var(--card-bg); border-radius: 16px; padding: 2rem; border: 1px solid #f0f0f0; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.2s; }
+    .card:hover { transform: translateY(-4px); }
+    .card-num { color: var(--accent-gold); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .card-title { font-size: 1.35rem; color: #1a202c; margin-bottom: 0.8rem; font-weight: 700; }
+    .card-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; flex-grow: 1; }
+
+    .btn-action { display: inline-flex; align-items: center; background-color: var(--btn-green); color: white; padding: 0.6rem 1.2rem; border-radius: 20px; text-decoration: none; font-size: 0.85rem; font-weight: 600; width: fit-content; border: none; cursor: pointer; }
+    .btn-action:hover { background-color: var(--btn-green-hover); }
+
+    .submission-item { background: #ffffff; padding: 1.2rem; border-radius: 12px; border-left: 4px solid var(--btn-green); margin-bottom: 1rem; border: 1px solid #e2e8f0; }
+
+    /* Detail View Overlay (內頁畫面) */
+    #detail-page { display: none; background: var(--bg-color); min-height: 100vh; position: fixed; top: 0; left: 0; width: 100%; z-index: 200; overflow-y: auto; }
+    .detail-header { background: #ffffff; padding: 1rem 2rem; border-bottom: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
+    .back-btn { background: none; border: none; color: #718096; font-size: 0.95rem; font-weight: 600; cursor: pointer; }
+    .back-btn:hover { color: var(--header-bg); }
+    .detail-container { max-width: 800px; margin: 3rem auto; padding: 0 1.5rem; }
+    .detail-category { color: var(--accent-gold); font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem; }
+    .detail-title { font-size: 2.5rem; color: var(--header-bg); margin-bottom: 1.5rem; font-weight: 700; }
+    .detail-hero { width: 100%; height: 260px; background-color: #e2ebdf; border-radius: 16px; margin-bottom: 2rem; display: flex; align-items: center; justify-content: center; }
+    .detail-body { font-size: 1.1rem; color: #2d3748; line-height: 1.8; }
   </style>
 </head>
 <body>
 
+  <!-- 主頁面 Navbar -->
   <header>
-    <div style="display:flex; align-items:center; gap:10px;">
-      <a href="index.html" class="back-link">← 返回上一頁</a>
+    <div class="logo-container" onclick="showListView()">
+      <div class="logo-badge">O</div>
+      <div class="logo-text">
+        <h1>ORCHIDSAUR</h1>
+        <p>蘭獸世界探索</p>
+      </div>
     </div>
-    <div>
-      <span style="font-weight:bold; letter-spacing:1px;">ORCHIDSAUR</span>
-    </div>
+    <nav>
+      <a href="#sec-01" onclick="showListView()">蘭獸起源</a>
+      <a href="#sec-02" onclick="showListView()">巡迴展歷</a>
+      <a href="#sec-03" onclick="showListView()">科學教室</a>
+      <a href="#sec-04" onclick="showListView()">與獸同行</a>
+    </nav>
   </header>
 
-  <main class="content-container">
-    <div class="category-tag">蘭獸起源</div>
-    <h1>01. 琥珀與蘭花</h1>
-    
-    <div class="hero-box">
-      <!-- 插圖預留位置 -->
-      <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="1.5">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-      </svg>
-    </div>
+  <!-- 主頁面內容區塊 (List View) -->
+  <div id="main-content">
+    <!-- 01 蘭獸起源 -->
+    <section id="sec-01">
+      <div class="section-banner">
+        <div class="section-number">01 / EXPLORE</div>
+        <h2>蘭獸起源</h2>
+      </div>
+      <div class="container">
+        <div class="grid-cards">
+          <div class="card">
+            <div>
+              <div class="card-num">01</div>
+              <div class="card-title">01. 琥珀與蘭花</div>
+              <div class="card-desc">從琥珀中發現的遠古蘭花花粉塊，尋見蘭花與昆蟲共生的生命起點。</div>
+            </div>
+            <button class="btn-action" onclick="openDetail('蘭獸起源', '01. 琥珀與蘭花', '從琥珀中發現的遠古蘭花花粉塊，尋見蘭花與昆蟲共生的生命起點。這項珍貴的化石紀錄，揭示了數千萬年前蘭花便已演化出精妙的傳粉機制，為蘭獸世界探索奠定了最初的生命線索。')">閱讀完整內容 →</button>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-num">02</div>
+              <div class="card-title">02. 陳普的藝術創作</div>
+              <div class="card-desc">藝術家陳普將遠古生態與當代視覺結合，賦予蘭獸靈動且豐富的生命意象。</div>
+            </div>
+            <button class="btn-action" onclick="openDetail('蘭獸起源', '02. 陳普的藝術創作', '藝術家陳普將遠古生態與當代視覺結合，賦予蘭獸靈動且豐富的生命意象。透過有機的線條與溫暖的色彩，將硬核科普轉化為具親和力的視覺符號。')">閱讀完整內容 →</button>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-num">03</div>
+              <div class="card-title">03. Orchidsaur 角色與 IP</div>
+              <div class="card-desc">連結自然、科學與大眾的永續 IP，帶領大家以輕鬆有趣的視角探索蘭花世界。</div>
+            </div>
+            <button class="btn-action" onclick="openDetail('蘭獸起源', '03. Orchidsaur 角色與 IP', 'Orchidsaur 作為連結自然、科學與大眾的永續 IP，帶領大家以輕鬆有趣的視角探索蘭花世界，跨越文化與語言傳遞生態保育的價值。')">閱讀完整內容 →</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <p class="lead-text">從琥珀中發現的遠古蘭花花粉塊，尋見蘭花與昆蟲共生的生命起點。</p>
-    
-    <div class="body-text">
-      <p>從琥珀中發現的遠古蘭花花粉塊，尋見蘭花與昆蟲共生的生命起點。這項珍貴的化石紀錄，揭示了數千萬年前蘭花便已演化出精妙的傳粉機制，為蘭獸世界探索奠定了最初的生命線索。</p>
-    </div>
-  </main>
+    <!-- 02 巡迴展歷 -->
+    <section id="sec-02">
+      <div class="section-banner">
+        <div class="section-number">02 / EXPLORE</div>
+        <h2>巡迴展歷</h2>
+      </div>
+      <div class="container">
+        <div class="grid-cards">
+          <div class="card">
+            <div>
+              <div class="card-num">01</div>
+              <div class="card-title">01. 2023．臺南</div>
+              <div class="card-desc">臺灣國際蘭展誕生，12公尺巨型蘭獸首次登場…</div>
+            </div>
+            <button class="btn-action" onclick="openDetail('巡迴展歷', '01. 2023．臺南', '臺灣國際蘭展誕生，12公尺巨型蘭獸首次登場，成為全場注目焦點，拉開全球巡迴展覽的序幕。')">閱讀完整內容 →</button>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-num">02</div>
+              <div class="card-title">02. 臺北．城市共生</div>
+              <div class="card-desc">從藝術裝置走進城市，與臺北101空間呈現植物意象…</div>
+            </div>
+            <button class="btn-action" onclick="openDetail('巡迴展歷', '02. 臺北．城市共生', '從藝術裝置走進城市，與臺北101空間呈現植物意象，展現現代建築與綠色生態共生的無限可能。')">閱讀完整內容 →</button>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-num">03</div>
+              <div class="card-title">03. 高雄．佛光山</div>
+              <div class="card-desc">潔白身影宛如祥瑞神獸，被民眾親切稱為「白鹿」…</div>
+            </div>
+            <button class="btn-action" onclick="openDetail('巡迴展歷', '03. 高雄．佛光山', '潔白身影宛如祥瑞神獸，被民眾親切稱為「白鹿」，在靜謐的宗教藝術氛圍中帶來和諧與祈福的美好意象。')">閱讀完整內容 →</button>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-num">04</div>
+              <div class="card-title">04. 日本大阪</div>
+              <div class="card-desc">跨海受日本社群關注，開啟國際交流足跡…</div>
+            </div>
+            <button class="btn-action" onclick="openDetail('巡迴展歷', '04. 日本大阪', '跨海受日本社群關注，開啟國際交流足跡，讓廣大日本民眾感受臺灣蘭花文化與藝術設計的魅力。')">閱讀完整內容 →</button>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-num">05</div>
+              <div class="card-title">05. 歐洲．波蘭</div>
+              <div class="card-desc">走入歐洲花卉重鎮，開啟中東歐的蘭花故事交流…</div>
+            </div>
+            <button class="btn-action" onclick="openDetail('巡迴展歷', '05. 歐洲．波蘭', '走入歐洲花卉重鎮波蘭，開啟中東歐的蘭花故事交流，搭起東西方植物保育與美學對話的橋樑。')">閱讀完整內容 →</button>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-num">06</div>
+              <div class="card-title">06. 美國．紐約</div>
+              <div class="card-desc">皇后區植物園「臺灣：蘭花世界」特展盛大登場…</div>
+            </div>
+            <button class="btn-action" onclick="openDetail('巡迴展歷', '06. 美國．紐約', '皇后區植物園「臺灣：蘭花世界」特展盛大登場，於紐約國際舞台展現臺灣蘭花王國的美譽與創新設計。')">閱讀完整內容 →</button>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-num">07</div>
+              <div class="card-title">07. 菲律賓．馬尼拉</div>
+              <div class="card-desc">登陸東南亞市場，於菲律賓形象展展現臺灣軟實力…</div>
+            </div>
+            <button class="btn-action" onclick="openDetail('巡迴展歷', '07. 菲律賓．馬尼拉', '登陸東南亞市場，於菲律賓形象展展現臺灣軟實力，拓展國際文化外交與文創產業能見度。')">閱讀完整內容 →</button>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-num">08</div>
+              <div class="card-title">08. 多明尼加</div>
+              <div class="card-desc">深入雨林探索，尋見原生蘭花與自然生態起源…</div>
+            </div>
+            <button class="btn-action" onclick="openDetail('巡迴展歷', '08. 多明尼加', '深入雨林探索，尋見原生蘭花與自然生態起源，交流生物多樣性維護與熱帶植物保育經驗。')">閱讀完整內容 →</button>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-num">09</div>
+              <div class="card-title">09. 臺灣．桃園機場</div>
+              <div class="card-desc">驚喜現身桃園國際機場，陪伴旅客踏上綠色探索之旅…</div>
+            </div>
+            <button class="btn-action" onclick="openDetail('巡迴展歷', '09. 臺灣．桃園機場', '驚喜現身桃園國際機場，陪伴全球旅客踏上綠色探索之旅，讓國門成爲傳遞臺灣生態美的第一站。')">閱讀完整內容 →</button>
+          </div>
+        </div>
+      </div>
+    </section>
 
+    <!-- 03 科學教室 -->
+    <section id="sec-03">
+      <div class="section-banner">
+        <div class="section-number">03 / EXPLORE</div>
+        <h2>科學教室</h2>
+      </div>
+      <div class="container">
+        <div class="grid-cards">
+          <div class="card">
+            <div>
+              <div class="card-num">01</div>
+              <div class="card-title">01. 八千萬年的蘭花</div>
+              <div class="card-desc">透過分子時鐘研究，推估現生蘭科植物祖先早在晚白堊紀即已出現…</div>
+            </div>
+            <button class="btn-action" onclick="openDetail('科學教室', '01. 八千萬年的蘭花', '透過分子時鐘研究，推估現生蘭科植物祖先早在晚白堊紀即已出現，與恐龍同時代見證了地球歷史的滄海桑田。')">閱讀完整內容 →</button>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-num">02</div>
+              <div class="card-title">02. 共生的生命網絡</div>
+              <div class="card-desc">種子萌發依賴蘭菌，生存繁衍依賴昆蟲與樹木…</div>
+            </div>
+            <button class="btn-action" onclick="openDetail('科學教室', '02. 共生的生命網絡', '種子萌發依賴蘭菌提供營養，生存繁衍則依賴昆蟲與樹木的協力，展現了自然界極致精密的共生生存策略。')">閱讀完整內容 →</button>
+          </div>
+          <div class="card">
+            <div>
+              <div class="card-num">03</div>
+              <div class="card-title">03. 八隻腳之謎</div>
+              <div class="card-desc">解析附生蘭的氣生根與蘭獸八足構造的生物學相呼應…</div>
+            </div>
+            <button class="btn-action" onclick="openDetail('科學教室', '03. 八隻腳之謎', '解析附生蘭氣生根吸附樹幹與吸收水分的功能，與蘭獸設計中的八足構造相呼應，巧妙融合自然機能與藝術想像。')">閱讀完整內容 →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 04 與獸同行 -->
+    <section id="sec-04">
+      <div class="section-banner">
+        <div class="section-number">04 / EXPLORE</div>
+        <h2>與獸同行</h2>
+      </div>
+      <div class="container">
+        <div style="margin-bottom: 2rem;">
+          <button class="btn-action">我要投稿 →</button>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-bottom: 1rem;">投稿作品專區</h3>
+        <div class="submission-item">
+          <h4>投稿作品 01：來自小朋友的蘭獸繪畫</h4>
+          <p style="font-size:0.85rem; color:#718096; margin: 0.2rem 0;">投稿者：張小明</p>
+          <p style="color:#4a5568;">發揮想像力畫出的彩色蘭獸，呈現出充滿童趣的色彩！</p>
+        </div>
+        <div class="submission-item">
+          <h4>投稿作品 02：蘭獸與植物園的隨手拍</h4>
+          <p style="font-size:0.85rem; color:#718096; margin: 0.2rem 0;">投稿者：林攝影</p>
+          <p style="color:#4a5568;">在花卉展覽中捕捉到的蘭獸裝置藝術與生態融合美景。</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 點擊「閱讀完整內容」跳出的單獨內頁畫面 (Detail View) -->
+  <div id="detail-page">
+    <div class="detail-header">
+      <button class="back-btn" onclick="showListView()">← 返回上一頁</button>
+      <div style="font-weight:bold; letter-spacing:1px; color:#1a202c;">ORCHIDSAUR</div>
+    </div>
+    <div class="detail-container">
+      <div class="detail-category" id="d-category">蘭獸起源</div>
+      <h1 class="detail-title" id="d-title">標題</h1>
+      <div class="detail-hero">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="1.5">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div class="detail-body" id="d-body">內容加載中...</div>
+    </div>
+  </div>
+
+  <script>
+    function openDetail(category, title, bodyText) {
+      document.getElementById('d-category').innerText = category;
+      document.getElementById('d-title').innerText = title;
+      document.getElementById('d-body').innerText = bodyText;
+      document.getElementById('detail-page').style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+
+    function showListView() {
+      document.getElementById('detail-page').style.display = 'none';
+    }
+  </script>
 </body>
 </html>
