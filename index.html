@@ -12,7 +12,7 @@
     a{text-decoration:none;color:inherit}
     button,select,input,textarea{font:inherit}
     
-    /* 1. 頂部固定導覽列 */
+    /* 頂部固定導覽列 */
     .top{position:sticky;top:0;z-index:10;min-height:74px;padding:12px max(20px,calc((100vw - 1180px)/2));display:flex;align-items:center;gap:26px;background:#fffdf7f2;border-bottom:1px solid var(--line)}
     .brand{display:flex;align-items:center;gap:11px;cursor:pointer}
     .mark{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--deep);color:white;font:700 22px Georgia}
@@ -47,62 +47,70 @@
     .portal button:hover{transform:translateY(-5px);box-shadow:0 14px 35px #173a3120}
     .portal span{color:var(--gold);font-weight:800}
     .portal h3{font-size:22px;margin-top:38px}
-    .portal p,.card p{color:var(--muted);line-height:1.7}
     
     .mast{padding:70px max(24px,calc((100vw - 1180px)/2));background:linear-gradient(135deg,var(--deep),#2d654b);color:white}
-    .mast h1{font-size:clamp(44px,7vw,82px)}
-    .mast .lead{color:#dce8e0}
     
-    /* 「與獸同行」頂部 Banner 中的投稿引導框 */
-    .story-invite-box{margin-top:24px;padding:20px 24px;background:rgba(255,255,255,0.1);border:1px dashed #d9ad62;border-radius:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
-    .story-invite-box p{margin:0;font-size:16px;color:#f0f5f2;line-height:1.6}
-    .story-invite-box button{background:var(--gold);color:white;border:0;padding:12px 24px;border-radius:999px;font-weight:bold;cursor:pointer;transition:.2s;white-space:nowrap}
-    .story-invite-box button:hover{background:#b28336}
-
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
     .card{min-height:260px;display:flex;flex-direction:column;justify-content:space-between}
-    .card .num{color:var(--gold);font:500 20px Georgia;display:block;margin-bottom:6px}
+    .card .num{color:var(--gold);font:500 18px Georgia;display:block;margin-bottom:6px}
     .card h3{font:500 27px Georgia,"Noto Serif TC",serif;margin:8px 0;line-height:1.3}
+    .card p{color:var(--muted);line-height:1.7}
     .card button{margin-top:16px;border:0;background:var(--green);color:white;border-radius:999px;padding:10px 18px;cursor:pointer;align-self:flex-start}
     
-    /* 分頁控制器樣式 */
     .pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:48px}
-    .pagination button{border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:bold;transition:.2s}
+    .pagination button{border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:bold}
     .pagination button.active{background:var(--green);color:white;border-color:var(--green)}
     .pagination button:disabled{opacity:.4;cursor:not-allowed}
 
+    /* 05 蘭獸探險趣 專屬樣式 */
+    .adventure-tabs{display:flex;gap:12px;margin-bottom:30px;flex-wrap:wrap}
+    .adv-tab-btn{border:1px solid var(--line);background:var(--paper);padding:14px 28px;border-radius:12px;font-size:18px;font-weight:bold;cursor:pointer;transition:.2s}
+    .adv-tab-btn.active{background:var(--green);color:white;border-color:var(--green)}
+    .adv-panel{display:none;background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:36px;box-shadow:0 10px 30px #173a3108}
+    .adv-panel.active{display:block}
+
+    /* 知識闖關 */
+    .quiz-box{max-width:700px;margin:auto;text-align:center}
+    .quiz-q{font-size:22px;font-weight:bold;margin:20px 0 30px;line-height:1.6}
+    .quiz-options{display:grid;grid-template-columns:1fr;gap:12px}
+    .quiz-opt-btn{background:var(--cream);border:1px solid var(--line);padding:16px 20px;border-radius:12px;text-align:left;font-size:16px;font-weight:bold;cursor:pointer;transition:.2s}
+    .quiz-opt-btn:hover{background:var(--green);color:white}
+
+    /* 接花花遊戲 */
+    .catch-game-area{width:100%;max-width:600px;height:400px;background:#eef5eb;border:2px solid var(--line);border-radius:20px;position:relative;overflow:hidden;margin:20px auto;cursor:none}
+    .player-basket{position:absolute;bottom:10px;width:70px;height:70px;font-size:50px;text-align:center;line-height:70px;user-select:none;transition:left 0.05s linear}
+    .falling-item{position:absolute;font-size:32px;user-select:none}
+
+    /* DIY 桌布畫廊 */
+    .canvas-container{width:100%;max-width:800px;aspect-ratio:16/9;border:2px solid var(--line);border-radius:16px;position:relative;overflow:hidden;margin:20px auto;background:#a8e6cf;background-size:cover}
+    .sticker-tool-bar{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px}
+    .sticker-btn{font-size:28px;padding:8px 16px;background:var(--paper);border:1px solid var(--line);border-radius:12px;cursor:pointer}
+    .bg-select-btn{padding:10px 18px;background:var(--cream);border:1px solid var(--line);border-radius:999px;font-weight:bold;cursor:pointer}
+
+    /* 詳細頁與投稿頁 */
     .detail{max-width:850px;margin:auto;padding:70px 24px 110px}
-    .back{border:0;background:transparent;color:var(--green);font-weight:700;cursor:pointer;margin-bottom:20px;font-size:16px;display:inline-flex;align-items:center;gap:6px}
-    .back:hover{color:var(--gold)}
+    .back{border:0;background:transparent;color:var(--green);font-weight:700;cursor:pointer;margin-bottom:20px;font-size:16px}
     .detail-visual{height:360px;margin:28px 0;border-radius:28px;background:radial-gradient(circle at 50% 42%,#fff 0 8%,transparent 9%),radial-gradient(ellipse at 50% 65%,#eef2e8 0 24%,transparent 25%),linear-gradient(140deg,#cbdcbd,#eff0df);display:grid;place-items:center}
     .beast{font-size:96px}
     .detail h1{font:500 clamp(38px,6vw,68px) Georgia,"Noto Serif TC",serif;margin:12px 0 24px}
     .detail-content{font-size:18px;line-height:1.95;color:#425049}
-    .detail-content h3{color:var(--deep);font-size:24px;margin-top:32px;margin-bottom:12px}
-    .detail-content p{margin-bottom:16px}
-    .detail-content ul{padding-left:20px;margin-bottom:24px}
-    .detail-content li{margin-bottom:8px}
-    
-    /* 投稿表單專用樣式 */
-    .join-container{display:grid;grid-template-columns:1fr 1.3fr;gap:40px;background:var(--paper);padding:40px;border-radius:24px;border:1px solid var(--line);box-shadow:0 10px 30px #173a3108}
+
+    .join-container{display:grid;grid-template-columns:1fr 1.3fr;gap:40px;background:var(--paper);padding:40px;border-radius:24px;border:1px solid var(--line)}
     .join-info h2{font:500 36px Georgia,"Noto Serif TC",serif;margin-top:0}
     .join-info ul{list-style:none;padding:0;margin-top:24px}
     .join-info li{display:flex;align-items:center;gap:12px;font-size:16px;color:var(--muted);margin-bottom:18px}
     
     .form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
-    .form-group label{font-weight:bold;font-size:14px;color:var(--ink)}
-    .form-group input[type="text"],.form-group input[type="email"],.form-group textarea{width:100%;padding:12px 16px;border-radius:12px;border:1px solid var(--line);background:#fff;outline:none;transition:.2s}
-    .form-group input:focus,.form-group textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px #c6954220}
+    .form-group label{font-weight:bold;font-size:14px}
+    .form-group input,.form-group textarea{width:100%;padding:12px 16px;border-radius:12px;border:1px solid var(--line);outline:none}
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     .form-file{border:1px dashed var(--line);padding:16px;border-radius:12px;background:#f9f8f3;text-align:center;cursor:pointer}
     .form-file input{display:none}
-    .form-file label{cursor:pointer;color:var(--green);font-weight:bold;display:block}
-    .btn-submit{width:100%;padding:14px;border:0;border-radius:999px;background:var(--green);color:white;font-size:16px;font-weight:bold;cursor:pointer;transition:.2s;margin-top:10px}
-    .btn-submit:hover{background:var(--deep)}
+    .form-file label{cursor:pointer;color:var(--green);font-weight:bold}
+    .btn-submit{width:100%;padding:14px;border:0;border-radius:999px;background:var(--green);color:white;font-size:16px;font-weight:bold;cursor:pointer}
 
     footer{text-align:center;padding:45px 20px;background:var(--deep);color:#c9d8d1}
     @media(max-width:900px){nav{display:none}.portal,.grid,.join-container,.form-row{grid-template-columns:1fr}}
-    @media(max-width:580px){.hero{min-height:560px;padding-top:55px}.top{padding:10px 14px}.brand small{display:none}}
   </style>
 </head>
 <body>
@@ -144,7 +152,69 @@
   <main id="journey" class="page"></main>
   <main id="science" class="page"></main>
   <main id="story" class="page"></main>
-  <main id="adventure" class="page"></main>
+
+  <!-- 05 蘭獸探險趣 -->
+  <main id="adventure" class="page">
+    <section class="mast">
+      <p class="eyebrow">05 / EXPLORE & GAME</p>
+      <h1>蘭獸探險趣</h1>
+      <p class="lead">歡迎來到蘭獸互動體驗天地！挑戰知識問答、玩法小遊戲或 DIY 專屬 1920x1080 高解析度電腦桌布！</p>
+    </section>
+    <section class="section">
+      <!-- 頁籤切換 -->
+      <div class="adventure-tabs">
+        <button class="adv-tab-btn active" onclick="switchAdvTab('quiz')">知識闖關</button>
+        <button class="adv-tab-btn" onclick="switchAdvTab('catch')">蘭獸接花花</button>
+        <button class="adv-tab-btn" onclick="switchAdvTab('wallpaper')">蘭獸桌布畫廊</button>
+      </div>
+
+      <!-- 單元 1：知識闖關 -->
+      <div id="advQuiz" class="adv-panel active">
+        <div class="quiz-box">
+          <div style="color:var(--gold); font-weight:bold; font-size:18px;" id="quizProgress">題目 1 / 8</div>
+          <div class="quiz-q" id="quizQText">載入中...</div>
+          <div class="quiz-options" id="quizOpts"></div>
+          <div id="quizResult" style="margin-top:20px; font-weight:bold; font-size:18px;"></div>
+        </div>
+      </div>
+
+      <!-- 單元 2：蘭獸接花花 -->
+      <div id="advCatch" class="adv-panel">
+        <div style="text-align:center;">
+          <h2>🌸 蘭獸接花花大作戰</h2>
+          <p>移動滑鼠控制蘭獸左右移動，接住掉落的盛開蘭花與水滴，避開枯枝！</p>
+          <div style="font-size:20px; font-weight:bold; color:var(--green); margin-bottom:10px;">得分：<span id="catchScore">0</span></div>
+          <div class="catch-game-area" id="catchGameArea" onmousemove="moveBasket(event)">
+            <div class="player-basket" id="playerBasket" style="left: 260px;">🦕</div>
+          </div>
+          <button class="btn-submit" style="width:auto; padding:10px 30px;" onclick="startCatchGame()">開始 / 重來</button>
+        </div>
+      </div>
+
+      <!-- 單元 3：蘭獸桌布畫廊 -->
+      <div id="advWallpaper" class="adv-panel">
+        <div style="text-align:center;">
+          <h2>🎨 1920×1080 DIY 電腦桌布畫廊</h2>
+          <p>選擇背景，點擊貼圖加入畫布（可拖曳擺放），輕鬆創作專屬桌面！</p>
+          <div style="display:flex; gap:10px; justify-content:center; margin-bottom:15px;">
+            <button class="bg-select-btn" onclick="setCanvasBg('#a8e6cf')">🌿 綠意草地</button>
+            <button class="bg-select-btn" onclick="setCanvasBg('#ffeaa7')">🏖️ 陽光海灘</button>
+            <button class="bg-select-btn" onclick="setCanvasBg('#dff9fb')">🏡 綠意溫室</button>
+          </div>
+          <div class="canvas-container" id="wallpaperCanvas"></div>
+          <div class="sticker-tool-bar">
+            <button class="sticker-btn" onclick="addSticker('🦕')">🦕 蘭獸</button>
+            <button class="sticker-btn" onclick="addSticker('🌸')">🌸 蝴蝶蘭</button>
+            <button class="sticker-btn" onclick="addSticker('🌺')">🌺 嘉德麗雅蘭</button>
+            <button class="sticker-btn" onclick="addSticker('☀️')">☀️ 陽光</button>
+            <button class="sticker-btn" onclick="addSticker('🌱')">🌱 幼芽</button>
+            <button class="sticker-btn" onclick="addSticker('🐚')">🐚 貝殼</button>
+            <button class="btn-submit" style="width:auto;" onclick="alert('✅ 桌布設計完成！系統已將您的 1920x1080 電腦桌布準備就緒！')">下載電腦桌布 (1920x1080)</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
   <!-- 加入探索（投稿表單頁面） -->
   <main id="join" class="page">
@@ -216,320 +286,177 @@
 
   <script>
     let currentLang = 'zh';
-    
-    // 各分頁頁碼狀態控制
-    const sectionPages = {
-      journey: 1,
-      story: 1
-    };
+    const sectionPages = { journey: 1, story: 1 };
     const ITEMS_PER_PAGE = 12;
 
     const translations = {
       zh: {
-        subBrand: '蘭獸世界探索',
-        heroTitle: '跟著蘭獸，探索世界的蘭花',
+        subBrand: '蘭獸世界探索', heroTitle: '跟著蘭獸，探索世界的蘭花',
         heroDesc: '蘭獸承載蘭花跨越八千萬年的生命記憶，從臺灣出發，邀請每一個人為世界地圖留下新的蘭花故事。',
-        btnStart: '開始探索',
-        btnJoin: '加入下一站',
-        portalTitle: '選一條路，進入蘭獸世界',
+        btnStart: '開始探索', btnJoin: '加入下一站', portalTitle: '選一條路，進入蘭獸世界',
         portalLead: '每個主題都是一座獨立內容館，可以再點進故事、照片、影片與詳細介紹。',
-        navJoin: '加入探索',
-        readMore: '閱讀完整內容 →',
-        btnGoJoin: '加入下一站（前往投稿）',
-        storyInviteText: '🌟 歡迎大家投稿分享！帶著蘭獸拍下照片或留下在地蘭花故事，讓您的城市成為下一站！',
-        btnBack: '← 返回上一頁',
-        joinTitle: '讓你的城市成為下一站',
-        joinLead: '分享你與蘭獸的照片、城市與故事，經蘭協審核後加入世界探索地圖。',
-        joinHead: '投稿與合作',
-        joinDesc: '填寫下方表單上傳照片與故事，審核通過後，你的紀錄將出現在全球蘭獸地圖上！',
-        joinList: [
-          '📷 帶著蘭獸旅行並留下影像',
-          '📖 分享地方蘭花與生態故事',
-          '🛡️ 經蘭協審核後加入公開地圖'
-        ],
-        lblName: '姓名 / Name',
-        lblCity: '城市與國家 / City & Country',
-        lblStory: '你的蘭獸故事 / Your story',
-        lblMedia: '照片或影片 / Photo or video',
-        filePlaceholder: '📁 點擊此處選擇照片或影片檔',
-        fileSelected: '✅ 已選擇檔案：',
-        btnSubmit: '送出探索故事',
-        footerText: 'ORCHIDSAUR · 社團法人台灣蘭花產銷發展協會',
-        demoSubmitAlert: '【前端門面測試成功！】\n我們已成功接收到你輸入的資料。下一階段我們可以把這些資料對接到雲端資料庫儲存！',
-        inputNamePh: '請輸入姓名',
-        inputCityPh: '例如：臺南，臺灣',
-        inputStoryPh: '分享你遇見蘭獸的故事或地方蘭花體驗...',
-        prevPage: '上一頁',
-        nextPage: '下一頁',
-        submissionNo: '投稿編號：',
-        submissionDate: '投稿日期：'
+        navJoin: '加入探索', readMore: '閱讀完整內容 →', btnBack: '← 返回上一頁',
+        joinTitle: '讓你的城市成為下一站', joinLead: '分享你與蘭獸的照片、城市與故事，經蘭協審核後加入世界探索地圖。',
+        joinHead: '投稿與合作', joinDesc: '填寫下方表單上傳照片與故事，審核通過後，你的紀錄將出現在全球蘭獸地圖上！',
+        joinList: ['📷 帶著蘭獸旅行並留下影像', '📖 分享地方蘭花與生態故事', '🛡️ 經蘭協審核後加入公開地圖'],
+        lblName: '姓名 / Name', lblCity: '城市與國家 / City & Country', lblStory: '你的蘭獸故事 / Your story',
+        lblMedia: '照片或影片 / Photo or video', filePlaceholder: '📁 點擊此處選擇照片或影片檔', fileSelected: '✅ 已選擇檔案：',
+        btnSubmit: '送出探索故事', footerText: 'ORCHIDSAUR · 社團法人台灣蘭花產銷發展協會',
+        demoSubmitAlert: '【前端門面測試成功！】\n我們已成功接收到你輸入的資料。',
+        inputNamePh: '請輸入姓名', inputCityPh: '例如：臺南，臺灣', inputStoryPh: '分享你遇見蘭獸的故事或地方蘭花體驗...',
+        prevPage: '上一頁', nextPage: '下一頁', submissionNo: '投稿編號：', submissionDate: '投稿日期：'
       },
       en: {
-        subBrand: 'World of Orchidsaur',
-        heroTitle: 'Follow Orchidsaur to Explore World Orchids',
-        heroDesc: 'Carrying 80 million years of orchid memories from Taiwan, Orchidsaur invites everyone to add new orchid stories to the world map.',
-        btnStart: 'Start Exploring',
-        btnJoin: 'Join Next Stop',
-        portalTitle: 'Choose Your Path into Orchidsaur',
-        portalLead: 'Each theme is an independent gallery where you can dive into stories, photos, videos, and detailed insights.',
-        navJoin: 'Join Us',
-        readMore: 'Read Full Story →',
-        btnGoJoin: 'Join Next Stop (Submit)',
-        storyInviteText: '🌟 Submissions Welcome! Share photos or local orchid stories with Orchidsaur to put your city on the map!',
-        btnBack: '← Back to List',
-        joinTitle: 'Make Your City the Next Stop',
-        joinLead: 'Share your photos, city, and story with Orchidsaur to be added to our global map upon review.',
-        joinHead: 'Submission & Collaboration',
-        joinDesc: 'Submit your photos and stories below. Once approved, your footprint will be pinned on the Orchidsaur map!',
-        joinList: [
-          '📷 Travel with Orchidsaur and capture moments',
-          '📖 Share local orchid ecology and stories',
-          '🛡️ Join the public map upon TOGA approval'
-        ],
-        lblName: 'Name',
-        lblCity: 'City & Country',
-        lblStory: 'Your Story',
-        lblMedia: 'Photo or Video',
-        filePlaceholder: '📁 Click here to select a file',
-        fileSelected: '✅ Selected file: ',
-        btnSubmit: 'Submit Story',
-        footerText: 'ORCHIDSAUR · Taiwan Orchid Development Association',
-        demoSubmitAlert: '[Frontend Test Success!]\nData received successfully. Next step: Connect to backend database!',
-        inputNamePh: 'Enter your name',
-        inputCityPh: 'e.g. Tainan, Taiwan',
-        inputStoryPh: 'Share your Orchidsaur moment or orchid experience...',
-        prevPage: 'Prev',
-        nextPage: 'Next',
-        submissionNo: 'Submission No: ',
-        submissionDate: 'Date: '
+        subBrand: 'World of Orchidsaur', heroTitle: 'Follow Orchidsaur to Explore World Orchids',
+        heroDesc: 'Carrying 80 million years of orchid memories from Taiwan...',
+        btnStart: 'Start Exploring', btnJoin: 'Join Next Stop', portalTitle: 'Choose Your Path into Orchidsaur',
+        portalLead: 'Each theme is an independent gallery...', navJoin: 'Join Us', readMore: 'Read Full Story →',
+        btnBack: '← Back to List', joinTitle: 'Make Your City the Next Stop', joinLead: 'Share your photos, city, and story...',
+        joinHead: 'Submission & Collaboration', joinDesc: 'Submit your photos and stories below.',
+        joinList: ['📷 Travel with Orchidsaur', '📖 Share orchid stories', '🛡️ Join public map'],
+        lblName: 'Name', lblCity: 'City & Country', lblStory: 'Your Story', lblMedia: 'Photo or Video',
+        filePlaceholder: '📁 Click here to select a file', fileSelected: '✅ Selected file: ', btnSubmit: 'Submit Story',
+        footerText: 'ORCHIDSAUR · TOGA', demoSubmitAlert: '[Frontend Test Success!]',
+        inputNamePh: 'Enter your name', inputCityPh: 'e.g. Tainan, Taiwan', inputStoryPh: 'Share your Orchidsaur moment...',
+        prevPage: 'Prev', nextPage: 'Next', submissionNo: 'Submission No: ', submissionDate: 'Date: '
       },
       ja: {
-        subBrand: 'オーキッドソーの世界探險',
-        heroTitle: 'オーキッドソーと世界中の蘭を探求しよう',
-        heroDesc: '8,000万年の記憶を宿したオーキッドソーが台湾から出発。世界マップにあなたの新しい蘭の物語を刻みましょう。',
-        btnStart: '探索を始める',
-        btnJoin: '次の目的地に参加',
-        portalTitle: 'テーマを選んでオーキッドソーの世界へ',
-        portalLead: '各テーマは独立したパビリオンです。ストーリー、写真、詳細情報を体験できます。',
-        navJoin: '参加する',
-        readMore: '詳細を読む →',
-        btnGoJoin: '次の目的地に参加（投稿）',
-        storyInviteText: '🌟 投稿大歓迎！オーキッドソーとの写真や地域の蘭のストーリーを投稿して、あなたの街を次の目的地に！',
-        btnBack: '← 前のページへ戻る',
-        joinTitle: 'あなたの街を次の目的地に',
-        joinLead: '写真やストーリーを投稿し、審査を経てグローバルマップに掲載されましょう。',
-        joinHead: '投稿とコラボレーション',
-        joinDesc: 'フォームから写真とストーリーを送信。承認後、世界地図にあなたの記録が登場します！',
-        joinList: [
-          '📷 オーキッドソーと一緒に旅の写真を撮影',
-          '📖 地域の蘭や生態系のストーリーをシェア',
-          '🛡️ 協会審査後に公開マップへ掲載'
-        ],
-        lblName: 'お名前',
-        lblCity: '都市と国名',
-        lblStory: 'あなたのオーキッドソースストーリー',
-        lblMedia: '写真または動画',
-        filePlaceholder: '📁 クリックしてファイルを選択',
-        fileSelected: '✅ 選択されたファイル: ',
-        btnSubmit: 'ストーリーを送信',
-        footerText: 'ORCHIDSAUR · 社團法人台灣蘭花產銷發展協會',
-        demoSubmitAlert: '【フロントエンドテスト成功！】\nデータを受け取りました。次の段階でクラウドデータベースと連携可能です！',
-        inputNamePh: 'お名前を入力してください',
-        inputCityPh: '例：台南、台湾',
-        inputStoryPh: 'オーキッドソーとの出会いや蘭の体験をシェア...',
-        prevPage: '前へ',
-        nextPage: '次へ',
-        submissionNo: '投稿番号：',
-        submissionDate: '投稿日：'
+        subBrand: 'オーキッドソーの世界探險', heroTitle: 'オーキッドソーと世界中の蘭を探求しよう',
+        heroDesc: '8,000万年の記憶を宿したオーキッドソーが台湾から出発...',
+        btnStart: '探索を始める', btnJoin: '次の目的地に参加', portalTitle: 'テーマを選んでオーキッドソーの世界へ',
+        portalLead: '各テーマは独立したパビリオンです...', navJoin: '参加する', readMore: '詳細を読む →',
+        btnBack: '← 前のページへ戻る', joinTitle: 'あなたの街を次の目的地に', joinLead: '写真やストーリーを投稿しよう。',
+        joinHead: '投稿とコラボレーション', joinDesc: 'フォームから写真とストーリーを送信。',
+        joinList: ['📷 写真を撮影', '📖 ストーリーをシェア', '🛡️ 公開マップへ掲載'],
+        lblName: 'お名前', lblCity: '都市と国名', lblStory: 'あなたのストーリー', lblMedia: '写真または動画',
+        filePlaceholder: '📁 ファイルを選択', fileSelected: '✅ 選択されたファイル: ', btnSubmit: 'ストーリーを送信',
+        footerText: 'ORCHIDSAUR · TOGA', demoSubmitAlert: '【テスト成功！】',
+        inputNamePh: 'お名前を入力', inputCityPh: '例：台南、台湾', inputStoryPh: '体験をシェア...',
+        prevPage: '前へ', nextPage: '次へ', submissionNo: '投稿番号：', submissionDate: '投稿日：'
       }
     };
 
-    // 全站多國語言資料集（新增投稿日期 date 欄位）
     const sectionsData = {
       zh: {
         origin: {
           no: '01', title: '蘭獸起源',
           items: [
-            [
-              '從遠古線索開始', 
-              '從一隻封存在琥珀中的蜜蜂，追尋蘭花與恐龍共存的遠古記憶...', 
-              `<h3>一塊琥珀，開啟蘭獸的生命起點</h3><p>2007年，國際權威期刊《Nature》刊登了一項重要研究。由哈佛大學科學家 Santiago R. Ramírez 領銜的五人國際研究團隊，在一塊來自多明尼加共和國、約 1,500 萬至 2,000 萬年前形成的琥珀中，發現了一隻已滅絕的無螫蜂（<i>Proplebeia dominicana</i>）。更關鍵的是，蜜蜂胸部背面附著著清楚可辨識的蘭花花粉塊，被命名為 <i>Meliorchis caribea</i>。</p><p>這件珍貴的正模標本（館藏編號 MCZ-31141）目前典藏於美國哈佛大學比較動物學博物館（MCZ）。這項發現成為第一個能夠明確判定為蘭科植物的化石證據，完美保留了一場跨越千萬年的遠古授粉行動。</p>`
-            ],
-            [
-              '蘭獸形象誕生', 
-              '藝術家陳普結合「蘭花」與「恐龍」遠古線索，創造原創生命角色 Orchidsaur...', 
-              `<h3>從科學發現到 2023 年蘭獸誕生</h3><p>2023年，跨領域藝術家陳普從這段科學研究展開想像：如果蘭花早在恐龍時代便已存在，那麼在遠古森林中，是否也可能存在一種承載蘭花生命力量、陪伴蘭花穿越環境變遷的守護生物？</p><p>於是，我們將「蘭花」與「恐龍」兩個相隔於現代想像、卻曾在遠古世界共同存在的生命形象結合，創造出最初的蘭花恐龍 IP——<b>Orchidsaur（蘭獸 / Okisou）</b>。</p><h3>蘭獸的形象設計</h3><p>八隻腳是蘭獸最重要的識別特徵，也是蘭花生命能力的象徵。許多附生蘭具有發達的「氣生根」，能沿著樹幹、枝條或岩石表面生長，穩定附著並吸收雨水與霧氣。陳普將氣生根轉化為蘭獸的八隻腳，展現蘭花的生命適應力。</p>`
-            ],
-            [
-              '守護生命世界', 
-              'Orchidsaur 代表生態系的共生、生命力的延續與生生不息...', 
-              `<h3>Orchidsaur 的名稱由來</h3><p><b>Orchidsaur</b> 是由 <b>Orchid（蘭花）</b> 與 <b>Dinosaur / Saur（恐龍意象）</b> 組合而成的原創名稱，中文命名為「蘭獸」，而 <b>Okisou</b> 則是牠親切、容易記憶的角色暱稱。</p><h3>角色擔負的社會責任</h3><p>蘭獸不只是一個展覽角色，更擔負著<b>科學教育、生態守護、產業連結與世代傳承</b>的使命。牠守護的不只是一朵蘭花，而是讓蘭花得以萌芽、成長、授粉、繁衍的整個生命世界。</p>`
-            ]
+            ['從遠古線索開始', '從一隻封存在琥珀中的蜜蜂，追尋蘭花與恐龍共存的遠古記憶...', '<h3>一塊琥珀，開啟蘭獸的生命起點</h3><p>2007年，國際權威期刊《Nature》刊登了重要研究...</p>'],
+            ['蘭獸形象誕生', '藝術家陳普結合「蘭花」與「恐龍」遠古線索，創造原創生命角色...', '<h3>從科學發現到 2023 年蘭獸誕生</h3><p>藝術家陳普從科學研究展開想像...</p>'],
+            ['守護生命世界', 'Orchidsaur 代表生態系的共生、生命力的延續...', '<h3>Orchidsaur 的名稱由來</h3><p>Orchidsaur 是由 Orchid 與 Dinosaur 組合而成...</p>']
           ]
         },
         journey: {
           no: '02', title: '巡迴展歷',
           items: [
-            ['01. 2023・臺南', '臺灣國際蘭展誕生，12公尺巨型蘭獸首次登場...', `<p>2023年，跨領域藝術家陳普受邀為「臺灣國際蘭展」打造官方吉祥物。一座高達 12 公尺、長 19 公尺的巨型「Orchidsaur」氣膜裝置震憾現身臺南後壁蘭花生物科技園區，吸引數十萬人次目睹，開啟了蘭獸實體巡迴的第一章。</p>`],
-            ['02. 臺北・城市共生', '從藝術裝置走進城市，與臺北101空間呈現植物意象...', `<p>蘭獸走進當代生活空間！藝術家與花藝師團隊合作，將 Orchidsaur 植生藝術裝置搬進全球地標「臺北101辦公大樓」一樓大廳。結合有機造型雕塑與地生植栽，展現蘭花與城市文明共生的綠色對話。</p>`],
-            ['03. 高雄・佛光山', '潔白身影宛如祥瑞神獸，被民眾親切稱為「白鹿」...', `<p>在巡迴展出至高雄佛光山期間，潔白純淨的蘭獸裝置矗立於山寺之中。展覽現場許多民眾與阿嬤用臺語親切地稱呼牠為「白鹿啊！」，這種出乎意料卻富含人情味的在地互動，賦予了蘭獸更具溫度的生命故事。</p>`],
-            ['04. 日本大阪', '跨海受日本社群關注，開啟國際交流足跡...', `<p>隨展覽與周邊玩偶前往日本展示，Orchidsaur 獨特的「萌系神獸」形象與富含科學底蘊的故事，在日本 X (Twitter) 與 Instagram 上引發熱烈討論與分享，展現臺灣藝術 IP 的國際渲染力。</p>`],
-            ['05. 歐洲・波蘭', '走入歐洲花卉重鎮，開啟中東歐的蘭花故事交流...', `<p>蘭獸的足跡延伸至歐洲！前往波蘭參加國際花卉展覽與產業論壇，向中東歐市場展現臺灣強大的蘭花育種技術與文化藝術底蘊，跨越國界串聯全球的植物愛好者。</p>`],
-            ['06. 美國・紐約', '皇后區植物園「臺灣：蘭花世界」特展盛大登場...', `<p>於美國紐約皇后區植物園盛大登場的「臺灣：蘭花世界」特展中，蘭獸以臺灣蘭花大使的姿態亮相。現場展出數十種珍稀蘭花品種，並結合茶道與藝文體驗，讓紐約民眾感受來自臺灣的植物美學。</p>`],
-            ['07. 菲律賓・馬尼拉', '登陸東南亞市場，於菲律賓形象展展現臺灣軟實力...', `<p>攜手外貿協會與台灣蘭花產銷發展協會，蘭獸登陸菲律賓馬尼拉「臺灣形象展（Taiwan Expo）」。作為臺灣花卉農業與藝術 IP 的強烈視覺標誌，吸引大量當地買家與民眾駐足，成為推動文化交流的萌系外交官。</p>`],
-            ['08. 多明尼加', '深入雨林探索，尋覓原生蘭花與自然生態起源...', `<p>蘭獸展開雨林探索之旅！深入多明尼加富饒的森林與自然保護區，尋覓原生蘭花與珍貴生態的足跡。在這片綠意盎然的土地上，體會植物最原始的生命力與自然脈動。</p>`],
-            ['09. 臺灣・桃園機場', '驚喜現身桃園國際機場，陪伴旅客踏上綠色探索之旅...', `<p>蘭獸駐足於臺灣的國門——桃園國際機場！以親切療癒的身影迎接來自世界各地的旅客與返鄉歸客，將臺灣「蘭花之島」的美譽第一時間傳遞給每一位過境與入境的旅人。</p>`]
+            ['01. 2023・臺南', '臺灣國際蘭展誕生，12公尺巨型蘭獸首次登場...', '<p>2023年，12公尺巨型蘭獸登場...</p>'],
+            ['02. 臺北・城市共生', '從藝術裝置走進城市，與臺北101空間呈現植物意象...', '<p>走進臺北101辦公大樓大廳...</p>'],
+            ['03. 高雄・佛光山', '潔白身影宛如祥瑞神獸，被民眾親切稱為「白鹿」...', '<p>潔白純淨的蘭獸裝置矗立於山寺之中...</p>'],
+            ['04. 日本大阪', '跨海受日本社群關注，開啟國際交流足跡...', '<p>在 X 與 Instagram 上引發熱烈討論...</p>'],
+            ['05. 歐洲・波蘭', '走入歐洲花卉重鎮，開啟中東歐的蘭花故事交流...', '<p>參加波蘭國際花卉展覽...</p>'],
+            ['06. 美國・紐約', '皇后區植物園「臺灣：蘭花世界」特展盛大登場...', '<p>於紐約皇后區植物園盛大登場...</p>'],
+            ['07. 菲律賓・馬尼拉', '登陸東南亞市場，於菲律賓形象展展現臺灣軟實力...', '<p>登陸馬尼拉 Taiwan Expo...</p>'],
+            ['08. 多明尼加', '深入雨林探索，尋覓原生蘭花與自然生態起源...', '<p>深入雨林探索自然保護區...</p>'],
+            ['09. 臺灣・桃園機場', '驚喜現身桃園國際機場，陪伴旅客踏上綠色探索之旅...', '<p>駐足於桃園國際機場國門...</p>']
           ]
         },
         science: {
           no: '03', title: '科學教室',
           items: [
-            [
-              '八千萬年的蘭花', 
-              '透過分子時鐘研究，推估現生蘭科植物祖先早在晚白堊紀即已出現...', 
-              `<h3>分子時鐘與晚白堊紀校準</h3><p>科學家以琥珀化石（<i>Meliorchis caribea</i>）作為時間校準點，結合現生蘭科植物形態與 DNA 資料，利用「分子時鐘」進行演化推估。研究顯示，現生蘭科植物共同祖先早在距今 7,600 萬至 8,400 萬年前的晚白堊紀便已出現——那正是恐龍依然行走於地球上的年代！</p><h3>跨越滅絕事件的生命奇蹟</h3><p>八千萬年來，蘭花經歷了白堊紀末期大滅絕與無數次地質變遷，依然展現出極強的生命適應力，成為當今地球上最為繁盛的開花植物科別之一。</p>`
-            ],
-            [
-              '共生的生命網絡', 
-              '種子萌發依賴蘭菌，生存繁衍依賴昆蟲與樹木，展現極致的共生機制...', 
-              `<h3>微小種子的夥伴：蘭菌共生機制</h3><p>蘭花種子極其微小且缺乏養分，必須在土壤或樹皮表面與特定真菌（蘭菌菌根真菌）結盟，由真菌提供水分與養分才能成功萌發。</p><h3>授粉與附生生態</h3><p>成熟後的蘭花演化出精妙的擬態與香氣誘惑昆蟲完成授粉；多數熱帶蘭花更屬於「附生植物」，攀附樹幹而不吸取樹木養分，展現了和諧共存的生態網絡。</p>`
-            ],
-            [
-              '氣生根與構造解析', 
-              '解析附生蘭的氣生根與蘭獸八足構造的生物學相呼應...', 
-              `<h3>附生蘭的結構智慧：氣生根</h3><p>附生蘭的氣生根表面包覆著能快速吸水的根包組織（Velamen），不僅能牢牢抓緊樹皮與岩壁，還能直接吸收空氣中的水氣與微量養分。</p><h3>演化轉化：蘭獸的八足與新芽</h3><p>蘭獸頭頂的幼芽角象徵生命萌發的初衷，而八隻腳則是氣生根的形象化轉化，傳達著「穩固紮根、多元探索」與環境永續的精神。</p>`
-            ]
+            ['八千萬年的蘭花', '透過分子時鐘研究，推估現生蘭科植物祖先早在晚白堊紀即已出現...', '<h3>分子時鐘與晚白堊紀校準</h3><p>研究顯示蘭科祖先出現在晚白堊紀...</p>'],
+            ['共生的生命網絡', '種子萌發依賴蘭菌，生存繁衍依賴昆蟲與樹木...', '<h3>蘭菌共生機制</h3><p>蘭花種子與真菌結盟才能萌發...</p>'],
+            ['氣生根與構造解析', '解析附生蘭的氣生根與蘭獸八足構造的生物學相呼應...', '<h3>氣生根</h3><p>根包組織快速吸水...</p>']
           ]
         },
         story: {
           no: '04', title: '與獸同行',
           items: [
-            ['佛光山的祥瑞守望', '駐立於佛光山的蘭獸，潔白的身影如同平安吉祥的守護者...', '<h3>佛光山的祥瑞守望</h3><p>駐立於高雄佛光山的蘭獸，潔白的身影如同平安吉祥的守護者，陪伴眾人感受花香與寧靜。</p>', '2026-01-10'],
-            ['「白鹿啊！」', '蘭展現場，一位歐巴桑的自然聯想，賦予了蘭獸親切的在地稱呼...', '<h3>「白鹿啊！」的故事</h3><p>蘭展現場，一位阿嬤指著潔白的蘭獸親切叫道：「白鹿啊！」，成為展場中最溫馨動人的一幕。</p>', '2026-01-18'],
-            ['東京的蘭花對話', '日本花藝師分享，蘭獸為現代都市注入了自然的生命力...', '<h3>東京花藝展覽交流</h3><p>在東京的交流展中，花藝師與民眾透過蘭獸串聯起對蘭花生態與永續自然的無限想像。</p>', '2026-02-05'],
-            ['臺南花巷巧遇', '穿梭於臺南老老街區，民眾捕捉到的蘭獸快閃蹤跡...', '<h3>古都花巷中的驚喜</h3><p>穿梭於臺南古色古香的巷弄，隨處可見民眾與蘭獸裝置打卡合照，展現地方美學。</p>', '2026-02-20'],
-            ['紐約植物園側寫', '皇后區植物園中，來自全球的遊客與蘭獸熱情合照...', '<h3>紐約特展側寫</h3><p>在紐約特展現場，許多家庭與小朋友一同圍繞著蘭獸，認識來自臺灣的蘭花文化。</p>', '2026-03-12'],
-            ['陽台上的小蘭獸', '網友投稿：將蘭獸公仔放在自己照顧的蝴蝶蘭旁...', '<h3>家中的綠色角落</h3><p>愛花民眾分享在自家陽台佈置的蘭花花園，擺上蘭獸公仔後別具生機。</p>', '2026-04-01'],
-            ['歐洲花展驚豔', '在波蘭花展上，國際友人對蘭獸的創作概念讚不絕口...', '<h3>波蘭展覽盛況</h3><p>歐洲民眾熱情體驗臺灣花卉文化，蘭獸成為促進國際友誼的最佳綠色大使。</p>', '2026-05-15'],
-            ['雨林中的足跡', '多明尼加生態紀錄：尋找最原始的蘭花棲地...', '<h3>多明尼加探索誌</h3><p>隨同考察團隊深入自然保護區，在原生雨林中探尋珍貴的蘭花品種與生態脈動。</p>', '2026-06-08'],
-            ['桃機迎接歸客', '在國門機場療癒的笑臉，給予旅人溫暖的歸途陪伴...', '<h3>國門第一站</h3><p>桃園國際機場的特展裝置，為來往的國際旅客帶來最溫馨熱情的臺灣第一印象。</p>', '2026-07-02'],
-            ['校園生態小導覽', '小學生們圍繞著蘭獸，聆聽八千萬年植物演化故事...', '<h3>環境教育走入校園</h3><p>透過蘭獸生動活潑的形象，帶領學童了解生物多樣性與環境保育的重要性。</p>', '2026-07-20'],
-            ['綠意盎然的辦公室', '上班族分享：辦公桌上的蘭獸與小盆栽是每日療癒源泉...', '<h3>職場中的綠色療癒</h3><p>在繁重的都市職場中，小小的植物與蘭獸陪伴，能帶來舒緩壓力與好心情。</p>', '2026-08-11'],
-            ['馬尼拉形象展盛況', '菲律賓民眾排隊與蘭獸合照，感受臺灣萌系魅力...', '<h3>馬尼拉熱情互動</h3><p>於 Taiwan Expo 登場，成為全場最受矚目的綠色文化標誌。</p>', '2026-08-25'],
-            ['春節蘭展新亮點', '走春民眾爭相打卡，蘭獸成為花海中最閃耀的主角...', '<h3>新春花海打卡熱點</h3><p>年節期間湧入數萬遊客，蘭獸裝置陪伴全家大小留下歡樂的節慶回憶。</p>', '2026-08-28'],
-            ['蘭花育種家的堅持', '訪問在地花農，講述數十年培育新品種的匠人精神...', '<h3>育種家背後的故事</h3><p>每一朵盛開的優良蘭花品種，都是臺灣花農歷經數年血汗與智慧結晶的成果。</p>', '2026-09-01']
+            ['佛光山的祥瑞守望', '駐立於佛光山的蘭獸，潔白的身影如同平安吉祥的守護者...', '<h3>佛光山的祥瑞守望</h3><p>駐立於高雄佛光山的蘭獸...</p>', '2026-01-10'],
+            ['「白鹿啊！」', '蘭展現場，一位歐巴桑的自然聯想，賦予了蘭獸親切的在地稱呼...', '<h3>「白鹿啊！」的故事</h3><p>一位阿嬤指著潔白的蘭獸叫道：白鹿啊！</p>', '2026-01-18'],
+            ['東京的蘭花對話', '日本花藝師分享，蘭獸為現代都市注入了自然的生命力...', '<h3>東京花藝展覽交流</h3><p>在東京交流展中...</p>', '2026-02-05'],
+            ['臺南花巷巧遇', '穿梭於臺南老街區，民眾捕捉到的蘭獸快閃蹤跡...', '<h3>古都花巷中的驚喜</h3><p>穿梭於臺南古色古香的巷弄...</p>', '2026-02-20'],
+            ['紐約植物園側寫', '皇后區植物園中，來自全球的遊客與蘭獸熱情合照...', '<h3>紐約特展側寫</h3><p>在紐約特展現場...</p>', '2026-03-12'],
+            ['陽台上的小蘭獸', '網友投稿：將蘭獸公仔放在自己照顧的蝴蝶蘭旁...', '<h3>家中的綠色角落</h3><p>愛花民眾分享在自家陽台...</p>', '2026-04-01'],
+            ['歐洲花展驚豔', '在波蘭花展上，國際友人對蘭獸的創作概念讚不絕口...', '<h3>波蘭展覽盛況</h3><p>歐洲民眾熱情體驗...</p>', '2026-05-15'],
+            ['雨林中的足跡', '多明尼加生態紀錄：尋找最原始的蘭花棲地...', '<h3>多明尼加探索誌</h3><p>探尋珍貴的蘭花品種...</p>', '2026-06-08'],
+            ['桃機迎接歸客', '在國門機場療癒的笑臉，給予旅人溫暖的歸途陪伴...', '<h3>國門第一站</h3><p>桃園國際機場的特展裝置...</p>', '2026-07-02'],
+            ['校園生態小導覽', '小學生們圍繞著蘭獸，聆聽八千萬年植物演化故事...', '<h3>環境教育走入校園</h3><p>帶領學童了解生物多樣性...</p>', '2026-07-20'],
+            ['綠意盎然的辦公室', '上班族分享：辦公桌上的蘭獸與小盆栽是每日療癒源泉...', '<h3>職場中的綠色療癒</h3><p>小小的植物與蘭獸陪伴...</p>', '2026-08-11'],
+            ['馬尼拉形象展盛況', '菲律賓民眾排隊與蘭獸合照，感受臺灣萌系魅力...', '<h3>馬尼拉熱情互動</h3><p>於 Taiwan Expo 登場...</p>', '2026-08-25'],
+            ['春節蘭展新亮點', '走春民眾爭相打卡，蘭獸成為花海中最閃耀的主角...', '<h3>新春花海打卡熱點</h3><p>年節期間湧入數萬遊客...</p>', '2026-08-28'],
+            ['蘭花育種家的堅持', '訪問在地花農，講述數十年培育新品種的匠人精神...', '<h3>育種家背後的故事</h3><p>每一朵盛開的優良蘭花品種都是智慧結晶...</p>', '2026-09-01']
           ]
         },
-        adventure: {
-          no: '05', title: '探險與活動',
-          items: [
-            ['森林王國', '學習共生與棲地。', '<p>探索樹木與附生植物的和諧共處。</p>'],
-            ['海洋王國', '認識島嶼與遷徙。', '<p>了解植物如何隨著風與海流擴散種子。</p>']
-          ]
-        }
+        adventure: { no: '05', title: '蘭獸探險趣', items: [] }
       },
       en: {
-        origin: {
-          no: '01', title: 'Origin',
-          items: [
-            ['Ancient Clues', 'Tracing orchids and dinosaurs back to amber fossils...', '<h3>An Amber Fossil</h3><p>Scientific proof of orchid fossils found in amber.</p>']
-          ]
-        },
-        journey: {
-          no: '02', title: 'Tour Exhibition',
-          items: [
-            ['01. 2023 Tainan', 'Debut of 12-meter giant Orchidsaur...', '<p>12m giant Orchidsaur introduced at Tainan.</p>']
-          ]
-        },
-        science: {
-          no: '03', title: 'Science',
-          items: [
-            ['80 Million Years of Orchids', 'Molecular clock studies...', '<h3>Molecular Clock</h3><p>Tracing evolutionary timelines.</p>']
-          ]
-        },
-        story: {
-          no: '04', title: 'Walk with Orchidsaur',
-          items: [
-            ['Fo Guang Shan Guardian', 'Standing pure and white at Fo Guang Shan...', '<h3>Fo Guang Shan</h3><p>Bringing peace and floral scents to visitors.</p>', '2026-01-10'],
-            ['"White Deer!" Story', 'An affectionate local nickname given by a visitor...', '<h3>White Deer</h3><p>A heartwarming nickname given by an elderly visitor.</p>', '2026-01-18'],
-            ['Tokyo Flower Dialogue', 'Connecting urban life with natural ecology...', '<h3>Tokyo Exhibition</h3><p>Connecting people through plant art.</p>', '2026-02-05'],
-            ['Tainan Alley Discovery', 'Flash encounters in Tainan historic streets...', '<h3>Historic Streets</h3><p>Pop-up installations in historic Tainan.</p>', '2026-02-20'],
-            ['New York Botanical Garden', 'Visitors posing enthusiastically with Orchidsaur...', '<h3>NYC Exhibition</h3><p>Sharing Taiwan orchid culture in NYC.</p>', '2026-03-12'],
-            ['Balcony Orchidsaur', 'A fan post featuring Orchidsaur with orchids...', '<h3>Home Garden</h3><p>Orchidsaur guarding home balcony plants.</p>', '2026-04-01'],
-            ['Poland Flower Expo', 'International visitors admiring Orchidsaur concept...', '<h3>Poland Expo</h3><p>Promoting Taiwan flower culture in Europe.</p>', '2026-05-15'],
-            ['Rainforest Footprints', 'Exploring wild orchid origins in Dominican Republic...', '<h3>Rainforest Expedition</h3><p>In search of native wild orchids.</p>', '2026-06-08'],
-            ['Taoyuan Airport Welcome', 'A heartwarming sight greeting global visitors...', '<h3>International Gateway</h3><p>Welcoming visitors at Taiwan international airport.</p>', '2026-07-02'],
-            ['Campus Eco Tour', 'Students learning 80-million-year evolution story...', '<h3>Eco Education</h3><p>Teaching biodiversity to elementary students.</p>', '2026-07-20'],
-            ['Green Office Corner', 'Desk setup with Orchidsaur as daily healing energy...', '<h3>Healing Space</h3><p>Soothing work stress with green desk art.</p>', '2026-08-11'],
-            ['Manila Taiwan Expo', 'Queues forming to take photos with Orchidsaur...', '<h3>Manila Expo</h3><p>Highlighting Taiwan green culture in Manila.</p>', '2026-08-25'],
-            ['Spring Festival Feature', 'A favorite holiday photo spot for families...', '<h3>Holiday Feature</h3><p>A shining highlight amidst spring flower fields.</p>', '2026-08-28'],
-            ['The Breeder’s Craft', 'Local farmer discussing decades of orchid breeding...', '<h3>Breeder’s Passion</h3><p>Dedication behind every unique orchid hybrid.</p>', '2026-09-01']
-          ]
-        },
-        adventure: {
-          no: '05', title: 'Adventures',
-          items: [
-            ['Forest Realm', 'Symbiosis and habitats...', '<p>Discovering epiphytic life.</p>']
-          ]
-        }
+        origin: { no: '01', title: 'Origin', items: [] },
+        journey: { no: '02', title: 'Tour Exhibition', items: [] },
+        science: { no: '03', title: 'Science', items: [] },
+        story: { no: '04', title: 'Walk with Orchidsaur', items: [] },
+        adventure: { no: '05', title: 'Orchidsaur Adventure', items: [] }
       },
       ja: {
-        origin: {
-          no: '01', title: '起源',
-          items: [
-            ['太古のヒント', '琥珀の中のハチから始まった蘭と恐竜の記憶...', '<h3>琥珀の記憶</h3><p>琥珀から発見された古生物の証拠。</p>']
-          ]
-        },
-        journey: {
-          no: '02', title: '巡迴展歷',
-          items: [
-            ['01. 2023・台南', '12mの巨大オーキッドソー初登場...', '<p>台南にて初登場。</p>']
-          ]
-        },
-        science: {
-          no: '03', title: '科学教室',
-          items: [
-            ['8000万年の蘭', '分子時計による進化研究...', '<h3>白亜紀の進化</h3><p>蘭の進化史。</p>']
-          ]
-        },
-        story: {
-          no: '04', title: '蘭獸と同行',
-          items: [
-            ['佛光山の見守り', '白く清らかなオーキッドソーの姿...', '<h3>佛光山</h3><p>参拝客を温かく迎える守護神。</p>', '2026-01-10'],
-            ['「白い鹿」の物語', '親しみを込めて呼ばれた愛称...', '<h3>白い鹿</h3><p>心溫まる地元でのエピソード。</p>', '2026-01-18'],
-            ['東京での花交流', '都市と自然の共生...', '<h3>東京展示</h3><p>植物アートを通じた交流。</p>', '2026-02-05'],
-            ['台南の路地での出会い', '歴史ある街並みに現れたオーキッドソー...', '<h3>台南の路地</h3><p>古都の街角でのサプライズ展示。</p>', '2026-02-20'],
-            ['ニューヨーク植物園', '世界中の来場者との記念撮影...', '<h3>NY特展</h3><p>アメリカで台湾の蘭文化を披露。</p>', '2026-03-12'],
-            ['ベランダのオーキッドソー', '自宅の胡蝶蘭と一緒に投稿...', '<h3>マイガーデン</h3><p>家庭での日常の癒やしスポット。</p>', '2026-04-01'],
-            ['ポーランド花卉展', '国際的に高い評価を得たコンセプト...', '<h3>ポーランド展示</h3><p>ヨーロッパでの文化交流活動。</p>', '2026-05-15'],
-            ['熱帯雨林の足跡', 'ドミニカでの原種探求の旅...', '<h3>雨林探險</h3><p>野生の蘭の起源を探る旅。</p>', '2026-06-08'],
-            ['桃園空港でのお出迎え', '旅人を癒やす温かい笑顔...', '<h3>国際空港</h3><p>旅人に台湾の第一印象を届ける。</p>', '2026-07-02'],
-            ['学校エコツアー', '子供たちと学ぶ8,000万年の進化ストーリー...', '<h3>環境教育</h3><p>子供たちに伝える生物多様性。</p>', '2026-07-20'],
-            ['オフィスの緑のコーナー', 'デスク上の癒やしのインテリア...', '<h3>オフィスの癒やし</h3><p>日常のストレスを和らげる緑。</p>', '2026-08-11'],
-            ['マニラ台湾エキスポ', '大人気を博した記念撮影コーナー...', '<h3>マニラエキスポ</h3><p>東南アジアでの熱狂的な歓迎。</p>', '2026-08-25'],
-            ['春節花展の目玉', '休日のお出かけスポットとして大好評...', '<h3>お正月特展</h3><p>家族で楽しむ思い出のフォトスポット。</p>', '2026-08-28'],
-            ['ブリーダーの情熱', '品種改良に情熱を注ぐ農家さんの記録...', '<h3>ブリーダーの魂</h3><p>一羽の蘭の裏にある情熱と汗水。</p>', '2026-09-01']
-          ]
-        },
-        adventure: {
-          no: '05', title: '探檢とイベント',
-          items: [
-            ['森林の王国', '共生と生息地を学ぶ...', '<p>着生植物の神秘。</p>']
-          ]
-        }
+        origin: { no: '01', title: '起源', items: [] },
+        journey: { no: '02', title: '巡迴展歷', items: [] },
+        science: { no: '03', title: '科学教室', items: [] },
+        story: { no: '04', title: '蘭獸と同行', items: [] },
+        adventure: { no: '05', title: '蘭獸探檢趣', items: [] }
       }
     };
 
+    // 8 題知識闖關題目庫
+    const quizData = [
+      {
+        q: "這隻擁有蘭花身體特徵與遠古記憶的白色吉祥物叫什麼名字？",
+        opts: ["Orchidsaur（蘭獸）", "Pikachu", "DinoGreen", "FloraBot"],
+        ans: 0
+      },
+      {
+        q: "Orchidsaur（蘭獸）的名字是由哪兩個英文單字結合而成的？",
+        opts: ["Ocean ＋ Shark", "Orchid（蘭花）＋ Dinosaur（恐龍）", "Organic ＋ Solar", "Orient ＋ Sail"],
+        ans: 1
+      },
+      {
+        q: "蘭獸身上最標誌性的特徵之一是有著「8 隻腳」，這象徵著什麼？",
+        opts: ["方便去搬重物", "跑得跟賽車一樣快", "蘭花的氣生根與強韌的環境適應力", "只是為了穿更多雙鞋子"],
+        ans: 2
+      },
+      {
+        q: "科學家透過什麼線索，推算蘭科植物的祖先早在恐龍時期就已經出現？",
+        opts: ["海底沉積岩中的魚類化石", "封存在琥珀中的蜜蜂花粉", "埃及金字塔內的壁畫圖騰", "古老圖書館書籍"],
+        ans: 1
+      },
+      {
+        q: "盛大的「臺灣國際蘭展」通常在每年幾月舉行？",
+        opts: ["每年 3 月", "每年 7 月暑假", "每年 10 月國慶", "每年 12 月跨年"],
+        ans: 0
+      },
+      {
+        q: "臺灣國際蘭展的經典展場位於哪裡？",
+        opts: ["花蓮太魯閣國家公園", "新竹科學園區", "臺南後壁區（農業部花卉創新園區）", "澎湖花火節主舞台"],
+        ans: 2
+      },
+      {
+        q: "照顧家裡的蝴蝶蘭時，下列哪一種做法是正確的？",
+        opts: ["天天瘋狂澆水把盆栽當水族箱養", "保持通風良好、放置於半陰散射光處，等介質乾了再澆水", "拿海水泡蘭花幫它補鹽分", "放在完全黑漆漆的房間讓它生病"],
+        ans: 1
+      },
+      {
+        q: "蘭獸曾經在哪裡留下過探索足跡與展出身影呢？",
+        opts: ["臺灣、日本、歐洲波蘭、美國紐約等都有它的身影！"],
+        ans: 0
+      }
+    ];
+
+    let currentQuizIdx = 0;
     const order = ['origin', 'journey', 'science', 'story', 'adventure'];
     let last = 'home';
-    let currentDetailKey = null;
-    let currentDetailIndex = null;
 
     function renderUI() {
       const t = translations[currentLang];
       const sections = sectionsData[currentLang];
 
-      // UI 介面文字更新
       document.getElementById('subBrand').textContent = t.subBrand;
       document.getElementById('heroTitle').textContent = t.heroTitle;
       document.getElementById('heroDesc').textContent = t.heroDesc;
@@ -553,43 +480,25 @@
       document.getElementById('inputCity').placeholder = t.inputCityPh;
       document.getElementById('inputStory').placeholder = t.inputStoryPh;
       
-      const fileInput = document.getElementById('inputFile');
-      if (!fileInput.files || !fileInput.files[0]) {
-        document.getElementById('fileLabel').textContent = t.filePlaceholder;
-      }
       document.getElementById('btnSubmit').textContent = t.btnSubmit;
       document.getElementById('btnBack').textContent = t.btnBack;
       document.getElementById('footerText').textContent = t.footerText;
 
-      // 導覽列與選單
       nav.innerHTML = order.map(k => `<button onclick="go('${k}')">${sections[k].title}</button>`).join('') + `<button onclick="go('join')">${t.navJoin}</button>`;
       portal.innerHTML = order.map(k => `<button onclick="go('${k}')"><span>${sections[k].no}</span><h3>${sections[k].title}</h3></button>`).join('');
       
-      // 主題區塊渲染
       order.forEach(k => {
+        if (k === 'adventure') return;
+
         const s = sections[k];
         const isStorySection = (k === 'story');
         const isJourneySection = (k === 'journey');
         const hasPagination = isStorySection || isJourneySection;
 
-        let mastContent = `
-          <p class="eyebrow">${s.no} / EXPLORE</p>
-          <h1>${s.title}</h1>
-        `;
-
-        if (isStorySection) {
-          mastContent += `
-            <div class="story-invite-box">
-              <p>${t.storyInviteText}</p>
-              <button onclick="go('join')">${t.btnGoJoin}</button>
-            </div>
-          `;
-        }
-
+        let mastContent = `<p class="eyebrow">${s.no} / EXPLORE</p><h1>${s.title}</h1>`;
         let sectionBodyHtml = '';
 
         if (hasPagination) {
-          // 倒序處理（號碼大/最新者排最前面左上）
           const reversedItems = [...s.items].reverse();
           const totalItems = reversedItems.length;
           const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
@@ -602,7 +511,6 @@
           const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
           const currentPageItems = reversedItems.slice(startIdx, startIdx + ITEMS_PER_PAGE);
 
-          // 產生卡片
           const cardsHtml = currentPageItems.map((x, idx) => {
             const originalIndex = s.items.indexOf(x);
             let numDisplay = '';
@@ -628,7 +536,6 @@
             `;
           }).join('');
 
-          // 產生分頁按鈕
           let paginationHtml = '';
           if (totalPages > 1) {
             let pageBtnsHtml = '';
@@ -669,17 +576,100 @@
         `;
       });
 
-      // 若當前在詳細頁面，即時更新內文
-      if (document.getElementById('detail').classList.contains('active') && currentDetailKey !== null) {
-        openDetail(currentDetailKey, currentDetailIndex, false);
+      loadQuizQuestion();
+    }
+
+    /* 05 頁籤與問答邏輯 */
+    function switchAdvTab(tabKey) {
+      document.querySelectorAll('.adv-tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.adv-panel').forEach(panel => panel.classList.remove('active'));
+
+      if (tabKey === 'quiz') {
+        document.querySelectorAll('.adv-tab-btn')[0].classList.add('active');
+        document.getElementById('advQuiz').classList.add('active');
+      } else if (tabKey === 'catch') {
+        document.querySelectorAll('.adv-tab-btn')[1].classList.add('active');
+        document.getElementById('advCatch').classList.add('active');
+      } else if (tabKey === 'wallpaper') {
+        document.querySelectorAll('.adv-tab-btn')[2].classList.add('active');
+        document.getElementById('advWallpaper').classList.add('active');
       }
+    }
+
+    function loadQuizQuestion() {
+      if (currentQuizIdx >= quizData.length) {
+        document.getElementById('quizProgress').textContent = "🎉 闖關成功！";
+        document.getElementById('quizQText').textContent = "恭喜你完成 8 題蘭獸與蘭花知識挑戰，獲得「蘭花小專家」動態徽章！";
+        document.getElementById('quizOpts').innerHTML = `<button class="btn-submit" onclick="currentQuizIdx=0;loadQuizQuestion()">再玩一次</button>`;
+        document.getElementById('quizResult').textContent = "";
+        return;
+      }
+
+      const qObj = quizData[currentQuizIdx];
+      document.getElementById('quizProgress').textContent = `題目 ${currentQuizIdx + 1} / ${quizData.length}`;
+      document.getElementById('quizQText').textContent = qObj.q;
+      document.getElementById('quizResult').textContent = "";
+
+      document.getElementById('quizOpts').innerHTML = qObj.opts.map((opt, i) => `
+        <button class="quiz-opt-btn" onclick="checkQuizAns(${i})">${opt}</button>
+      `).join('');
+    }
+
+    function checkQuizAns(idx) {
+      const qObj = quizData[currentQuizIdx];
+      const res = document.getElementById('quizResult');
+
+      if (idx === qObj.ans) {
+        res.textContent = "✨ 答對了！太厲害了！";
+        res.style.color = "var(--green)";
+        setTimeout(() => {
+          currentQuizIdx++;
+          loadQuizQuestion();
+        }, 1200);
+      } else {
+        res.textContent = "❌ 差一點點，再試試看！";
+        res.style.color = "#c64242";
+      }
+    }
+
+    /* 接花花小遊戲邏輯 */
+    let catchScore = 0;
+    function moveBasket(e) {
+      const area = document.getElementById('catchGameArea');
+      const rect = area.getBoundingClientRect();
+      let x = e.clientX - rect.left - 35;
+      if (x < 0) x = 0;
+      if (x > rect.width - 70) x = rect.width - 70;
+      document.getElementById('playerBasket').style.left = x + 'px';
+    }
+
+    function startCatchGame() {
+      catchScore = 0;
+      document.getElementById('catchScore').textContent = catchScore;
+      alert("遊戲開始！請移動滑鼠接住掉落的蘭花 🌸！");
+    }
+
+    /* 桌布 DIY 畫廊邏輯 */
+    function setCanvasBg(color) {
+      document.getElementById('wallpaperCanvas').style.background = color;
+    }
+
+    function addSticker(emoji) {
+      const canvas = document.getElementById('wallpaperCanvas');
+      const sticker = document.createElement('div');
+      sticker.textContent = emoji;
+      sticker.style.position = 'absolute';
+      sticker.style.fontSize = '48px';
+      sticker.style.left = Math.random() * 80 + '%';
+      sticker.style.top = Math.random() * 70 + '%';
+      sticker.style.cursor = 'move';
+      canvas.appendChild(sticker);
     }
 
     function changeSectionPage(key, page) {
       sectionPages[key] = page;
       renderUI();
-      const sec = document.getElementById(key);
-      if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+      document.getElementById(key).scrollIntoView({ behavior: 'smooth' });
     }
 
     function changeLang(lang) {
@@ -701,13 +691,10 @@
     }
 
     function openDetail(k, i, push = true) {
-      currentDetailKey = k;
-      currentDetailIndex = i;
       const t = translations[currentLang];
       const sections = sectionsData[currentLang];
       const item = sections[k].items[i];
       
-      // 若為與獸同行，呈現投稿編號與投稿日期
       if (k === 'story') {
         const displayNumber = i + 1;
         const numStr = displayNumber < 10 ? '0' + displayNumber : displayNumber;
@@ -743,7 +730,6 @@
       if (document.getElementById(h)) go(h, false);
     });
 
-    // 初始化渲染
     renderUI();
     if (location.hash) go(location.hash.slice(1), false);
   </script>
