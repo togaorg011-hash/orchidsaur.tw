@@ -12,7 +12,6 @@
     a{text-decoration:none;color:inherit}
     button,select,input,textarea{font:inherit}
     
-    /* 頂部固定導覽列 */
     .top{position:sticky;top:0;z-index:10;min-height:74px;padding:12px max(20px,calc((100vw - 1180px)/2));display:flex;align-items:center;gap:26px;background:#fffdf7f2;border-bottom:1px solid var(--line)}
     .brand{display:flex;align-items:center;gap:11px;cursor:pointer}
     .mark{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--deep);color:white;font:700 22px Georgia}
@@ -27,7 +26,6 @@
     .page{display:none}
     .page.active{display:block}
     
-    /* Hero 與通用 Banner */
     .hero{min-height:650px;padding:90px max(24px,calc((100vw - 1180px)/2));background:radial-gradient(circle at 80% 20%,#86b57455,transparent 30%),linear-gradient(135deg,var(--deep),#2d654b);color:white;display:grid;align-content:center}
     .eyebrow{color:#d9ad62;font-size:13px;font-weight:800;letter-spacing:.18em}
     .hero h1,.mast h1{font:500 clamp(48px,8vw,96px)/1 Georgia,"Noto Serif TC",serif;max-width:900px;margin:18px 0}
@@ -56,38 +54,37 @@
     .card h3{font:500 27px Georgia,"Noto Serif TC",serif;margin:8px 0;line-height:1.3}
     .card p{color:var(--muted);line-height:1.7}
     .card button{margin-top:16px;border:0;background:var(--green);color:white;border-radius:999px;padding:10px 18px;cursor:pointer;align-self:flex-start}
-    
+
     .pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:48px}
     .pagination button{border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:bold}
     .pagination button.active{background:var(--green);color:white;border-color:var(--green)}
     .pagination button:disabled{opacity:.4;cursor:not-allowed}
 
-    /* 05 蘭獸探險趣 專屬樣式 */
+    /* 05 區塊樣式 */
     .adventure-tabs{display:flex;gap:12px;margin-bottom:30px;flex-wrap:wrap}
     .adv-tab-btn{border:1px solid var(--line);background:var(--paper);padding:14px 28px;border-radius:12px;font-size:18px;font-weight:bold;cursor:pointer;transition:.2s}
     .adv-tab-btn.active{background:var(--green);color:white;border-color:var(--green)}
     .adv-panel{display:none;background:var(--paper);border:1px solid var(--line);border-radius:24px;padding:36px;box-shadow:0 10px 30px #173a3108}
     .adv-panel.active{display:block}
 
-    /* 知識闖關 */
     .quiz-box{max-width:700px;margin:auto;text-align:center}
     .quiz-q{font-size:22px;font-weight:bold;margin:20px 0 30px;line-height:1.6}
     .quiz-options{display:grid;grid-template-columns:1fr;gap:12px}
     .quiz-opt-btn{background:var(--cream);border:1px solid var(--line);padding:16px 20px;border-radius:12px;text-align:left;font-size:16px;font-weight:bold;cursor:pointer;transition:.2s}
     .quiz-opt-btn:hover{background:var(--green);color:white}
 
-    /* 接花花遊戲 */
-    .catch-game-area{width:100%;max-width:600px;height:400px;background:#eef5eb;border:2px solid var(--line);border-radius:20px;position:relative;overflow:hidden;margin:20px auto;cursor:none}
-    .player-basket{position:absolute;bottom:10px;width:70px;height:70px;font-size:50px;text-align:center;line-height:70px;user-select:none;transition:left 0.05s linear}
+    /* 接花花遊戲區域 */
+    .catch-game-area{width:100%;max-width:600px;height:400px;background:linear-gradient(180deg,#eef5eb,#c8e6c9);border:2px solid var(--line);border-radius:20px;position:relative;overflow:hidden;margin:20px auto}
+    .player-basket{position:absolute;bottom:10px;width:70px;height:70px;font-size:50px;text-align:center;line-height:70px;user-select:none}
     .falling-item{position:absolute;font-size:32px;user-select:none}
 
     /* DIY 桌布畫廊 */
-    .canvas-container{width:100%;max-width:800px;aspect-ratio:16/9;border:2px solid var(--line);border-radius:16px;position:relative;overflow:hidden;margin:20px auto;background:#a8e6cf;background-size:cover}
+    .canvas-container{width:100%;max-width:800px;aspect-ratio:16/9;border:2px solid var(--line);border-radius:16px;position:relative;overflow:hidden;margin:20px auto;background:linear-gradient(135deg, #a8e6cf, #dbede6);transition:background 0.3s ease}
     .sticker-tool-bar{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px}
-    .sticker-btn{font-size:28px;padding:8px 16px;background:var(--paper);border:1px solid var(--line);border-radius:12px;cursor:pointer}
+    .sticker-btn{font-size:18px;padding:8px 16px;background:var(--paper);border:1px solid var(--line);border-radius:12px;cursor:pointer}
     .bg-select-btn{padding:10px 18px;background:var(--cream);border:1px solid var(--line);border-radius:999px;font-weight:bold;cursor:pointer}
+    .draggable-sticker{position:absolute;font-size:48px;cursor:move;user-select:none}
 
-    /* 詳細頁與投稿頁 */
     .detail{max-width:850px;margin:auto;padding:70px 24px 110px}
     .back{border:0;background:transparent;color:var(--green);font-weight:700;cursor:pointer;margin-bottom:20px;font-size:16px}
     .detail-visual{height:360px;margin:28px 0;border-radius:28px;background:radial-gradient(circle at 50% 42%,#fff 0 8%,transparent 9%),radial-gradient(ellipse at 50% 65%,#eef2e8 0 24%,transparent 25%),linear-gradient(140deg,#cbdcbd,#eff0df);display:grid;place-items:center}
@@ -114,7 +111,6 @@
   </style>
 </head>
 <body>
-  <!-- 頂部導覽列 -->
   <header class="top">
     <div class="brand" onclick="go('home')">
       <div class="mark">O</div>
@@ -128,7 +124,6 @@
     </select>
   </header>
 
-  <!-- 首頁 -->
   <main id="home" class="page active">
     <section class="hero">
       <p class="eyebrow">ORCHID × DINOSAUR × LIFE</p>
@@ -147,7 +142,6 @@
     </section>
   </main>
 
-  <!-- 各主題內頁 -->
   <main id="origin" class="page"></main>
   <main id="journey" class="page"></main>
   <main id="science" class="page"></main>
@@ -157,15 +151,14 @@
   <main id="adventure" class="page">
     <section class="mast">
       <p class="eyebrow">05 / EXPLORE & GAME</p>
-      <h1>蘭獸探險趣</h1>
-      <p class="lead">歡迎來到蘭獸互動體驗天地！挑戰知識問答、玩法小遊戲或 DIY 專屬 1920x1080 高解析度電腦桌布！</p>
+      <h1 id="advMastTitle">蘭獸探險趣</h1>
+      <p class="lead" id="advMastLead">歡迎來到蘭獸互動體驗天地！挑戰知識問答、玩法小遊戲或 DIY 專屬 1920x1080 高解析度電腦桌布！</p>
     </section>
     <section class="section">
-      <!-- 頁籤切換 -->
       <div class="adventure-tabs">
-        <button class="adv-tab-btn active" onclick="switchAdvTab('quiz')">知識闖關</button>
-        <button class="adv-tab-btn" onclick="switchAdvTab('catch')">蘭獸接花花</button>
-        <button class="adv-tab-btn" onclick="switchAdvTab('wallpaper')">蘭獸桌布畫廊</button>
+        <button class="adv-tab-btn active" id="tabQuiz" onclick="switchAdvTab('quiz')">知識闖關</button>
+        <button class="adv-tab-btn" id="tabCatch" onclick="switchAdvTab('catch')">蘭獸接花花</button>
+        <button class="adv-tab-btn" id="tabWallpaper" onclick="switchAdvTab('wallpaper')">蘭獸桌布畫廊</button>
       </div>
 
       <!-- 單元 1：知識闖關 -->
@@ -181,42 +174,48 @@
       <!-- 單元 2：蘭獸接花花 -->
       <div id="advCatch" class="adv-panel">
         <div style="text-align:center;">
-          <h2>🌸 蘭獸接花花大作戰</h2>
-          <p>移動滑鼠控制蘭獸左右移動，接住掉落的盛開蘭花與水滴，避開枯枝！</p>
-          <div style="font-size:20px; font-weight:bold; color:var(--green); margin-bottom:10px;">得分：<span id="catchScore">0</span></div>
+          <h2 id="catchTitle">🌸 蘭獸接花花大作戰</h2>
+          <p id="catchDesc">移動滑鼠控制蘭獸左右移動，接住掉落的盛開蘭花與水滴，避開枯枝！</p>
+          <div style="font-size:20px; font-weight:bold; color:var(--green); margin-bottom:10px;"><span id="lblScore">得分</span>：<span id="catchScore">0</span></div>
+          
+          <div style="margin-bottom: 15px;">
+            <button class="btn-submit" style="width:auto; padding:10px 24px;" id="btnOpenGameWin" onclick="openGameWindow()">🚀 以獨立新視窗開啟遊戲</button>
+          </div>
+
           <div class="catch-game-area" id="catchGameArea" onmousemove="moveBasket(event)">
             <div class="player-basket" id="playerBasket" style="left: 260px;">🦕</div>
           </div>
-          <button class="btn-submit" style="width:auto; padding:10px 30px;" onclick="startCatchGame()">開始 / 重來</button>
+          <button class="btn-submit" style="width:auto; padding:10px 30px; margin-top:10px;" id="btnCatchStart" onclick="startCatchGame()">開始 / 重來</button>
         </div>
       </div>
 
       <!-- 單元 3：蘭獸桌布畫廊 -->
       <div id="advWallpaper" class="adv-panel">
         <div style="text-align:center;">
-          <h2>🎨 1920×1080 DIY 電腦桌布畫廊</h2>
-          <p>選擇背景，點擊貼圖加入畫布（可拖曳擺放），輕鬆創作專屬桌面！</p>
+          <h2 id="wallTitle">🎨 1920×1080 DIY 電腦桌布畫廊</h2>
+          <p id="wallDesc">選擇背景，點擊貼圖加入畫布（可拖曳擺放），輕鬆創作專屬桌面！</p>
           <div style="display:flex; gap:10px; justify-content:center; margin-bottom:15px;">
-            <button class="bg-select-btn" onclick="setCanvasBg('#a8e6cf')">🌿 綠意草地</button>
-            <button class="bg-select-btn" onclick="setCanvasBg('#ffeaa7')">🏖️ 陽光海灘</button>
-            <button class="bg-select-btn" onclick="setCanvasBg('#dff9fb')">🏡 綠意溫室</button>
+            <button class="bg-select-btn" onclick="setCanvasBg('grass')" id="bgGrass">🌿 綠意草地</button>
+            <button class="bg-select-btn" onclick="setCanvasBg('beach')" id="bgBeach">🏖️ 陽光海灘</button>
+            <button class="bg-select-btn" onclick="setCanvasBg('greenhouse')" id="bgGreenhouse">🏡 綠意溫室</button>
           </div>
+          
           <div class="canvas-container" id="wallpaperCanvas"></div>
+          
           <div class="sticker-tool-bar">
-            <button class="sticker-btn" onclick="addSticker('🦕')">🦕 蘭獸</button>
-            <button class="sticker-btn" onclick="addSticker('🌸')">🌸 蝴蝶蘭</button>
-            <button class="sticker-btn" onclick="addSticker('🌺')">🌺 嘉德麗雅蘭</button>
-            <button class="sticker-btn" onclick="addSticker('☀️')">☀️ 陽光</button>
-            <button class="sticker-btn" onclick="addSticker('🌱')">🌱 幼芽</button>
-            <button class="sticker-btn" onclick="addSticker('🐚')">🐚 貝殼</button>
-            <button class="btn-submit" style="width:auto;" onclick="alert('✅ 桌布設計完成！系統已將您的 1920x1080 電腦桌布準備就緒！')">下載電腦桌布 (1920x1080)</button>
+            <button class="sticker-btn" onclick="addSticker('🦕')">🦕 <span id="stkBeast">蘭獸</span></button>
+            <button class="sticker-btn" onclick="addSticker('🌸')">🌸 <span id="stkMoth">蝴蝶蘭</span></button>
+            <button class="sticker-btn" onclick="addSticker('🌺')">🌺 <span id="stkCatt">嘉德麗雅蘭</span></button>
+            <button class="sticker-btn" onclick="addSticker('☀️')">☀️ <span id="stkSun">陽光</span></button>
+            <button class="sticker-btn" onclick="addSticker('🌱')">🌱 <span id="stkSprout">幼芽</span></button>
+            <button class="sticker-btn" onclick="addSticker('🐚')">🐚 <span id="stkShell">貝殼</span></button>
+            <button class="btn-submit" style="width:auto;" id="btnDownload" onclick="downloadWallpaperAlert()">下載電腦桌布 (1920x1080)</button>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- 加入探索（投稿表單頁面） -->
   <main id="join" class="page">
     <section class="mast">
       <p class="eyebrow">JOIN THE MAP</p>
@@ -271,7 +270,6 @@
     </section>
   </main>
 
-  <!-- 詳細內容頁 -->
   <main id="detail" class="page">
     <article class="detail">
       <button class="back" id="btnBack" onclick="go(last)">← 返回上一頁</button>
@@ -304,7 +302,19 @@
         btnSubmit: '送出探索故事', footerText: 'ORCHIDSAUR · 社團法人台灣蘭花產銷發展協會',
         demoSubmitAlert: '【前端門面測試成功！】\n我們已成功接收到你輸入的資料。',
         inputNamePh: '請輸入姓名', inputCityPh: '例如：臺南，臺灣', inputStoryPh: '分享你遇見蘭獸的故事或地方蘭花體驗...',
-        prevPage: '上一頁', nextPage: '下一頁', submissionNo: '投稿編號：', submissionDate: '投稿日期：'
+        prevPage: '上一頁', nextPage: '下一頁', submissionNo: '投稿編號：', submissionDate: '投稿日期：',
+        
+        advTitle: '蘭獸探險趣', advLead: '歡迎來到蘭獸互動體驗天地！挑戰知識問答、玩法小遊戲或 DIY 專屬 1920x1080 高解析度電腦桌布！',
+        tabQuiz: '知識闖關', tabCatch: '蘭獸接花花', tabWallpaper: '蘭獸桌布畫廊',
+        quizProgressPrefix: '題目', quizSuccess: '🎉 闖關成功！', quizSuccessMsg: '恭喜你完成 8 題蘭獸與蘭花知識挑戰，獲得「蘭花小專家」動態徽章！',
+        btnReplay: '再玩一次', quizRight: '✨ 答對了！太厲害了！', quizWrong: '❌ 差一點點，再試試看！',
+        catchTitle: '🌸 蘭獸接花花大作戰', catchDesc: '移動滑鼠控制蘭獸左右移動，接住掉落的盛開蘭花與水滴，避開枯枝！',
+        btnOpenGameWin: '🚀 以獨立新視窗開啟遊戲',
+        lblScore: '得分', btnCatchStart: '開始 / 重來', catchAlert: '遊戲開始！請移動滑鼠接住掉落的蘭花 🌸！',
+        wallTitle: '🎨 1920×1080 DIY 電腦桌布畫廊', wallDesc: '選擇背景，點擊貼圖加入畫布（可拖曳擺放），輕鬆創作專屬桌面！',
+        bgGrass: '🌿 綠意草地', bgBeach: '🏖️ 陽光海灘', bgGreenhouse: '🏡 綠意溫室',
+        stkBeast: '蘭獸', stkMoth: '蝴蝶蘭', stkCatt: '嘉德麗雅蘭', stkSun: '陽光', stkSprout: '幼芽', stkShell: '貝殼',
+        btnDownload: '下載電腦桌布 (1920x1080)', downloadAlert: '✅ 桌布設計完成！系統已將您的 1920x1080 電腦桌布準備就緒！'
       },
       en: {
         subBrand: 'World of Orchidsaur', heroTitle: 'Follow Orchidsaur to Explore World Orchids',
@@ -318,7 +328,19 @@
         filePlaceholder: '📁 Click here to select a file', fileSelected: '✅ Selected file: ', btnSubmit: 'Submit Story',
         footerText: 'ORCHIDSAUR · TOGA', demoSubmitAlert: '[Frontend Test Success!]',
         inputNamePh: 'Enter your name', inputCityPh: 'e.g. Tainan, Taiwan', inputStoryPh: 'Share your Orchidsaur moment...',
-        prevPage: 'Prev', nextPage: 'Next', submissionNo: 'Submission No: ', submissionDate: 'Date: '
+        prevPage: 'Prev', nextPage: 'Next', submissionNo: 'Submission No: ', submissionDate: 'Date: ',
+
+        advTitle: 'Orchidsaur Adventure', advLead: 'Welcome to Orchidsaur Interactive Zone! Challenge trivia, play catch game, or DIY wallpapers!',
+        tabQuiz: 'Quiz Challenge', tabCatch: 'Catch Orchids', tabWallpaper: 'Wallpaper Gallery',
+        quizProgressPrefix: 'Question', quizSuccess: '🎉 Challenge Cleared!', quizSuccessMsg: 'Congratulations on completing all 8 orchid trivia questions!',
+        btnReplay: 'Play Again', quizRight: '✨ Correct! Excellent!', quizWrong: '❌ Almost there, try again!',
+        catchTitle: '🌸 Orchids Catch Game', catchDesc: 'Move mouse to catch falling orchids & raindrops while avoiding dry twigs!',
+        btnOpenGameWin: '🚀 Open Game in New Window',
+        lblScore: 'Score', btnCatchStart: 'Start / Restart', catchAlert: 'Game Started! Catch falling orchids 🌸!',
+        wallTitle: '🎨 1920×1080 DIY Wallpaper Gallery', wallDesc: 'Select background, add stickers and drag to customize your wallpaper!',
+        bgGrass: '🌿 Green Lawn', bgBeach: '🏖️ Sunny Beach', bgGreenhouse: '🏡 Greenhouse',
+        stkBeast: 'Orchidsaur', stkMoth: 'Phalaenopsis', stkCatt: 'Cattleya', stkSun: 'Sun', stkSprout: 'Sprout', stkShell: 'Shell',
+        btnDownload: 'Download Wallpaper (1920x1080)', downloadAlert: '✅ Wallpaper Ready!'
       },
       ja: {
         subBrand: 'オーキッドソーの世界探險', heroTitle: 'オーキッドソーと世界中の蘭を探求しよう',
@@ -332,7 +354,19 @@
         filePlaceholder: '📁 ファイルを選択', fileSelected: '✅ 選択されたファイル: ', btnSubmit: 'ストーリーを送信',
         footerText: 'ORCHIDSAUR · TOGA', demoSubmitAlert: '【テスト成功！】',
         inputNamePh: 'お名前を入力', inputCityPh: '例：台南、台湾', inputStoryPh: '体験をシェア...',
-        prevPage: '前へ', nextPage: '次へ', submissionNo: '投稿番号：', submissionDate: '投稿日：'
+        prevPage: '前へ', nextPage: '次へ', submissionNo: '投稿番号：', submissionDate: '投稿日：',
+
+        advTitle: '蘭獸探檢趣', advLead: 'オーキッドソー体験ゾーンへようこそ！クイズ、ミニゲーム、壁紙作成を楽しもう！',
+        tabQuiz: 'クイズに挑戦', tabCatch: '蘭獸の花キャッチ', tabWallpaper: '壁紙ギャラリー',
+        quizProgressPrefix: '問題', quizSuccess: '🎉 クリアおめでとう！', quizSuccessMsg: '全8問の蘭クイズをクリアしました！',
+        btnReplay: 'もう一度プレイ', quizRight: '✨ 大正解！素晴らしい！', quizWrong: '❌ おしい！もう一度挑戦！',
+        catchTitle: '🌸 蘭獸の花キャッチゲーム', catchDesc: 'マウスを動かして蘭獸を操作し、落ちてくる蘭や水滴をキャッチ！',
+        btnOpenGameWin: '🚀 新しいウィンドウでゲームを開く',
+        lblScore: 'スコア', btnCatchStart: 'スタート / リセット', catchAlert: 'ゲームスタート！花をキャッチ 🌸！',
+        wallTitle: '🎨 1920×1080 DIY デスクトップ壁紙作成', wallDesc: '背景を選び、ステッカーを配置（ドラッグ可能）してオリジナルの壁紙を作ろう！',
+        bgGrass: '🌿 芝生', bgBeach: '🏖️ ビーチ', bgGreenhouse: '🏡 温室',
+        stkBeast: '蘭獸', stkMoth: 'ファレノプシス', stkCatt: 'カトレア', stkSun: '太陽', stkSprout: '新芽', stkShell: '貝殻',
+        btnDownload: '壁紙をダウンロード (1920x1080)', downloadAlert: '✅ デザイン完了！壁紙が準備できました！'
       }
     };
 
@@ -405,49 +439,39 @@
       }
     };
 
-    // 8 題知識闖關題目庫
-    const quizData = [
-      {
-        q: "這隻擁有蘭花身體特徵與遠古記憶的白色吉祥物叫什麼名字？",
-        opts: ["Orchidsaur（蘭獸）", "Pikachu", "DinoGreen", "FloraBot"],
-        ans: 0
-      },
-      {
-        q: "Orchidsaur（蘭獸）的名字是由哪兩個英文單字結合而成的？",
-        opts: ["Ocean ＋ Shark", "Orchid（蘭花）＋ Dinosaur（恐龍）", "Organic ＋ Solar", "Orient ＋ Sail"],
-        ans: 1
-      },
-      {
-        q: "蘭獸身上最標誌性的特徵之一是有著「8 隻腳」，這象徵著什麼？",
-        opts: ["方便去搬重物", "跑得跟賽車一樣快", "蘭花的氣生根與強韌的環境適應力", "只是為了穿更多雙鞋子"],
-        ans: 2
-      },
-      {
-        q: "科學家透過什麼線索，推算蘭科植物的祖先早在恐龍時期就已經出現？",
-        opts: ["海底沉積岩中的魚類化石", "封存在琥珀中的蜜蜂花粉", "埃及金字塔內的壁畫圖騰", "古老圖書館書籍"],
-        ans: 1
-      },
-      {
-        q: "盛大的「臺灣國際蘭展」通常在每年幾月舉行？",
-        opts: ["每年 3 月", "每年 7 月暑假", "每年 10 月國慶", "每年 12 月跨年"],
-        ans: 0
-      },
-      {
-        q: "臺灣國際蘭展的經典展場位於哪裡？",
-        opts: ["花蓮太魯閣國家公園", "新竹科學園區", "臺南後壁區（農業部花卉創新園區）", "澎湖花火節主舞台"],
-        ans: 2
-      },
-      {
-        q: "照顧家裡的蝴蝶蘭時，下列哪一種做法是正確的？",
-        opts: ["天天瘋狂澆水把盆栽當水族箱養", "保持通風良好、放置於半陰散射光處，等介質乾了再澆水", "拿海水泡蘭花幫它補鹽分", "放在完全黑漆漆的房間讓它生病"],
-        ans: 1
-      },
-      {
-        q: "蘭獸曾經在哪裡留下過探索足跡與展出身影呢？",
-        opts: ["臺灣、日本、歐洲波蘭、美國紐約等都有它的身影！"],
-        ans: 0
-      }
-    ];
+    /* 完全多語系 8 題問答題庫（含正確與錯誤選項翻譯） */
+    const multiQuizData = {
+      zh: [
+        { q: "這隻擁有蘭花身體特徵與遠古記憶的白色吉祥物叫什麼名字？", opts: ["Orchidsaur（蘭獸）", "Pikachu（皮卡丘）", "DinoGreen（綠恐龍）", "FloraBot（花花機器人）"], ans: 0 },
+        { q: "Orchidsaur（蘭獸）的名字是由哪兩個英文單字結合而成的？", opts: ["Ocean（海洋）＋ Shark（鯊魚）", "Orchid（蘭花）＋ Dinosaur（恐龍）", "Organic（有機）＋ Solar（太陽能）", "Orient（東方）＋ Sail（航行）"], ans: 1 },
+        { q: "蘭獸身上最標誌性的特徵之一是有著「8 隻腳」，這象徵著什麼？", opts: ["方便去搬重物", "跑得跟賽車一樣快", "蘭花的氣生根與強韌的環境適應力", "只是為了穿更多雙鞋子"], ans: 2 },
+        { q: "科學家透過什麼線索，推算蘭科植物的祖先早在恐龍時期就已經出現？", opts: ["海底沉積岩中的魚類化石", "封存在琥珀中的蜜蜂花粉", "埃及金字塔內的壁畫圖騰", "古老圖書館書籍"], ans: 1 },
+        { q: "盛大的「臺灣國際蘭展」通常在每年幾月舉行？", opts: ["每年 3 月", "每年 7 月暑假", "每年 10 月國慶", "每年 12 月跨年"], ans: 0 },
+        { q: "臺灣國際蘭展的經典展場位於哪裡？", opts: ["花蓮太魯閣國家公園", "新竹科學園區", "臺南後壁區（農業部花卉創新園區）", "澎湖花火節主舞台"], ans: 2 },
+        { q: "照顧家裡的蝴蝶蘭時，下列哪一種做法是正確的？", opts: ["天天瘋狂澆水把盆栽當水族箱養", "保持通風良好、放置於半陰散射光處，等介質乾了再澆水", "拿海水泡蘭花幫它補鹽分", "放在完全黑漆漆的房間讓它生病"], ans: 1 },
+        { q: "蘭獸曾經在哪裡留下過探索足跡與展出身影呢？", opts: ["臺灣、日本、歐洲波蘭、美國紐約等都有它的身影！", "只在電玩遊戲裡出現過", "只存在於夢境中", "從未對外展示過"], ans: 0 }
+      ],
+      en: [
+        { q: "What is the name of this white mascot with orchid features?", opts: ["Orchidsaur", "Pikachu", "DinoGreen", "FloraBot"], ans: 0 },
+        { q: "What words make up the name 'Orchidsaur'?", opts: ["Ocean + Shark", "Orchid + Dinosaur", "Organic + Solar", "Orient + Sail"], ans: 1 },
+        { q: "What do the 8 legs of Orchidsaur represent?", opts: ["Heavy lifting", "Racing speed", "Aerial roots & strong adaptability", "Wearing more shoes"], ans: 2 },
+        { q: "How did scientists discover orchids existed in the dinosaur age?", opts: ["Fish fossils in rock", "Bee pollen trapped in amber", "Egyptian pyramid murals", "Ancient library books"], ans: 1 },
+        { q: "When is the Taiwan International Orchid Show usually held?", opts: ["Every March", "Every July", "Every October", "Every December"], ans: 0 },
+        { q: "Where is the main venue for the Taiwan International Orchid Show?", opts: ["Taroko National Park", "Hsinchu Science Park", "Houbi District, Tainan (Flower Innovation Park)", "Penghu Stage"], ans: 2 },
+        { q: "Which of the following is correct when caring for a Moth Orchid?", opts: ["Water every day like an aquarium", "Ensure good ventilation, indirect light, water when dry", "Soak in seawater for salt", "Keep in a pitch black room"], ans: 1 },
+        { q: "Where has Orchidsaur travelled and been exhibited?", opts: ["Taiwan, Japan, Poland, USA, and all over the world!", "Only in video games", "Only in dreams", "Never exhibited publicly"], ans: 0 }
+      ],
+      ja: [
+        { q: "蘭の特徴と古代の記憶を持つこの白いマスコットの名前は？", opts: ["Orchidsaur（蘭獸）", "Pikachu（ピカチュウ）", "DinoGreen（ディノグリーン）", "FloraBot（フローラボット）"], ans: 0 },
+        { q: "Orchidsaurの名前の由来となった2つの英單語は？", opts: ["Ocean（海）＋ Shark（サメ）", "Orchid（蘭）＋ Dinosaur（恐竜）", "Organic（オーガニック）＋ Solar（ソーラー）", "Orient（東洋）＋ Sail（航海）"], ans: 1 },
+        { q: "蘭獸の8本足は何を象徴していますか？", opts: ["重い荷物を運ぶため", "レーシングカー並みの速さ", "氣生根と強い環境適応力", "靴をたくさん履くため"], ans: 2 },
+        { q: "恐竜時代に蘭が存在したことを示す科学的証拠は何ですか？", opts: ["海底の魚化石", "琥珀に閉じ込められたミツバチの花粉", "ピラミッドの壁画", "古書物の記述"], ans: 1 },
+        { q: "「台湾国際蘭展」は毎年何月に開催されますか？", opts: ["毎年 3月", "毎年 7月", "毎年 10月", "毎年 12月"], ans: 0 },
+        { q: "台湾国際蘭展のメイン会場はどこですか？", opts: ["太魯閣国家公園", "新竹サイエンスパーク", "台南市後壁区（農業部花卉創新園區）", "澎湖ステージ"], ans: 2 },
+        { q: "家庭で胡蝶蘭を育てる際、正しいお手入れ方法はどれ？", opts: ["水族館のように毎日水やり", "風通しの良い半日陰、乾いたら水やり", "海水に浸す", "真っ暗な部屋に置く"], ans: 1 },
+        { q: "蘭獸はどこで展示されたことがありますか？", opts: ["台湾、日本、ポーランド、アメリカなど世界中！", "ゲームの中だけ", "夢の中だけ", "展示されたことはない"], ans: 0 }
+      ]
+    };
 
     let currentQuizIdx = 0;
     const order = ['origin', 'journey', 'science', 'story', 'adventure'];
@@ -464,6 +488,32 @@
       document.getElementById('btnJoin').textContent = t.btnJoin;
       document.getElementById('portalTitle').textContent = t.portalTitle;
       document.getElementById('portalLead').textContent = t.portalLead;
+
+      document.getElementById('advMastTitle').textContent = t.advTitle;
+      document.getElementById('advMastLead').textContent = t.advLead;
+      document.getElementById('tabQuiz').textContent = t.tabQuiz;
+      document.getElementById('tabCatch').textContent = t.tabCatch;
+      document.getElementById('tabWallpaper').textContent = t.tabWallpaper;
+
+      document.getElementById('catchTitle').textContent = t.catchTitle;
+      document.getElementById('catchDesc').textContent = t.catchDesc;
+      document.getElementById('lblScore').textContent = t.lblScore;
+      document.getElementById('btnCatchStart').textContent = t.btnCatchStart;
+      document.getElementById('btnOpenGameWin').textContent = t.btnOpenGameWin;
+
+      document.getElementById('wallTitle').textContent = t.wallTitle;
+      document.getElementById('wallDesc').textContent = t.wallDesc;
+      document.getElementById('bgGrass').textContent = t.bgGrass;
+      document.getElementById('bgBeach').textContent = t.bgBeach;
+      document.getElementById('bgGreenhouse').textContent = t.bgGreenhouse;
+
+      document.getElementById('stkBeast').textContent = t.stkBeast;
+      document.getElementById('stkMoth').textContent = t.stkMoth;
+      document.getElementById('stkCatt').textContent = t.stkCatt;
+      document.getElementById('stkSun').textContent = t.stkSun;
+      document.getElementById('stkSprout').textContent = t.stkSprout;
+      document.getElementById('stkShell').textContent = t.stkShell;
+      document.getElementById('btnDownload').textContent = t.btnDownload;
 
       document.getElementById('joinTitle').textContent = t.joinTitle;
       document.getElementById('joinLead').textContent = t.joinLead;
@@ -579,7 +629,6 @@
       loadQuizQuestion();
     }
 
-    /* 05 頁籤與問答邏輯 */
     function switchAdvTab(tabKey) {
       document.querySelectorAll('.adv-tab-btn').forEach(btn => btn.classList.remove('active'));
       document.querySelectorAll('.adv-panel').forEach(panel => panel.classList.remove('active'));
@@ -597,16 +646,19 @@
     }
 
     function loadQuizQuestion() {
-      if (currentQuizIdx >= quizData.length) {
-        document.getElementById('quizProgress').textContent = "🎉 闖關成功！";
-        document.getElementById('quizQText').textContent = "恭喜你完成 8 題蘭獸與蘭花知識挑戰，獲得「蘭花小專家」動態徽章！";
-        document.getElementById('quizOpts').innerHTML = `<button class="btn-submit" onclick="currentQuizIdx=0;loadQuizQuestion()">再玩一次</button>`;
+      const t = translations[currentLang];
+      const qList = multiQuizData[currentLang] || multiQuizData['zh'];
+
+      if (currentQuizIdx >= qList.length) {
+        document.getElementById('quizProgress').textContent = t.quizSuccess;
+        document.getElementById('quizQText').textContent = t.quizSuccessMsg;
+        document.getElementById('quizOpts').innerHTML = `<button class="btn-submit" onclick="currentQuizIdx=0;loadQuizQuestion()">${t.btnReplay}</button>`;
         document.getElementById('quizResult').textContent = "";
         return;
       }
 
-      const qObj = quizData[currentQuizIdx];
-      document.getElementById('quizProgress').textContent = `題目 ${currentQuizIdx + 1} / ${quizData.length}`;
+      const qObj = qList[currentQuizIdx];
+      document.getElementById('quizProgress').textContent = `${t.quizProgressPrefix} ${currentQuizIdx + 1} / ${qList.length}`;
       document.getElementById('quizQText').textContent = qObj.q;
       document.getElementById('quizResult').textContent = "";
 
@@ -616,24 +668,29 @@
     }
 
     function checkQuizAns(idx) {
-      const qObj = quizData[currentQuizIdx];
+      const t = translations[currentLang];
+      const qList = multiQuizData[currentLang] || multiQuizData['zh'];
+      const qObj = qList[currentQuizIdx];
       const res = document.getElementById('quizResult');
 
       if (idx === qObj.ans) {
-        res.textContent = "✨ 答對了！太厲害了！";
+        res.textContent = t.quizRight;
         res.style.color = "var(--green)";
         setTimeout(() => {
           currentQuizIdx++;
           loadQuizQuestion();
         }, 1200);
       } else {
-        res.textContent = "❌ 差一點點，再試試看！";
+        res.textContent = t.quizWrong;
         res.style.color = "#c64242";
       }
     }
 
-    /* 接花花小遊戲邏輯 */
+    /* 接花小遊戲全邏輯（含掉落物、碰撞與獨立新視窗功能） */
     let catchScore = 0;
+    let gameInterval = null;
+    let isGameRunning = false;
+
     function moveBasket(e) {
       const area = document.getElementById('catchGameArea');
       const rect = area.getBoundingClientRect();
@@ -644,26 +701,200 @@
     }
 
     function startCatchGame() {
+      if (gameInterval) clearInterval(gameInterval);
       catchScore = 0;
       document.getElementById('catchScore').textContent = catchScore;
-      alert("遊戲開始！請移動滑鼠接住掉落的蘭花 🌸！");
+      isGameRunning = true;
+
+      // 清除舊的掉落物
+      document.querySelectorAll('.falling-item').forEach(el => el.remove());
+
+      gameInterval = setInterval(spawnItem, 800);
     }
 
-    /* 桌布 DIY 畫廊邏輯 */
-    function setCanvasBg(color) {
-      document.getElementById('wallpaperCanvas').style.background = color;
+    function spawnItem() {
+      if (!isGameRunning) return;
+      const area = document.getElementById('catchGameArea');
+      if (!area) return;
+
+      const item = document.createElement('div');
+      item.className = 'falling-item';
+
+      const items = ['🌸', '💧', '🍂'];
+      const randType = items[Math.floor(Math.random() * items.length)];
+      item.textContent = randType;
+
+      const startX = Math.random() * (area.clientWidth - 40);
+      item.style.left = startX + 'px';
+      item.style.top = '0px';
+
+      area.appendChild(item);
+
+      let posY = 0;
+      const fallSpeed = 3 + Math.random() * 3;
+
+      const itemTimer = setInterval(() => {
+        if (!isGameRunning) {
+          clearInterval(itemTimer);
+          item.remove();
+          return;
+        }
+
+        posY += fallSpeed;
+        item.style.top = posY + 'px';
+
+        const basket = document.getElementById('playerBasket');
+        const basketX = parseFloat(basket.style.left) || 0;
+
+        // 碰撞檢查
+        if (posY >= 330 && posY <= 370) {
+          if (startX >= basketX - 20 && startX <= basketX + 60) {
+            if (randType === '🌸') catchScore += 10;
+            else if (randType === '💧') catchScore += 5;
+            else if (randType === '🍂') catchScore = Math.max(0, catchScore - 10);
+
+            document.getElementById('catchScore').textContent = catchScore;
+            clearInterval(itemTimer);
+            item.remove();
+          }
+        }
+
+        if (posY > 380) {
+          clearInterval(itemTimer);
+          item.remove();
+        }
+      }, 30);
+    }
+
+    function openGameWindow() {
+      const newWin = window.open("", "_blank", "width=700,height=600");
+      newWin.document.write(`
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <title>🌸 蘭獸接花大作戰</title>
+          <style>
+            body { font-family: sans-serif; text-align: center; background: #f5f1e7; margin:0; padding: 20px; }
+            .area { width: 100%; height: 450px; background: linear-gradient(180deg,#eef5eb,#c8e6c9); border: 2px solid #275f4d; border-radius: 16px; position: relative; overflow: hidden; margin-top: 15px; }
+            .basket { position: absolute; bottom: 10px; width: 70px; height: 70px; font-size: 50px; line-height:70px; user-select:none; }
+            .item { position: absolute; font-size: 32px; user-select:none; }
+            button { padding: 10px 20px; font-weight: bold; background: #275f4d; color: white; border: 0; border-radius: 8px; cursor: pointer; }
+          </style>
+        </head>
+        <body>
+          <h2>🌸 蘭獸接花大作戰 (獨立視窗)</h2>
+          <div style="font-size:20px; font-weight:bold; color:#275f4d;">得分：<span id="score">0</span></div>
+          <div class="area" id="area" onmousemove="move(event)">
+            <div class="basket" id="basket" style="left:260px;">🦕</div>
+          </div>
+          <br>
+          <button onclick="start()">開始 / 重來</button>
+
+          <script>
+            let score = 0;
+            let timer = null;
+            function move(e) {
+              const area = document.getElementById('area');
+              const rect = area.getBoundingClientRect();
+              let x = e.clientX - rect.left - 35;
+              if (x < 0) x = 0;
+              if (x > rect.width - 70) x = rect.width - 70;
+              document.getElementById('basket').style.left = x + 'px';
+            }
+            function start() {
+              if (timer) clearInterval(timer);
+              score = 0;
+              document.getElementById('score').textContent = score;
+              document.querySelectorAll('.item').forEach(e => e.remove());
+              timer = setInterval(spawn, 700);
+            }
+            function spawn() {
+              const area = document.getElementById('area');
+              const item = document.createElement('div');
+              item.className = 'item';
+              const types = ['🌸', '💧', '🍂'];
+              const t = types[Math.floor(Math.random()*types.length)];
+              item.textContent = t;
+              const startX = Math.random() * (area.clientWidth - 40);
+              item.style.left = startX + 'px';
+              item.style.top = '0px';
+              area.appendChild(item);
+              let posY = 0;
+              const loop = setInterval(() => {
+                posY += 4;
+                item.style.top = posY + 'px';
+                const basketX = parseFloat(document.getElementById('basket').style.left) || 0;
+                if (posY >= 380 && posY <= 420 && startX >= basketX - 20 && startX <= basketX + 60) {
+                  if (t === '🌸') score += 10;
+                  else if (t === '💧') score += 5;
+                  else if (t === '🍂') score = Math.max(0, score - 10);
+                  document.getElementById('score').textContent = score;
+                  clearInterval(loop);
+                  item.remove();
+                }
+                if (posY > 430) { clearInterval(loop); item.remove(); }
+              }, 30);
+            }
+          <\/script>
+        </body>
+        </html>
+      `);
+    }
+
+    /* 桌布 DIY 畫廊邏輯（漸層視覺背景 + 滑鼠拖曳擺放） */
+    function setCanvasBg(type) {
+      const canvas = document.getElementById('wallpaperCanvas');
+      if (type === 'grass') {
+        canvas.style.background = 'linear-gradient(135deg, #a8e6cf, #dbede6)';
+      } else if (type === 'beach') {
+        canvas.style.background = 'linear-gradient(180deg, #81d4fa 0%, #ffe082 70%, #ffecb3 100%)';
+      } else if (type === 'greenhouse') {
+        canvas.style.background = 'linear-gradient(135deg, #e8f5e9, #c8e6c9, #a5d6a7)';
+      }
     }
 
     function addSticker(emoji) {
       const canvas = document.getElementById('wallpaperCanvas');
       const sticker = document.createElement('div');
+      sticker.className = 'draggable-sticker';
       sticker.textContent = emoji;
-      sticker.style.position = 'absolute';
-      sticker.style.fontSize = '48px';
-      sticker.style.left = Math.random() * 80 + '%';
-      sticker.style.top = Math.random() * 70 + '%';
-      sticker.style.cursor = 'move';
+      sticker.style.left = '40%';
+      sticker.style.top = '40%';
+
+      let isDragging = false;
+      let offsetX = 0, offsetY = 0;
+
+      sticker.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        const rect = canvas.getBoundingClientRect();
+        offsetX = e.clientX - sticker.getBoundingClientRect().left;
+        offsetY = e.clientY - sticker.getBoundingClientRect().top;
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging) return;
+        const rect = canvas.getBoundingClientRect();
+        let x = e.clientX - rect.left - offsetX;
+        let y = e.clientY - rect.top - offsetY;
+
+        if (x < 0) x = 0;
+        if (y < 0) y = 0;
+        if (x > rect.width - 50) x = rect.width - 50;
+        if (y > rect.height - 50) y = rect.height - 50;
+
+        sticker.style.left = x + 'px';
+        sticker.style.top = y + 'px';
+      });
+
+      window.addEventListener('mouseup', () => {
+        isDragging = false;
+      });
+
       canvas.appendChild(sticker);
+    }
+
+    function downloadWallpaperAlert() {
+      alert(translations[currentLang].downloadAlert);
     }
 
     function changeSectionPage(key, page) {
