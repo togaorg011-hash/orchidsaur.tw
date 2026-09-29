@@ -127,7 +127,7 @@
       font-size: 0.9rem;
     }
 
-    /* Modal 彈窗樣式 */
+    /* Modal 彈窗樣式 (完全沿用原版) */
     .modal {
       display: none;
       position: fixed;
@@ -182,6 +182,60 @@
     .modal-body ul {
       padding-left: 1.2rem;
     }
+
+    /* 04 投稿專屬元件樣式 */
+    .submit-banner-box {
+      background-color: #f0f7ec;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .submit-btn {
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .submit-btn:hover {
+      background-color: var(--accent);
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
+    .form-group input, .form-group textarea {
+      width: 100%;
+      padding: 0.6rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 0.95rem;
+    }
+
+    .form-group textarea {
+      height: 90px;
+      resize: vertical;
+    }
   </style>
 </head>
 <body>
@@ -199,7 +253,7 @@
 
   <div class="container" id="app"></div>
 
-  <!-- 彈窗Modal -->
+  <!-- 彈窗 Modal (原版結構) -->
   <div class="modal" id="modal" onclick="closeModal(event)">
     <div class="modal-content" onclick="event.stopPropagation()">
       <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -251,7 +305,7 @@
           ]
         },
         art: {
-          no: '02', title: '美學藝廊',
+          no: '02', title: '巡迴展歷', // 已更名為「巡迴展歷」
           items: [
             [
               '綠色共生哲學', 
@@ -275,7 +329,27 @@
               <p>2007年，科學家 Santiago R. Ramírez 等人在權威國際期刊《Nature》發表了一項震撼學術界的發現：一顆來自多明尼加共和國、距今約 1,500 萬至 2,000 萬年前的中新世琥珀中，發現了一隻古蜜蜂（Proplebeia dominicana）。特別的是，這隻蜜蜂的背上附著了蘭花的花粉塊（Meliorchis caribea）。</p>
               
               <h3>解開蘭花起源之謎</h3>
-              <p>透過分子鐘（Molecular Clock）演化推算，這項發現證實了蘭科植物（Orchidaceae）的共同祖先早在距今約 7,600 萬至 8,400 萬年前的<b>白堊紀晚期</b>就已經出現。這意味著，蘭花的祖先曾經與恐龍生存於同一個時代！</p>[cite: 1]
+              <p>透過分子鐘（Molecular Clock）演化推算，這項發現證實了蘭科植物（Orchidaceae）的共同祖先早在距今約 7,600 萬至 8,400 萬年前的<b>白堊紀晚期</b>就已經出現。這意味著，蘭花的祖先曾經與恐龍生存於同一個時代！</p>`
+            ]
+          ]
+        },
+        community: {
+          no: '04', title: '與獸同行', // 新增 04 與獸同行
+          isCommunity: true,
+          items: [
+            [
+              '佛光山的祥瑞守望', 
+              '[照片] 駐立於佛光山的蘭獸，與來訪民眾留下溫馨合影...', 
+              `<h3>佛光山的祥瑞守望</h3>
+              <p><b>[民眾照片呈現區]</b></p>
+              <p>駐立於佛光山的巨大蘭獸氣膜裝置，與雄偉的建築交相輝映。無數民眾在此停下腳步，記錄下與蘭獸交會的溫暖瞬間。</p>`
+            ],
+            [
+              '「白鹿啊！」', 
+              '[照片] 蘭展現場，一位歐巴桑看到蘭獸時的自然聯想與趣味互動...', 
+              `<h3>「白鹿啊！」—— 充滿人情味的瞬間</h3>
+              <p><b>[民眾照片呈現區]</b></p>
+              <p>在蘭展現場，一位熱情的歐巴桑指著蘭獸驚呼：「這隻是白鹿啊！」這份充滿在地生活感與想像力的童趣互動，成為巡迴展中最動人的花絮之一。</p>`
             ]
           ]
         }
@@ -348,9 +422,9 @@
               'アートと生命の融合', 
               'アーティスト陳普氏が「蘭」と「恐竜」を融合させ、現代的なキャラクターを創出...', 
               `<h3>オーキッドソーの誕生</h3>
-              <p>2023年、アーティスト陳普氏の手によって、「Orchid（蘭）」の優しさと「Dinosaur（恐竜）」の強さを併せ持つ<b>オーキッドソー（愛称：Okisou）</b>が誕生しました。</p>
+              <p>2023年、アーティスト陳普氏の手によって、「Orchid（蘭）」の優しさと「Dinosaur（恐竜）」の強さを併せ持つ<b>オーキッドソー（愛稱：Okisou）</b>が誕生しました。</p>
               <h3>デザインの秘密：新芽の角と8本の足</h3>
-              <p>頭の小さな角は未来への「新芽」を、8本の足は着生蘭の「気生根」を表現し、力強い環境適応力を象徴しています。</p>`
+              <p>頭の小さな角は未來への「新芽」を、8本の足は着生蘭の「氣生根」を表現し、力強い環境適応力を象徴しています。</p>`
             ],
             [
               '生命を守るメッセージ', 
@@ -423,14 +497,62 @@
     }
 
     function openModal(secKey, idx) {
-      const item = sectionsData[currentLang][secKey].items[idx];
+      const section = sectionsData[currentLang][secKey];
       const modalBody = document.getElementById('modalBody');
-      modalBody.innerHTML = `<h2>${item[0]}</h2>` + item[2];
+
+      // 判斷是否為 04 與獸同行 區塊，若有則加入投稿按鈕與說明
+      let bannerHtml = '';
+      if (section && section.isCommunity) {
+        bannerHtml = `
+          <div class="submit-banner-box">
+            <span style="color: var(--primary); font-weight: bold;">讓你的城市成為下一站！分享你與蘭獸的故事與照片</span>
+            <button class="submit-btn" onclick="openSubmitForm()">我要投稿</button>
+          </div>
+        `;
+      }
+
+      if (typeof idx === 'number') {
+        const item = section.items[idx];
+        modalBody.innerHTML = bannerHtml + `<h2>${item[0]}</h2>` + item[2];
+      }
+
       document.getElementById('modal').classList.add('active');
     }
 
-    function closeModal() {
-      document.getElementById('modal').classList.remove('active');
+    // 開啟投稿表單 Modal
+    function openSubmitForm() {
+      const modalBody = document.getElementById('modalBody');
+      modalBody.innerHTML = `
+        <h2>我要投稿：讓你的城市成為下一站</h2>
+        <p style="color: var(--text-sub); margin-bottom: 1.5rem;">歡迎留下您在展區拍下的照片與感言，讓更多人看見蘭獸踩踏的足跡！</p>
+        <form onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label>城市 / 地點</label>
+            <input type="text" placeholder="例如：臺南市、佛光山" required>
+          </div>
+          <div class="form-group">
+            <label>投稿標題</label>
+            <input type="text" placeholder="請輸入標題" required>
+          </div>
+          <div class="form-group">
+            <label>故事 / 照片描述</label>
+            <textarea placeholder="分享您與蘭獸的故事或相片說明..." required></textarea>
+          </div>
+          <button type="submit" class="submit-btn" style="width: 100%; padding: 0.8rem; margin-top: 0.5rem;">提交投稿</button>
+        </form>
+      `;
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert('投稿成功！感謝您分享與蘭獸的故事。');
+      closeModal();
+    }
+
+    function closeModal(event) {
+      if (!event || event.target.id === 'modal' || event.target.classList.contains('close-btn')) {
+        document.getElementById('modal').classList.remove('active');
+      }
     }
 
     // 初始化渲染
