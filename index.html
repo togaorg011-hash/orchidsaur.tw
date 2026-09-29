@@ -52,12 +52,25 @@
     .mast{padding:70px max(24px,calc((100vw - 1180px)/2));background:linear-gradient(135deg,var(--deep),#2d654b);color:white}
     .mast h1{font-size:clamp(44px,7vw,82px)}
     .mast .lead{color:#dce8e0}
+    
+    /* 「與獸同行」頂部 Banner 中的投稿引導框 */
+    .story-invite-box{margin-top:24px;padding:20px 24px;background:rgba(255,255,255,0.1);border:1px dashed #d9ad62;border-radius:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+    .story-invite-box p{margin:0;font-size:16px;color:#f0f5f2;line-height:1.6}
+    .story-invite-box button{background:var(--gold);color:white;border:0;padding:12px 24px;border-radius:999px;font-weight:bold;cursor:pointer;transition:.2s;white-space:nowrap}
+    .story-invite-box button:hover{background:#b28336}
+
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
     .card{min-height:260px;display:flex;flex-direction:column;justify-content:space-between}
     .card .num{color:var(--gold);font:500 24px Georgia}
     .card h3{font:500 27px Georgia,"Noto Serif TC",serif;margin:12px 0 8px}
     .card button{margin-top:16px;border:0;background:var(--green);color:white;border-radius:999px;padding:10px 18px;cursor:pointer;align-self:flex-start}
     
+    /* 分頁控制器樣式 */
+    .pagination{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:48px}
+    .pagination button{border:1px solid var(--line);background:var(--paper);color:var(--ink);padding:8px 16px;border-radius:8px;cursor:pointer;font-weight:bold;transition:.2s}
+    .pagination button.active{background:var(--green);color:white;border-color:var(--green)}
+    .pagination button:disabled{opacity:.4;cursor:not-allowed}
+
     .detail{max-width:850px;margin:auto;padding:70px 24px 110px}
     .back{border:0;background:transparent;color:var(--green);font-weight:700;cursor:pointer;margin-bottom:20px;font-size:16px;display:inline-flex;align-items:center;gap:6px}
     .back:hover{color:var(--gold)}
@@ -142,7 +155,6 @@
     </section>
     <section class="section">
       <div class="join-container">
-        <!-- 左側說明 -->
         <div class="join-info">
           <h2 id="joinHead">投稿與合作</h2>
           <p style="color: var(--muted); line-height: 1.7;" id="joinDesc">填寫下方表單上傳照片與故事，審核通過後，你的紀錄將出現在全球蘭獸地圖上！</p>
@@ -153,7 +165,6 @@
           </ul>
         </div>
 
-        <!-- 右側輸入框門面 -->
         <form id="submissionForm" onsubmit="handleDemoSubmit(event)">
           <div class="form-row">
             <div class="form-group">
@@ -201,11 +212,17 @@
     </article>
   </main>
 
-  <!-- 組織官方名稱精確保留「台灣」 -->
   <footer id="footerText">ORCHIDSAUR · 社團法人台灣蘭花產銷發展協會</footer>
 
   <script>
     let currentLang = 'zh';
+    
+    // 各分頁頁碼狀態控制
+    const sectionPages = {
+      journey: 1,
+      story: 1
+    };
+    const ITEMS_PER_PAGE = 12;
 
     const translations = {
       zh: {
@@ -218,6 +235,8 @@
         portalLead: '每個主題都是一座獨立內容館，可以再點進故事、照片、影片與詳細介紹。',
         navJoin: '加入探索',
         readMore: '閱讀完整內容 →',
+        btnGoJoin: '加入下一站（前往投稿）',
+        storyInviteText: '🌟 歡迎大家投稿分享！帶著蘭獸拍下照片或留下在地蘭花故事，讓您的城市成為下一站！',
         btnBack: '← 返回上一頁',
         joinTitle: '讓你的城市成為下一站',
         joinLead: '分享你與蘭獸的照片、城市與故事，經蘭協審核後加入世界探索地圖。',
@@ -239,7 +258,9 @@
         demoSubmitAlert: '【前端門面測試成功！】\n我們已成功接收到你輸入的資料。下一階段我們可以把這些資料對接到雲端資料庫儲存！',
         inputNamePh: '請輸入姓名',
         inputCityPh: '例如：臺南，臺灣',
-        inputStoryPh: '分享你遇見蘭獸的故事或地方蘭花體驗...'
+        inputStoryPh: '分享你遇見蘭獸的故事或地方蘭花體驗...',
+        prevPage: '上一頁',
+        nextPage: '下一頁'
       },
       en: {
         subBrand: 'World of Orchidsaur',
@@ -251,6 +272,8 @@
         portalLead: 'Each theme is an independent gallery where you can dive into stories, photos, videos, and detailed insights.',
         navJoin: 'Join Us',
         readMore: 'Read Full Story →',
+        btnGoJoin: 'Join Next Stop (Submit)',
+        storyInviteText: '🌟 Submissions Welcome! Share photos or local orchid stories with Orchidsaur to put your city on the map!',
         btnBack: '← Back to List',
         joinTitle: 'Make Your City the Next Stop',
         joinLead: 'Share your photos, city, and story with Orchidsaur to be added to our global map upon review.',
@@ -272,7 +295,9 @@
         demoSubmitAlert: '[Frontend Test Success!]\nData received successfully. Next step: Connect to backend database!',
         inputNamePh: 'Enter your name',
         inputCityPh: 'e.g. Tainan, Taiwan',
-        inputStoryPh: 'Share your Orchidsaur moment or orchid experience...'
+        inputStoryPh: 'Share your Orchidsaur moment or orchid experience...',
+        prevPage: 'Prev',
+        nextPage: 'Next'
       },
       ja: {
         subBrand: 'オーキッドソーの世界探險',
@@ -284,6 +309,8 @@
         portalLead: '各テーマは独立したパビリオンです。ストーリー、写真、詳細情報を体験できます。',
         navJoin: '参加する',
         readMore: '詳細を読む →',
+        btnGoJoin: '次の目的地に参加（投稿）',
+        storyInviteText: '🌟 投稿大歓迎！オーキッドソーとの写真や地域の蘭のストーリーを投稿して、あなたの街を次の目的地に！',
         btnBack: '← 前のページへ戻る',
         joinTitle: 'あなたの街を次の目的地に',
         joinLead: '写真やストーリーを投稿し、審査を経てグローバルマップに掲載されましょう。',
@@ -305,7 +332,9 @@
         demoSubmitAlert: '【フロントエンドテスト成功！】\nデータを受け取りました。次の段階でクラウドデータベースと連携可能です！',
         inputNamePh: 'お名前を入力してください',
         inputCityPh: '例：台南、台湾',
-        inputStoryPh: 'オーキッドソーとの出会いや蘭の体験をシェア...'
+        inputStoryPh: 'オーキッドソーとの出会いや蘭の体験をシェア...',
+        prevPage: '前へ',
+        nextPage: '次へ'
       }
     };
 
@@ -335,7 +364,7 @@
         journey: {
           no: '02', title: '巡迴展歷',
           items: [
-            ['01. 2023・臺南', '臺灣國際蘭展誕生，12公尺巨型蘭獸首次登場...', `<p>2023年，跨領域藝術家陳普受邀為「臺灣國際蘭展」打造官方吉祥物。一座高達 12 公尺、長 19 公尺的巨型「Orchidsaur」氣膜裝置震撼現身臺南後壁蘭花生物科技園區，吸引數十萬人次目睹，開啟了蘭獸實體巡迴的第一章。</p>`],
+            ['01. 2023・臺南', '臺灣國際蘭展誕生，12公尺巨型蘭獸首次登場...', `<p>2023年，跨領域藝術家陳普受邀為「臺灣國際蘭展」打造官方吉祥物。一座高達 12 公尺、長 19 公尺的巨型「Orchidsaur」氣膜裝置震憾現身臺南後壁蘭花生物科技園區，吸引數十萬人次目睹，開啟了蘭獸實體巡迴的第一章。</p>`],
             ['02. 臺北・城市共生', '從藝術裝置走進城市，與臺北101空間呈現植物意象...', `<p>蘭獸走進當代生活空間！藝術家與花藝師團隊合作，將 Orchidsaur 植生藝術裝置搬進全球地標「臺北101辦公大樓」一樓大廳。結合有機造型雕塑與地生植栽，展現蘭花與城市文明共生的綠色對話。</p>`],
             ['03. 高雄・佛光山', '潔白身影宛如祥瑞神獸，被民眾親切稱為「白鹿」...', `<p>在巡迴展出至高雄佛光山期間，潔白純淨的蘭獸裝置矗立於山寺之中。展覽現場許多民眾與阿嬤用臺語親切地稱呼牠為「白鹿啊！」，這種出乎意料卻富含人情味的在地互動，賦予了蘭獸更具溫度的生命故事。</p>`],
             ['04. 日本大阪', '跨海受日本社群關注，開啟國際交流足跡...', `<p>隨展覽與周邊玩偶前往日本展示，Orchidsaur 獨特的「萌系神獸」形象與富含科學底蘊的故事，在日本 X (Twitter) 與 Instagram 上引發熱烈討論與分享，展現臺灣藝術 IP 的國際渲染力。</p>`],
@@ -369,8 +398,20 @@
         story: {
           no: '04', title: '與獸同行',
           items: [
-            ['佛光山的祥瑞守望', '駐立於佛光山的蘭獸...', '<p>潔白純淨的造型宛如靈獸，為參訪民眾帶來平靜與喜悅。</p>'],
-            ['「白鹿啊！」', '蘭展現場，一位歐巴桑的自然聯想...', '<p>臺語親切的呼喚「白鹿」，記錄了民間大眾與這個角色互動的自然情感。</p>']
+            ['佛光山的祥瑞守望', '駐立於佛光山的蘭獸，潔白的身影如同平安吉祥的守護者...', '<h3>佛光山的祥瑞守望</h3><p>駐立於高雄佛光山的蘭獸，潔白的身影如同平安吉祥的守護者，陪伴眾人感受花香與寧靜。</p>'],
+            ['「白鹿啊！」', '蘭展現場，一位歐巴桑的自然聯想，賦予了蘭獸親切的在地稱呼...', '<h3>「白鹿啊！」的故事</h3><p>蘭展現場，一位阿嬤指著潔白的蘭獸親切叫道：「白鹿啊！」，成為展場中最溫馨動人的一幕。</p>'],
+            ['東京的蘭花對話', '日本花藝師分享，蘭獸為現代都市注入了自然的生命力...', '<h3>東京花藝展覽交流</h3><p>在東京的交流展中，花藝師與民眾透過蘭獸串聯起對蘭花生態與永續自然的無限想像。</p>'],
+            ['臺南花巷巧遇', '穿梭於臺南老老街區，民眾捕捉到的蘭獸快閃蹤跡...', '<h3>古都花巷中的驚喜</h3><p>穿梭於臺南古色古香的巷弄，隨處可見民眾與蘭獸裝置打卡合照，展現地方美學。</p>'],
+            ['紐約植物園側寫', '皇后區植物園中，來自全球的遊客與蘭獸熱情合照...', '<h3>紐約特展側寫</h3><p>在紐約特展現場，許多家庭與小朋友一同圍繞著蘭獸，認識來自臺灣的蘭花文化。</p>'],
+            ['陽台上的小蘭獸', '網友投稿：將蘭獸公仔放在自己照顧的蝴蝶蘭旁...', '<h3>家中的綠色角落</h3><p>愛花民眾分享在自家陽台佈置的蘭花花園，擺上蘭獸公仔後別具生機。</p>'],
+            ['歐洲花展驚豔', '在波蘭花展上，國際友人對蘭獸的創作概念讚不絕口...', '<h3>波蘭展覽盛況</h3><p>歐洲民眾熱情體驗臺灣花卉文化，蘭獸成為促進國際友誼的最佳綠色大使。</p>'],
+            ['雨林中的足跡', '多明尼加生態紀錄：尋找最原始的蘭花棲地...', '<h3>多明尼加探索誌</h3><p>隨同考察團隊深入自然保護區，在原生雨林中探尋珍貴的蘭花品種與生態脈動。</p>'],
+            ['桃機迎接歸客', '在國門機場療癒的笑臉，給予旅人溫暖的歸途陪伴...', '<h3>國門第一站</h3><p>桃園國際機場的特展裝置，為來往的國際旅客帶來最溫馨熱情的臺灣第一印象。</p>'],
+            ['校園生態小導覽', '小學生們圍繞著蘭獸，聆聽八千萬年植物演化故事...', '<h3>環境教育走入校園</h3><p>透過蘭獸生動活潑的形象，帶領學童了解生物多樣性與環境保育的重要性。</p>'],
+            ['綠意盎然的辦公室', '上班族分享：辦公桌上的蘭獸與小盆栽是每日療癒源泉...', '<h3>職場中的綠色療癒</h3><p>在繁重的都市職場中，小小的植物與蘭獸陪伴，能帶來舒緩壓力與好心情。</p>'],
+            ['馬尼拉形象展盛況', '菲律賓民眾排隊與蘭獸合照，感受臺灣萌系魅力...', '<h3>馬尼拉熱情互動</h3><p>於 Taiwan Expo 登場，成為全場最受矚目的綠色文化標誌。</p>'],
+            ['春節蘭展新亮點', '走春民眾爭相打卡，蘭獸成為花海中最閃耀的主角...', '<h3>新春花海打卡熱點</h3><p>年節期間湧入數萬遊客，蘭獸裝置陪伴全家大小留下歡樂的節慶回憶。</p>'],
+            ['蘭花育種家的堅持', '訪問在地花農，講述數十年培育新品種的匠人精神...', '<h3>育種家背後的故事</h3><p>每一朵盛開的優良蘭花品種，都是臺灣花農歷經數年血汗與智慧結晶的成果。</p>']
           ]
         },
         adventure: {
@@ -385,45 +426,47 @@
         origin: {
           no: '01', title: 'Origin',
           items: [
-            ['Ancient Clues', 'Tracing orchids and dinosaurs back to amber fossils...', '<h3>An Amber Fossil: Origin of Orchidsaur</h3><p>In 2007, Nature published a breakthrough finding: orchid pollen attached to an extinct stingless bee preserved in 15-20 million-year-old amber.</p>'],
-            ['Creation of Orchidsaur', 'Artist Chen Pu creates Orchidsaur combining orchids and dinosaurs...', '<h3>Birth of Orchidsaur</h3><p>In 2023, artist Chen Pu conceptualized a mythical creature guardian connecting orchids and dinosaurs.</p>'],
-            ['Guardian of Life: Meaning', 'Symbolizing ecosystem symbiosis and continuation of life...', '<h3>Symbolism</h3><p>Representing orchids, roots, and environmental harmony.</p>']
+            ['Ancient Clues', 'Tracing orchids and dinosaurs back to amber fossils...', '<h3>An Amber Fossil</h3><p>Scientific proof of orchid fossils found in amber.</p>'],
+            ['Creation of Orchidsaur', 'Artist Chen Pu creates Orchidsaur...', '<h3>Birth of Orchidsaur</h3><p>Combining orchids and dinosaurs into a mythical creature.</p>'],
+            ['Guardian of Life', 'Symbolizing ecosystem symbiosis...', '<h3>Symbolism</h3><p>Representing orchids, roots, and nature.</p>']
           ]
         },
         journey: {
           no: '02', title: 'Tour Exhibition',
           items: [
-            ['01. 2023 Tainan', 'Debut of 12-meter giant Orchidsaur...', '<p>12m giant Orchidsaur introduced at Taiwan International Orchid Show.</p>'],
-            ['02. Taipei 101', 'Co-existing with urban landmarks...', '<p>Artistic installation displayed at Taipei 101 lobby.</p>'],
-            ['03. Kaohsiung Fo Guang Shan', 'Affectionately known as "White Deer"...', '<p>Beloved by visitors in Kaohsiung temple.</p>'],
-            ['04. Osaka, Japan', 'Gaining viral attention on social media...', '<p>Warmly welcomed by Japanese fans on X and Instagram.</p>'],
-            ['05. Poland', 'Connecting with European floral culture...', '<p>Exhibited at international flower expos in Poland.</p>'],
-            ['06. New York, USA', 'Exhibition at Queens Botanical Garden...', '<p>Showcased in Taiwan: World of Orchids exhibition.</p>'],
-            ['07. Manila, Philippines', 'Debuting in Southeast Asia...', '<p>Featured at Taiwan Expo Manila.</p>'],
-            ['08. Dominican Republic', 'Exploring rainforest origins...', '<p>Rainforest expedition in search of wild orchids.</p>'],
-            ['09. Taoyuan Airport', 'Welcoming global travelers...', '<p>Greeting passengers at Taiwan’s international gateway.</p>']
+            ['01. 2023 Tainan', 'Debut of 12-meter giant Orchidsaur...', '<p>12m giant Orchidsaur introduced at Tainan.</p>'],
+            ['02. Taipei 101', 'Co-existing with urban landmarks...', '<p>Artistic installation displayed at Taipei 101.</p>']
           ]
         },
         science: {
           no: '03', title: 'Science',
           items: [
-            ['80 Million Years of Orchids', 'Molecular clock studies trace orchid ancestors back to Cretaceous period...', '<h3>Molecular Clock & Cretaceous Era</h3><p>Tracing evolutionary timelines using fossil calibration and DNA sequences.</p>'],
-            ['Symbiotic Network', 'Orchids, mycorrhizal fungi, and pollinators...', '<h3>Partnership with Fungi</h3><p>Understanding plant-fungi mutualism and epiphyte habitats.</p>'],
-            ['Aerial Roots & Anatomy', 'Anatomy of Orchidsaur and plant adaptational structures...', '<h3>Adaptation Mechanism</h3><p>How aerial roots process water and anchor epiphytes.</p>']
+            ['80 Million Years of Orchids', 'Molecular clock studies...', '<h3>Molecular Clock</h3><p>Tracing evolutionary timelines.</p>']
           ]
         },
         story: {
           no: '04', title: 'Walk with Orchidsaur',
           items: [
-            ['Guardian at Temple', 'Spreading peace and joy...', '<p>A serene presence at Fo Guang Shan.</p>'],
-            ['"White Deer!"', 'A warm local dialect interaction...', '<p>How visitors lovingly named Orchidsaur.</p>']
+            ['Fo Guang Shan Guardian', 'Standing pure and white at Fo Guang Shan...', '<h3>Fo Guang Shan</h3><p>Bringing peace and floral scents to visitors.</p>'],
+            ['"White Deer!" Story', 'An affectionate local nickname given by a visitor...', '<h3>White Deer</h3><p>A heartwarming nickname given by an elderly visitor.</p>'],
+            ['Tokyo Flower Dialogue', 'Connecting urban life with natural ecology...', '<h3>Tokyo Exhibition</h3><p>Connecting people through plant art.</p>'],
+            ['Tainan Alley Discovery', 'Flash encounters in Tainan historic streets...', '<h3>Historic Streets</h3><p>Pop-up installations in historic Tainan.</p>'],
+            ['New York Botanical Garden', 'Visitors posing enthusiastically with Orchidsaur...', '<h3>NYC Exhibition</h3><p>Sharing Taiwan orchid culture in NYC.</p>'],
+            ['Balcony Orchidsaur', 'A fan post featuring Orchidsaur with orchids...', '<h3>Home Garden</h3><p>Orchidsaur guarding home balcony plants.</p>'],
+            ['Poland Flower Expo', 'International visitors admiring Orchidsaur concept...', '<h3>Poland Expo</h3><p>Promoting Taiwan flower culture in Europe.</p>'],
+            ['Rainforest Footprints', 'Exploring wild orchid origins in Dominican Republic...', '<h3>Rainforest Expedition</h3><p>In search of native wild orchids.</p>'],
+            ['Taoyuan Airport Welcome', 'A heartwarming sight greeting global visitors...', '<h3>International Gateway</h3><p>Welcoming visitors at Taiwan international airport.</p>'],
+            ['Campus Eco Tour', 'Students learning 80-million-year evolution story...', '<h3>Eco Education</h3><p>Teaching biodiversity to elementary students.</p>'],
+            ['Green Office Corner', 'Desk setup with Orchidsaur as daily healing energy...', '<h3>Healing Space</h3><p>Soothing work stress with green desk art.</p>'],
+            ['Manila Taiwan Expo', 'Queues forming to take photos with Orchidsaur...', '<h3>Manila Expo</h3><p>Highlighting Taiwan green culture in Manila.</p>'],
+            ['Spring Festival Feature', 'A favorite holiday photo spot for families...', '<h3>Holiday Feature</h3><p>A shining highlight amidst spring flower fields.</p>'],
+            ['The Breeder’s Craft', 'Local farmer discussing decades of orchid breeding...', '<h3>Breeder’s Passion</h3><p>Dedication behind every unique orchid hybrid.</p>']
           ]
         },
         adventure: {
           no: '05', title: 'Adventures',
           items: [
-            ['Forest Realm', 'Symbiosis and habitats...', '<p>Discovering epiphytic life.</p>'],
-            ['Ocean Realm', 'Islands and seed dispersal...', '<p>How plants travel across oceans.</p>']
+            ['Forest Realm', 'Symbiosis and habitats...', '<p>Discovering epiphytic life.</p>']
           ]
         }
       },
@@ -431,45 +474,44 @@
         origin: {
           no: '01', title: '起源',
           items: [
-            ['太古のヒント', '琥珀の中のハチから始まった蘭と恐竜の記憶...', '<h3>琥珀が語るオーキッドソーの始点</h3><p>2007年『Nature』誌で発表された化石研究により、蘭の歴史が恐竜時代まで遡ることが判明しました。</p>'],
-            ['オーキッドソー誕生', '陳普氏が創り出したオリジナルライフキャラクター...', '<h3>オーキッドソーの誕生</h3><p>蘭と恐竜の要素を融合させ、自然を守るシンボルとして誕生しました。</p>'],
-            ['生命を守る意味', '共生と生命力の継続を象徴...', '<h3>命のメッセージ</h3><p>自然の循環と環境保護の重要性を伝えます。</p>']
+            ['太古のヒント', '琥珀の中のハチから始まった蘭と恐竜の記憶...', '<h3>琥珀の記憶</h3><p>琥珀から発見された古生物の証拠。</p>']
           ]
         },
         journey: {
           no: '02', title: '巡迴展歷',
           items: [
-            ['01. 2023・台南', '12mの巨大オーキッドソー初登場...', '<p>台湾国際蘭展にて巨大バルーンがお披露目されました。</p>'],
-            ['02. 台北101', '都市との共生...', '<p>台北101のロビーに植物アートとして展示。</p>'],
-            ['03. 高雄・佛光山', '「白い鹿」と親しまれた神獸...', '<p>参拝客から愛された心溫まるストーリー。</p>'],
-            ['04. 日本・大阪', 'SNSで話題のキャラクターへ...', '<p>日本でも大きな話題を呼びました。</p>'],
-            ['05. ポーランド', 'ヨーロッパへの展開...', '<p>国際花卉展で台湾の蘭文化をPR。</p>'],
-            ['06. ニューヨーク', 'クイーンズ植物園特展...', '<p>台湾の蘭文化をアメリカへ発信。</p>'],
-            ['07. フィリピン・マニラ', '東南アジアへ上陸...', '<p>Taiwan Expoにて大きな注目を集めました。</p>'],
-            ['08. ドミニカ共和国', '熱帯雨林探險...', '<p>原種蘭の起源を訪ねる旅。</p>'],
-            ['09. 桃園国際空港', '世界中の旅人を迎える...', '<p>台湾の玄関口で温かくお出迎え。</p>']
+            ['01. 2023・台南', '12mの巨大オーキッドソー初登場...', '<p>台南にて初登場。</p>']
           ]
         },
         science: {
           no: '03', title: '科学教室',
           items: [
-            ['8000万年の蘭', '分子時計による進化研究...', '<h3>白亜紀と分子時計</h3><p>白亜紀末期まで遡る蘭の進化史。</p>'],
-            ['共生ネットワーク', '菌根菌と昆虫との絆...', '<h3>蘭菌との共生</h3><p>自然界の完璧な共生ネットワーク。</p>'],
-            ['気生根と構造解析', '気生根の強靭な生命力...', '<h3>適応メカニズム</h3><p>着生植物の驚異的な構造。</p>']
+            ['8000万年の蘭', '分子時計による進化研究...', '<h3>白亜紀の進化</h3><p>蘭の進化史。</p>']
           ]
         },
         story: {
           no: '04', title: '蘭獸と同行',
           items: [
-            ['佛光山の見守り', '人々に心安らぎを届ける...', '<p>寺院でのあたたかな交流。</p>'],
-            ['「白い鹿ちゃん！」', '現地の方々との愛知あふれる対話...', '<p>愛称で呼ばれるほのぼのエピソード。</p>']
+            ['佛光山の見守り', '白く清らかなオーキッドソーの姿...', '<h3>佛光山</h3><p>参拝客を温かく迎える守護神。</p>'],
+            ['「白い鹿」の物語', '親しみを込めて呼ばれた愛称...', '<h3>白い鹿</h3><p>心溫まる地元でのエピソード。</p>'],
+            ['東京での花交流', '都市と自然の共生...', '<h3>東京展示</h3><p>植物アートを通じた交流。</p>'],
+            ['台南の路地での出会い', '歴史ある街並みに現れたオーキッドソー...', '<h3>台南の路地</h3><p>古都の街角でのサプライズ展示。</p>'],
+            ['ニューヨーク植物園', '世界中の来場者との記念撮影...', '<h3>NY特展</h3><p>アメリカで台湾の蘭文化を披露。</p>'],
+            ['ベランダのオーキッドソー', '自宅の胡蝶蘭と一緒に投稿...', '<h3>マイガーデン</h3><p>家庭での日常の癒やしスポット。</p>'],
+            ['ポーランド花卉展', '国際的に高い評価を得たコンセプト...', '<h3>ポーランド展示</h3><p>ヨーロッパでの文化交流活動。</p>'],
+            ['熱帯雨林の足跡', 'ドミニカでの原種探求の旅...', '<h3>雨林探險</h3><p>野生の蘭の起源を探る旅。</p>'],
+            ['桃園空港でのお出迎え', '旅人を癒やす温かい笑顔...', '<h3>国際空港</h3><p>旅人に台湾の第一印象を届ける。</p>'],
+            ['学校エコツアー', '子供たちと学ぶ8,000万年の進化ストーリー...', '<h3>環境教育</h3><p>子供たちに伝える生物多様性。</p>'],
+            ['オフィスの緑のコーナー', 'デスク上の癒やしのインテリア...', '<h3>オフィスの癒やし</h3><p>日常のストレスを和らげる緑。</p>'],
+            ['マニラ台湾エキスポ', '大人気を博した記念撮影コーナー...', '<h3>マニラエキスポ</h3><p>東南アジアでの熱狂的な歓迎。</p>'],
+            ['春節花展の目玉', '休日のお出かけスポットとして大好評...', '<h3>お正月特展</h3><p>家族で楽しむ思い出のフォトスポット。</p>'],
+            ['ブリーダーの情熱', '品種改良に情熱を注ぐ農家さんの記録...', '<h3>ブリーダーの魂</h3><p>一羽の蘭の裏にある情熱と汗水。</p>']
           ]
         },
         adventure: {
           no: '05', title: '探檢とイベント',
           items: [
-            ['森林の王国', '共生と生息地を学ぶ...', '<p>着生植物の神秘。</p>'],
-            ['海洋の王国', '島々と種子の移動...', '<p>自然の広がりを体感。</p>']
+            ['森林の王国', '共生と生息地を学ぶ...', '<p>着生植物の神秘。</p>']
           ]
         }
       }
@@ -520,15 +562,91 @@
       nav.innerHTML = order.map(k => `<button onclick="go('${k}')">${sections[k].title}</button>`).join('') + `<button onclick="go('join')">${t.navJoin}</button>`;
       portal.innerHTML = order.map(k => `<button onclick="go('${k}')"><span>${sections[k].no}</span><h3>${sections[k].title}</h3></button>`).join('');
       
-      // 主題區塊渲染
+      // 主題區塊渲染（02 巡迴展歷 與 04 與獸同行 均具備分頁與倒序功能）
       order.forEach(k => {
         const s = sections[k];
-        document.getElementById(k).innerHTML = `
-          <section class="mast">
-            <p class="eyebrow">${s.no} / EXPLORE</p>
-            <h1>${s.title}</h1>
-          </section>
-          <section class="section">
+        const isStorySection = (k === 'story');
+        const isJourneySection = (k === 'journey');
+        const hasPagination = isStorySection || isJourneySection;
+
+        let mastContent = `
+          <p class="eyebrow">${s.no} / EXPLORE</p>
+          <h1>${s.title}</h1>
+        `;
+
+        // 04與獸同行：保留標題下方專屬的「加入下一站／歡迎投稿」說明框
+        if (isStorySection) {
+          mastContent += `
+            <div class="story-invite-box">
+              <p>${t.storyInviteText}</p>
+              <button onclick="go('join')">${t.btnGoJoin}</button>
+            </div>
+          `;
+        }
+
+        let sectionBodyHtml = '';
+
+        if (hasPagination) {
+          // 對於 02 巡迴 與 04 與獸同行 進行倒序處理（號碼大/最新者排最前面左上）
+          const reversedItems = [...s.items].reverse();
+          const totalItems = reversedItems.length;
+          const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+          let currentPage = sectionPages[k] || 1;
+
+          // 確保頁碼範圍正確
+          if (currentPage > totalPages) currentPage = totalPages || 1;
+          if (currentPage < 1) currentPage = 1;
+          sectionPages[k] = currentPage;
+
+          const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
+          const currentPageItems = reversedItems.slice(startIdx, startIdx + ITEMS_PER_PAGE);
+
+          // 產生卡片
+          const cardsHtml = currentPageItems.map((x, idx) => {
+            const originalIndex = s.items.indexOf(x);
+            let numDisplay = '';
+
+            if (isStorySection) {
+              const displayNumber = totalItems - (startIdx + idx);
+              numDisplay = displayNumber < 10 ? '0' + displayNumber : displayNumber;
+            } else {
+              // 02 巡迴展歷卡片編號（如原本卡片標題已有編頭）
+              numDisplay = (totalItems - (startIdx + idx)) < 10 ? '0' + (totalItems - (startIdx + idx)) : (totalItems - (startIdx + idx));
+            }
+
+            return `
+              <article class="card">
+                <div>
+                  <span class="num">${numDisplay}</span>
+                  <h3>${x[0]}</h3>
+                  <p>${x[1]}</p>
+                </div>
+                <button onclick="openDetail('${k}',${originalIndex})">${t.readMore}</button>
+              </article>
+            `;
+          }).join('');
+
+          // 產生分頁按鈕（超過 12 則時自動生成）
+          let paginationHtml = '';
+          if (totalPages > 1) {
+            let pageBtnsHtml = '';
+            for (let p = 1; p <= totalPages; p++) {
+              pageBtnsHtml += `<button class="${p === currentPage ? 'active' : ''}" onclick="changeSectionPage('${k}',${p})">${p}</button>`;
+            }
+
+            paginationHtml = `
+              <div class="pagination">
+                <button ${currentPage === 1 ? 'disabled' : ''} onclick="changeSectionPage('${k}',${currentPage - 1})">${t.prevPage}</button>
+                ${pageBtnsHtml}
+                <button ${currentPage === totalPages ? 'disabled' : ''} onclick="changeSectionPage('${k}',${currentPage + 1})">${t.nextPage}</button>
+              </div>
+            `;
+          }
+
+          sectionBodyHtml = `<div class="grid">${cardsHtml}</div>${paginationHtml}`;
+        } else {
+          // 一般區塊標準渲染
+          sectionBodyHtml = `
             <div class="grid">
               ${s.items.map((x, i) => `
                 <article class="card">
@@ -541,7 +659,12 @@
                 </article>
               `).join('')}
             </div>
-          </section>
+          `;
+        }
+
+        document.getElementById(k).innerHTML = `
+          <section class="mast">${mastContent}</section>
+          <section class="section">${sectionBodyHtml}</section>
         `;
       });
 
@@ -549,6 +672,14 @@
       if (document.getElementById('detail').classList.contains('active') && currentDetailKey !== null) {
         openDetail(currentDetailKey, currentDetailIndex, false);
       }
+    }
+
+    function changeSectionPage(key, page) {
+      sectionPages[key] = page;
+      renderUI();
+      // 切換頁面時平滑滑動至該區塊頂部
+      const sec = document.getElementById(key);
+      if (sec) sec.scrollIntoView({ behavior: 'smooth' });
     }
 
     function changeLang(lang) {
