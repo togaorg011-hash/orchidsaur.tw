@@ -73,7 +73,7 @@
     .quiz-opt-btn{background:var(--cream);border:1px solid var(--line);padding:16px 20px;border-radius:12px;text-align:left;font-size:16px;font-weight:bold;cursor:pointer;transition:.2s}
     .quiz-opt-btn:hover{background:var(--green);color:white}
 
-    /* 接花花遊戲區域 */
+    /* 接花遊戲區域 */
     .catch-game-area{width:100%;max-width:600px;height:400px;background:linear-gradient(180deg,#eef5eb,#c8e6c9);border:2px solid var(--line);border-radius:20px;position:relative;overflow:hidden;margin:20px auto}
     .player-basket{position:absolute;bottom:10px;width:70px;height:70px;font-size:50px;text-align:center;line-height:70px;user-select:none}
     .falling-item{position:absolute;font-size:32px;user-select:none}
@@ -157,7 +157,7 @@
     <section class="section">
       <div class="adventure-tabs">
         <button class="adv-tab-btn active" id="tabQuiz" onclick="switchAdvTab('quiz')">知識闖關</button>
-        <button class="adv-tab-btn" id="tabCatch" onclick="switchAdvTab('catch')">蘭獸接花花</button>
+        <button class="adv-tab-btn" id="tabCatch" onclick="switchAdvTab('catch')">蘭獸接花</button>
         <button class="adv-tab-btn" id="tabWallpaper" onclick="switchAdvTab('wallpaper')">蘭獸桌布畫廊</button>
       </div>
 
@@ -171,10 +171,10 @@
         </div>
       </div>
 
-      <!-- 單元 2：蘭獸接花花 -->
+      <!-- 單元 2：蘭獸接花 -->
       <div id="advCatch" class="adv-panel">
         <div style="text-align:center;">
-          <h2 id="catchTitle">🌸 蘭獸接花花大作戰</h2>
+          <h2 id="catchTitle">🌸 蘭獸接花大作戰</h2>
           <p id="catchDesc">移動滑鼠控制蘭獸左右移動，接住掉落的盛開蘭花與水滴，避開枯枝！</p>
           <div style="font-size:20px; font-weight:bold; color:var(--green); margin-bottom:10px;"><span id="lblScore">得分</span>：<span id="catchScore">0</span></div>
           
@@ -305,10 +305,10 @@
         prevPage: '上一頁', nextPage: '下一頁', submissionNo: '投稿編號：', submissionDate: '投稿日期：',
         
         advTitle: '蘭獸探險趣', advLead: '歡迎來到蘭獸互動體驗天地！挑戰知識問答、玩法小遊戲或 DIY 專屬 1920x1080 高解析度電腦桌布！',
-        tabQuiz: '知識闖關', tabCatch: '蘭獸接花花', tabWallpaper: '蘭獸桌布畫廊',
+        tabQuiz: '知識闖關', tabCatch: '蘭獸接花', tabWallpaper: '蘭獸桌布畫廊',
         quizProgressPrefix: '題目', quizSuccess: '🎉 闖關成功！', quizSuccessMsg: '恭喜你完成 8 題蘭獸與蘭花知識挑戰，獲得「蘭花小專家」動態徽章！',
         btnReplay: '再玩一次', quizRight: '✨ 答對了！太厲害了！', quizWrong: '❌ 差一點點，再試試看！',
-        catchTitle: '🌸 蘭獸接花花大作戰', catchDesc: '移動滑鼠控制蘭獸左右移動，接住掉落的盛開蘭花與水滴，避開枯枝！',
+        catchTitle: '🌸 蘭獸接花大作戰', catchDesc: '移動滑鼠控制蘭獸左右移動，接住掉落的盛開蘭花與水滴，避開枯枝！',
         btnOpenGameWin: '🚀 以獨立新視窗開啟遊戲',
         lblScore: '得分', btnCatchStart: '開始 / 重來', catchAlert: '遊戲開始！請移動滑鼠接住掉落的蘭花 🌸！',
         wallTitle: '🎨 1920×1080 DIY 電腦桌布畫廊', wallDesc: '選擇背景，點擊貼圖加入畫布（可拖曳擺放），輕鬆創作專屬桌面！',
@@ -439,7 +439,7 @@
       }
     };
 
-    /* 完全多語系 8 題問答題庫（含正確與錯誤選項翻譯） */
+    /* 完全多語系 8 題問答題庫 */
     const multiQuizData = {
       zh: [
         { q: "這隻擁有蘭花身體特徵與遠古記憶的白色吉祥物叫什麼名字？", opts: ["Orchidsaur（蘭獸）", "Pikachu（皮卡丘）", "DinoGreen（綠恐龍）", "FloraBot（花花機器人）"], ans: 0 },
@@ -686,7 +686,7 @@
       }
     }
 
-    /* 接花小遊戲全邏輯（含掉落物、碰撞與獨立新視窗功能） */
+    /* 接花小遊戲全邏輯 */
     let catchScore = 0;
     let gameInterval = null;
     let isGameRunning = false;
@@ -706,7 +706,6 @@
       document.getElementById('catchScore').textContent = catchScore;
       isGameRunning = true;
 
-      // 清除舊的掉落物
       document.querySelectorAll('.falling-item').forEach(el => el.remove());
 
       gameInterval = setInterval(spawnItem, 800);
@@ -746,7 +745,6 @@
         const basket = document.getElementById('playerBasket');
         const basketX = parseFloat(basket.style.left) || 0;
 
-        // 碰撞檢查
         if (posY >= 330 && posY <= 370) {
           if (startX >= basketX - 20 && startX <= basketX + 60) {
             if (randType === '🌸') catchScore += 10;
@@ -841,7 +839,7 @@
       `);
     }
 
-    /* 桌布 DIY 畫廊邏輯（漸層視覺背景 + 滑鼠拖曳擺放） */
+    /* 桌布 DIY 畫廊邏輯 */
     function setCanvasBg(type) {
       const canvas = document.getElementById('wallpaperCanvas');
       if (type === 'grass') {
