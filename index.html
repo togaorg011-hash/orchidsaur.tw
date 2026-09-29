@@ -39,13 +39,14 @@
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 1000;
+      z-index: 100;
     }
 
     .logo-container {
       display: flex;
       align-items: center;
       gap: 0.75rem;
+      cursor: pointer;
     }
 
     .logo-badge {
@@ -207,6 +208,81 @@
       border-left: 4px solid var(--btn-green);
     }
 
+    /* Modal / Detail View */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 1rem;
+    }
+
+    .modal-content {
+      background-color: var(--bg-color);
+      width: 100%;
+      max-width: 800px;
+      max-height: 90vh;
+      border-radius: 20px;
+      overflow-y: auto;
+      padding: 2.5rem;
+      position: relative;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: #e2e8f0;
+      border: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #4a5568;
+    }
+
+    .modal-category {
+      color: var(--accent-gold);
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--header-bg);
+      margin-bottom: 1rem;
+    }
+
+    .modal-hero-img {
+      width: 100%;
+      height: 240px;
+      background-color: #e2ebdf;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-body {
+      font-size: 1.05rem;
+      color: #2d3748;
+      line-height: 1.8;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       header {
@@ -230,7 +306,7 @@
 
   <!-- Top Navigation -->
   <header>
-    <div class="logo-container">
+    <div class="logo-container" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
       <div class="logo-badge">O</div>
       <div class="logo-text">
         <h1>ORCHIDSAUR</h1>
@@ -298,6 +374,21 @@
     </div>
   </section>
 
+  <!-- Modal / Detail View Window -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-category" id="modalCategory">蘭獸起源</div>
+      <h3 class="modal-title" id="modalTitle">標題</h3>
+      <div class="modal-hero-img">
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" stroke-width="1.5">
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+      </div>
+      <div class="modal-body" id="modalBody">詳細內文記載…</div>
+    </div>
+  </div>
+
   <script>
     const contentData = {
       zh: {
@@ -309,31 +400,31 @@
         sec01: {
           title: "蘭獸起源",
           items: [
-            { num: "01", title: "01. 琥珀與蘭花", desc: "從琥珀中發現的遠古蘭花花粉塊，尋見蘭花與昆蟲共生的生命起點。" },
-            { num: "02", title: "02. 陳普的藝術創作", desc: "藝術家陳普將遠古生態與當代視覺結合，賦予蘭獸靈動且豐富的生命意象。" },
-            { num: "03", title: "03. Orchidsaur 角色與 IP", desc: "連結自然、科學與大眾的永續 IP，帶領大家以輕鬆有趣的視角探索蘭花世界。" }
+            { num: "01", title: "01. 琥珀與蘭花", desc: "從琥珀中發現的遠古蘭花花粉塊，尋見蘭花與昆蟲共生的生命起點。", detail: "從琥珀中發現的遠古蘭花花粉塊，尋見蘭花與昆蟲共生的生命起點。這項珍貴的化石紀錄，揭示了數千萬年前蘭花便已演化出精妙的傳粉機制。" },
+            { num: "02", title: "02. 陳普的藝術創作", desc: "藝術家陳普將遠古生態與當代視覺結合，賦予蘭獸靈動且豐富的生命意象。", detail: "藝術家陳普將遠古生態與當代視覺結合，賦予蘭獸靈動且豐富的生命意象。透過有機的線條與溫暖的色彩，將硬核科普轉化為具親和力的視覺符號。" },
+            { num: "03", title: "03. Orchidsaur 角色與 IP", desc: "連結自然、科學與大眾的永續 IP，帶領大家以輕鬆有趣的視角探索蘭花世界。", detail: "Orchidsaur 作為連結自然、科學與大眾的永續 IP，帶領大家以輕鬆有趣的視角探索蘭花世界，跨越文化與語言傳遞生態保育的價值。" }
           ]
         },
         sec02: {
           title: "巡迴展歷",
           items: [
-            { num: "01", title: "01. 2023．臺南", desc: "臺灣國際蘭展誕生，12公尺巨型蘭獸首次登場…" },
-            { num: "02", title: "02. 臺北．城市共生", desc: "從藝術裝置走進城市，與臺北101空間呈現植物意象…" },
-            { num: "03", title: "03. 高雄．佛光山", desc: "潔白身影宛如祥瑞神獸，被民眾親切稱為「白鹿」…" },
-            { num: "04", title: "04. 日本大阪", desc: "跨海受日本社群關注，開啟國際交流足跡…" },
-            { num: "05", title: "05. 歐洲．波蘭", desc: "走入歐洲花卉重鎮，開啟中東歐的蘭花故事交流…" },
-            { num: "06", title: "06. 美國．紐約", desc: "皇后區植物園「臺灣：蘭花世界」特展盛大登場…" },
-            { num: "07", title: "07. 菲律賓．馬尼拉", desc: "登陸東南亞市場，於菲律賓形象展展現臺灣軟實力…" },
-            { num: "08", title: "08. 多明尼加", desc: "深入雨林探索，尋見原生蘭花與自然生態起源…" },
-            { num: "09", title: "09. 臺灣．桃園機場", desc: "驚喜現身桃園國際機場，陪伴旅客踏上綠色探索之旅…" }
+            { num: "01", title: "01. 2023．臺南", desc: "臺灣國際蘭展誕生，12公尺巨型蘭獸首次登場…", detail: "臺灣國際蘭展誕生，12公尺巨型蘭獸首次登場，成為全場注目焦點，拉開全球巡迴展覽的序幕。" },
+            { num: "02", title: "02. 臺北．城市共生", desc: "從藝術裝置走進城市，與臺北101空間呈現植物意象…", detail: "從藝術裝置走進城市，與臺北101空間呈現植物意象，展現現代建築與綠色生態共生的無限可能。" },
+            { num: "03", title: "03. 高雄．佛光山", desc: "潔白身影宛如祥瑞神獸，被民眾親切稱為「白鹿」…", detail: "潔白身影宛如祥瑞神獸，被民眾親切稱為「白鹿」，在靜謐的宗教藝術氛圍中帶來和諧與祈福的美好意象。" },
+            { num: "04", title: "04. 日本大阪", desc: "跨海受日本社群關注，開啟國際交流足跡…", detail: "跨海受日本社群關注，開啟國際交流足跡，讓廣大日本民眾感受臺灣蘭花文化與藝術設計的魅力。" },
+            { num: "05", title: "05. 歐洲．波蘭", desc: "走入歐洲花卉重鎮，開啟中東歐的蘭花故事交流…", detail: "走入歐洲花卉重鎮波蘭，開啟中東歐的蘭花故事交流，搭起東西方植物保育與美學對話的橋樑。" },
+            { num: "06", title: "06. 美國．紐約", desc: "皇后區植物園「臺灣：蘭花世界」特展盛大登場…", detail: "皇后區植物園「臺灣：蘭花世界」特展盛大登場，於紐約國際舞台展現臺灣蘭花王國的美譽與創新設計。" },
+            { num: "07", title: "07. 菲律賓．馬尼拉", desc: "登陸東南亞市場，於菲律賓形象展展現臺灣軟實力…", detail: "登陸東南亞市場，於菲律賓形象展展現臺灣軟實力，拓展國際文化外交與文創產業能見度。" },
+            { num: "08", title: "08. 多明尼加", desc: "深入雨林探索，尋見原生蘭花與自然生態起源…", detail: "深入雨林探索，尋見原生蘭花與自然生態起源，交流生物多樣性維護與熱帶植物保育經驗。" },
+            { num: "09", title: "09. 臺灣．桃園機場", desc: "驚喜現身桃園國際機場，陪伴旅客踏上綠色探索之旅…", detail: "驚喜現身桃園國際機場，陪伴全球旅客踏上綠色探索之旅，讓國門成爲傳遞臺灣生態美的第一站。" }
           ]
         },
         sec03: {
           title: "科學教室",
           items: [
-            { num: "01", title: "01. 八千萬年的蘭花", desc: "透過分子時鐘研究，推估現生蘭科植物祖先早在晚白堊紀即已出現…" },
-            { num: "02", title: "02. 共生的生命網絡", desc: "種子萌發依賴蘭菌，生存繁衍依賴昆蟲與樹木…" },
-            { num: "03", title: "03. 八隻腳之謎", desc: "解析附生蘭的氣生根與蘭獸八足構造的生物學相呼應…" }
+            { num: "01", title: "01. 八千萬年的蘭花", desc: "透過分子時鐘研究，推估現生蘭科植物祖先早在晚白堊紀即已出現…", detail: "透過分子時鐘研究，推估現生蘭科植物祖先早在晚白堊紀即已出現，與恐龍同時代見證了地球歷史的滄海桑田。" },
+            { num: "02", title: "02. 共生的生命網絡", desc: "種子萌發依賴蘭菌，生存繁衍依賴昆蟲與樹木…", detail: "種子萌發依賴蘭菌提供營養，生存繁衍則依賴昆蟲與樹木的協力，展現了自然界極致精密的共生生存策略。" },
+            { num: "03", title: "03. 八隻腳之謎", desc: "解析附生蘭的氣生根與蘭獸八足構造的生物學相呼應…", detail: "解析附生蘭氣生根吸附樹幹與吸收水分的功能，與蘭獸設計中的八足構造相呼應，巧妙融合自然機能與藝術想像。" }
           ]
         },
         sec04: {
@@ -353,31 +444,31 @@
         sec01: {
           title: "Orchidsaur Origin",
           items: [
-            { num: "01", title: "01. Amber & Orchids", desc: "Discovering ancient orchid pollinia in amber, uncovering the origin of symbiosis between orchids and insects." },
-            { num: "02", title: "02. Art by Chen Pu", desc: "Artist Chen Pu combines ancient ecology with contemporary vision, granting Orchidsaur a vibrant identity." },
-            { num: "03", title: "03. Role & IP", desc: "A sustainable IP connecting nature, science, and the public, leading everyone to explore orchids with fun." }
+            { num: "01", title: "01. Amber & Orchids", desc: "Discovering ancient orchid pollinia in amber, uncovering the origin of symbiosis.", detail: "Discovering ancient orchid pollinia in amber, uncovering the origin of symbiosis between orchids and insects dating back tens of millions of years." },
+            { num: "02", title: "02. Art by Chen Pu", desc: "Artist Chen Pu combines ancient ecology with contemporary vision.", detail: "Artist Chen Pu combines ancient ecology with contemporary vision, granting Orchidsaur a vibrant and dynamic identity through warm visual design." },
+            { num: "03", title: "03. Role & IP", desc: "A sustainable IP connecting nature, science, and the public with fun.", detail: "A sustainable IP connecting nature, science, and the public, leading everyone to explore the world of orchids with engaging educational storytelling." }
           ]
         },
         sec02: {
           title: "Exhibition Tour",
           items: [
-            { num: "01", title: "01. 2023 Tainan", desc: "Debuted at Taiwan International Orchid Show, featuring a 12-meter giant Orchidsaur..." },
-            { num: "02", title: "02. Taipei City Symbiosis", desc: "Stepping into the city with art installations, presenting botanical imagery at Taipei 101..." },
-            { num: "03", title: "03. Kaohsiung Fo Guang Shan", desc: "Its pure white figure resembles an auspicious beast, affectionately called 'White Deer'..." },
-            { num: "04", title: "04. Osaka, Japan", desc: "Gained attention on Japanese social media, marking international footprints..." },
-            { num: "05", title: "05. Poland, Europe", desc: "Entering Europe's floral heartland, exchanging orchid stories in Central Europe..." },
-            { num: "06", title: "06. New York, USA", desc: "Grand debut at Queens Botanical Garden's 'Taiwan: A World of Orchids' exhibition..." },
-            { num: "07", title: "07. Manila, Philippines", desc: "Showcasing Taiwan's soft power at Taiwan Expo in the Philippines..." },
-            { num: "08", title: "08. Dominican Republic", desc: "Ventured deep into the rainforest to explore native orchids and ecological origins..." },
-            { num: "09", title: "09. Taoyuan Airport", desc: "Surprise appearance at Taoyuan International Airport, accompanying travelers..." }
+            { num: "01", title: "01. 2023 Tainan", desc: "Debuted at Taiwan International Orchid Show, featuring a 12-meter giant Orchidsaur...", detail: "Debuted at Taiwan International Orchid Show, featuring a 12-meter giant Orchidsaur for the first time as the grand central attraction." },
+            { num: "02", title: "02. Taipei City Symbiosis", desc: "Stepping into the city with art installations, presenting botanical imagery at Taipei 101...", detail: "Stepping into the city with art installations, presenting botanical imagery at Taipei 101 to connect urban culture with natural harmony." },
+            { num: "03", title: "03. Kaohsiung Fo Guang Shan", desc: "Its pure white figure resembles an auspicious beast, affectionately called 'White Deer'...", detail: "Its pure white figure resembles an auspicious beast, affectionately called 'White Deer' by visitors within the peaceful atmosphere." },
+            { num: "04", title: "04. Osaka, Japan", desc: "Gained attention on Japanese social media, marking international footprints...", detail: "Gained widespread attention across social media in Osaka, initiating meaningful international artistic exchanges." },
+            { num: "05", title: "05. Poland, Europe", desc: "Entering Europe's floral heartland, exchanging orchid stories in Central Europe...", detail: "Entering Europe's floral heartland in Poland, sharing orchid heritage and sustainable eco-aesthetics with Central Europe." },
+            { num: "06", title: "06. New York, USA", desc: "Grand debut at Queens Botanical Garden's 'Taiwan: A World of Orchids' exhibition...", detail: "Grand debut at Queens Botanical Garden's 'Taiwan: A World of Orchids' exhibition, showcasing Taiwan's botanical leadership." },
+            { num: "07", title: "07. Manila, Philippines", desc: "Showcasing Taiwan's soft power at Taiwan Expo in the Philippines...", detail: "Landing in Southeast Asia, showcasing Taiwan's soft power and creative design strength at Taiwan Expo in Manila." },
+            { num: "08", title: "08. Dominican Republic", desc: "Ventured deep into the rainforest to explore native orchids and ecological origins...", detail: "Ventured deep into Caribbean rainforests to explore native orchids and share biodiversity preservation insights." },
+            { num: "09", title: "09. Taoyuan Airport", desc: "Surprise appearance at Taoyuan International Airport, accompanying travelers...", detail: "Surprise appearance at Taoyuan International Airport, welcoming global travelers on a green exploration journey." }
           ]
         },
         sec03: {
           title: "Science Class",
           items: [
-            { num: "01", title: "01. 80 Million Years of Orchids", desc: "Ancestors of modern orchids are estimated to have appeared in the Late Cretaceous..." },
-            { num: "02", title: "02. Symbiotic Network", desc: "Seed germination relies on fungi, while survival depends on insects and trees..." },
-            { num: "03", title: "03. Mystery of Eight Legs", desc: "Exploring how epiphytic aerial roots correspond to Orchidsaur's eight legs..." }
+            { num: "01", title: "01. 80 Million Years of Orchids", desc: "Ancestors of modern orchids are estimated to have appeared in the Late Cretaceous...", detail: "Through molecular clock studies, ancestors of modern orchids are estimated to have appeared in the Late Cretaceous alongside dinosaurs." },
+            { num: "02", title: "02. Symbiotic Network", desc: "Seed germination relies on fungi, while survival depends on insects and trees...", detail: "Seed germination relies on mycorrhizal fungi, while long-term survival depends on intricate partnerships with pollinating insects and trees." },
+            { num: "03", title: "03. Mystery of Eight Legs", desc: "Exploring how epiphytic aerial roots correspond to Orchidsaur's eight legs...", detail: "Analyzing how epiphytic orchids' aerial roots correspond biologically to Orchidsaur's iconic eight-legged structure." }
           ]
         },
         sec04: {
@@ -397,31 +488,31 @@
         sec01: {
           title: "蘭獣の起源",
           items: [
-            { num: "01", title: "01. 琥珀と蘭", desc: "琥珀の中から発見された古代の花粉塊。蘭と昆虫の共生の原点を探ります。" },
-            { num: "02", title: "02. 陳普のアート創作", desc: "アーティスト陳普が古代の生態と現代のビジュアルを融合させ、命を吹き込みます。" },
-            { num: "03", title: "03. キャラクターとIP", desc: "自然と科学と人々をつなぐサステナブルIP。親しみやすい視点で蘭の世界へ。" }
+            { num: "01", title: "01. 琥珀と蘭", desc: "琥珀の中から発見された古代の花粉塊。蘭と昆虫の共生の原点を探ります。", detail: "琥珀の中から発見された遠古の蘭の花粉塊。数千万年前から続く蘭と昆虫の美しい共生のドラマを物語ります。" },
+            { num: "02", title: "02. 陳普のアート創作", desc: "アーティスト陳普が古代の生態と現代のビジュアルを融合させ、命を吹き込みます。", detail: "アーティスト陳普が古代生態の歴史と現代アートを融合。優しく躍動感あふれるデザインでオーキッドサウアを生み出しました。" },
+            { num: "03", title: "03. キャラクターとIP", desc: "自然と科学と人々をつなぐサステナブルIP。親しみやすい視点で蘭の世界へ。", detail: "自然・科学・大眾を結ぶサステナブルIPとして、楽しく分かりやすいストーリーで生態保全のメッセージを伝えます。" }
           ]
         },
         sec02: {
           title: "巡回展歴",
           items: [
-            { num: "01", title: "01. 2023・台南", desc: "台湾国際蘭展で誕生。12メートルの巨大オーキッドサウアが初登場…" },
-            { num: "02", title: "02. 台北・都市共生", desc: "アートとして街へ。台北101の空間で植物のイメージを表現…" },
-            { num: "03", title: "03. 高雄・佛光山", desc: "純白の姿はまるで瑞獣のよう。「白鹿」の愛称で親しまれました…" },
-            { num: "04", title: "04. 日本・大阪", desc: "海を越えて日本のSNSで話題に。国際交流の一歩を踏み出しました…" },
-            { num: "05", title: "05. 欧州・ポーランド", desc: "ヨーロッパの花々の拠点を訪れ、蘭の物語の交流をスタート…" },
-            { num: "06", title: "06. 米国・ニューヨーク", desc: "クイーンズ植物園の特別展「台湾：蘭の世界」にて盛大に登場…" },
-            { num: "07", title: "07. フィリピン・マニラ", desc: "フィリピンでの台湾イメージ展にて台湾のソフトパワーを発揮…" },
-            { num: "08", title: "08. ドミニカ共和国", desc: "熱帯雨林の奥深くへ。自生する蘭と自然生態系の起源を探求…" },
-            { num: "09", title: "09. 台湾・桃園空港", desc: "桃園国際空港にサプライズ登場。旅行者の探求の旅に寄り添います…" }
+            { num: "01", title: "01. 2023・台南", desc: "台湾国際蘭展で誕生。12メートルの巨大オーキッドサウアが初登場…", detail: "台湾国際蘭展にて初登場。12メートルの巨大なオーキッドサウアが会場のシンボルとして大反響を呼びました。" },
+            { num: "02", title: "02. 台北・都市共生", desc: "アートとして街へ。台北101の空間で植物のイメージを表現…", detail: "ランドマークである台北101に登場。都市空間と緑の生態系が調和する未来像を表現しました。" },
+            { num: "03", title: "03. 高雄・佛光山", desc: "純白の姿はまるで瑞獣のよう。「白鹿」の愛称で親しまれました…", detail: "佛光山の静寂な雰囲気の中で「白鹿」と親しまれ、人々に平和と調和の癒やしを届けました。" },
+            { num: "04", title: "04. 日本・大阪", desc: "海を越えて日本のSNSで話題に。国際交流の一歩を踏み出しました…", detail: "海を越えて日本のSNSやメディアで大きな話題となり、台湾と日本の心温まる文化交流を深めました。" },
+            { num: "05", title: "05. 欧州・ポーランド", desc: "ヨーロッパの花々の拠点を訪れ、蘭の物語の交流をスタート…", detail: "花々の歴史を持つポーランドを訪問。中東欧との植物文化交流の架け橋となりました。" },
+            { num: "06", title: "06. 米国・ニューヨーク", desc: "クイーンズ植物園の特別展「台湾：蘭の世界」にて盛大に登場…", detail: "クイーンズ植物園での特別展に登場。世界的な舞台で台湾の美しい蘭文化を発信しました。" },
+            { num: "07", title: "07. フィリピン・マニラ", desc: "フィリピンでの台湾イメージ展にて台湾のソフトパワーを発揮…", detail: "マニラでの台湾イメージ展に出展。デザインと文創のソフトパワーで東南アジアの人々を魅了しました。" },
+            { num: "08", title: "08. ドミニカ共和国", desc: "熱帯雨林の奥深くへ。自生する蘭と自然生態系の起源を探求…", detail: "カリブ海の熱帯雨林を探訪。自生する原生蘭の生態系と生物多様性の保護について交流しました。" },
+            { num: "09", title: "09. 台湾・桃園空港", desc: "桃園国際空港にサプライズ登場。旅行者の探求の旅に寄り添います…", detail: "桃園国際空港のロビーにサプライズ登場。旅立つ人々に緑豊かな探求の旅を印象付けました。" }
           ]
         },
         sec03: {
           title: "科学教室",
           items: [
-            { num: "01", title: "01. 8000万年の蘭", desc: "現生のラン科植物の祖先は白亜紀後期には登場していたと推定されています…" },
-            { num: "02", title: "02. 共生の生命ネットワーク", desc: "種子の発芽は菌類に依存し、生存と繁殖は昆虫や樹木に依存しています…" },
-            { num: "03", title: "03. 8本足の謎", desc: "着生ランの気根と、8本足の構造が織りなす生物学的な謎を解き明かします…" }
+            { num: "01", title: "01. 8000万年の蘭", desc: "現生のラン科植物の祖先は白亜紀後期には登場していたと推定されています…", detail: "分子時計研究により、現生蘭の祖先は恐竜が生きていた白亜紀後期から存在していたことが明かされています。" },
+            { num: "02", title: "02. 共生の生命ネットワーク", desc: "種子の発芽は菌類に依存し、生存と繁殖は昆虫や樹木に依存しています…", detail: "蘭の種子は菌根菌との共生により萌芽し、昆虫や高木と支え合って生きる驚異の生命ネットワークを持ちます。" },
+            { num: "03", title: "03. 8本足の謎", desc: "着生ランの気根と、8本足の構造が織りなす生物学的な謎を解き明かします…", detail: "樹木にしっかり抱きつく着生ランの「気根」の機能を、オーキッドサウアの愛らしい「8本足」のデザインへと見事に昇華させています。" }
           ]
         },
         sec04: {
@@ -434,7 +525,18 @@
       }
     };
 
-    function renderCards(containerId, items, btnText) {
+    function openModal(category, title, detail) {
+      document.getElementById("modalCategory").innerText = category;
+      document.getElementById("modalTitle").innerText = title;
+      document.getElementById("modalBody").innerText = detail;
+      document.getElementById("detailModal").style.display = "flex";
+    }
+
+    function closeModal() {
+      document.getElementById("detailModal").style.display = "none";
+    }
+
+    function renderCards(containerId, categoryName, items, btnText) {
       const container = document.getElementById(containerId);
       container.innerHTML = "";
       items.forEach(item => {
@@ -448,6 +550,9 @@
           </div>
           <button class="btn-action">${btnText}</button>
         `;
+        card.querySelector(".btn-action").addEventListener("click", () => {
+          openModal(categoryName, item.title, item.detail || item.desc);
+        });
         container.appendChild(card);
       });
     }
@@ -487,9 +592,9 @@
       document.getElementById("sub-title-04").innerText = data.subTitle04;
 
       // Cards
-      renderCards("cards-01", data.sec01.items, data.btnRead);
-      renderCards("cards-02", data.sec02.items, data.btnRead);
-      renderCards("cards-03", data.sec03.items, data.btnRead);
+      renderCards("cards-01", data.sec01.title, data.sec01.items, data.btnRead);
+      renderCards("cards-02", data.sec02.title, data.sec02.items, data.btnRead);
+      renderCards("cards-03", data.sec03.title, data.sec03.items, data.btnRead);
 
       // Submissions
       renderSubmissions(data.sec04.submissions);
