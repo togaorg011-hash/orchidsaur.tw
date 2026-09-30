@@ -50,6 +50,10 @@
     .mast-row{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
     .mast-join{border:0;border-radius:999px;padding:14px 24px;font-weight:700;cursor:pointer;background:var(--gold);color:white;font-size:16px}
     .mast-hint{margin:14px 0 0;color:#dce8e0;font-size:17px;line-height:1.7;max-width:720px}
+    .nb{display:inline-block}
+    .mast .lead{color:#dce8e0}
+    h1,h2,h3{text-wrap:balance}
+    .detail-content p,.detail-content li,.detail-content blockquote{text-align:justify;text-justify:inter-character;text-wrap:pretty}
     
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
     .card{min-height:260px;display:flex;flex-direction:column;justify-content:space-between}
@@ -293,11 +297,11 @@
     const translations = {
       zh: {
         subBrand: '蘭獸世界探索', heroTitle: '跟著蘭獸，探索世界的蘭花',
-        heroDesc: '蘭獸承載蘭花跨越八千萬年的生命記憶，從臺灣出發，邀請每一個人為世界地圖留下新的蘭花故事。',
+        heroDesc: '蘭獸承載蘭花|跨越八千萬年的生命記憶，|從臺灣出發，|邀請每一個人|為世界地圖|留下新的蘭花故事。',
         btnStart: '開始探索', btnJoin: '加入探索（投稿區）', portalTitle: '選一條路，進入蘭獸世界',
         portalLead: '每個主題都是一座獨立內容館，可以再點進故事、照片、影片與詳細介紹。',
         navJoin: '加入探索', storyHint: '歡迎投稿你與蘭獸的故事！經蘭協審核後，你的投稿會刊登在這裡，與大家一起分享。', readMore: '閱讀完整內容 →', btnBack: '← 返回上一頁',
-        joinTitle: '讓你的城市成為下一站', joinLead: '分享你與蘭獸的照片、城市與故事，經蘭協審核後加入世界探索地圖。',
+        joinTitle: '讓你的城市|成為下一站', joinLead: '分享你與蘭獸的照片、城市與故事，經蘭協審核後加入世界探索地圖。',
         joinHead: '投稿與合作', joinDesc: '填寫下方表單上傳照片與故事，審核通過後，你的紀錄將出現在全球蘭獸地圖上！',
         joinList: ['📷 帶著蘭獸旅行並留下影像', '📖 分享地方蘭花與生態故事', '🛡️ 經蘭協審核後加入公開地圖'],
         lblName: '姓名 / Name', lblCity: '城市與國家 / City & Country', lblStory: '你的蘭獸故事 / Your story',
@@ -511,17 +515,23 @@
       currentQuizIdx = 0;
     }
 
+    /* 讓中文標題與短句以「語意片段」換行，避免一個字被單獨拆到下一行；'|' 可手動指定斷點 */
+    function phrase(t) {
+      if (!/[，、；：。！？|]/.test(t)) return t;
+      return t.replace(/[^，、；：。！？|]+[，、；：。！？]?/g, m => `<span class="nb">${m}</span>`).replace(/\|/g, '');
+    }
+
     function renderUI() {
       const t = translations[currentLang];
       const sections = sectionsData[currentLang];
 
       document.getElementById('subBrand').textContent = t.subBrand;
-      document.getElementById('heroTitle').textContent = t.heroTitle;
-      document.getElementById('heroDesc').textContent = t.heroDesc;
+      document.getElementById('heroTitle').innerHTML = phrase(t.heroTitle);
+      document.getElementById('heroDesc').innerHTML = phrase(t.heroDesc);
       document.getElementById('btnStart').textContent = t.btnStart;
       document.getElementById('btnJoin').textContent = t.btnJoin;
       document.getElementById('portalTitle').textContent = t.portalTitle;
-      document.getElementById('portalLead').textContent = t.portalLead;
+      document.getElementById('portalLead').innerHTML = phrase(t.portalLead);
 
       document.getElementById('advMastTitle').textContent = t.advTitle;
       document.getElementById('advMastLead').textContent = t.advLead;
@@ -549,10 +559,10 @@
       document.getElementById('stkShell').textContent = t.stkShell;
       document.getElementById('btnDownload').textContent = t.btnDownload;
 
-      document.getElementById('joinTitle').textContent = t.joinTitle;
-      document.getElementById('joinLead').textContent = t.joinLead;
+      document.getElementById('joinTitle').innerHTML = phrase(t.joinTitle);
+      document.getElementById('joinLead').innerHTML = phrase(t.joinLead);
       document.getElementById('joinHead').textContent = t.joinHead;
-      document.getElementById('joinDesc').textContent = t.joinDesc;
+      document.getElementById('joinDesc').innerHTML = phrase(t.joinDesc);
       document.getElementById('joinList').innerHTML = t.joinList.map(li => `<li>${li}</li>`).join('');
       
       document.getElementById('lblName').textContent = t.lblName;
@@ -581,7 +591,7 @@
 
         let mastContent = `<p class="eyebrow">${s.no} / EXPLORE</p><h1>${s.title}</h1>`;
         if (isStorySection) {
-          mastContent = `<div class="mast-row"><div><p class="eyebrow">${s.no} / EXPLORE</p><h1>${s.title}</h1></div><button class="mast-join" onclick="go('join')">${t.navJoin}</button></div><p class="mast-hint">${t.storyHint}</p>`;
+          mastContent = `<div class="mast-row"><div><p class="eyebrow">${s.no} / EXPLORE</p><h1>${s.title}</h1></div><button class="mast-join" onclick="go('join')">${t.navJoin}</button></div><p class="mast-hint">${phrase(t.storyHint)}</p>`;
         }
         let sectionBodyHtml = '';
 
