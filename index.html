@@ -47,6 +47,9 @@
     .portal h3{font-size:22px;margin-top:38px}
     
     .mast{padding:70px max(24px,calc((100vw - 1180px)/2));background:linear-gradient(135deg,var(--deep),#2d654b);color:white}
+    .mast-row{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .mast-join{border:0;border-radius:999px;padding:14px 24px;font-weight:700;cursor:pointer;background:var(--gold);color:white;font-size:16px}
+    .mast-hint{margin:14px 0 0;color:#dce8e0;font-size:17px;line-height:1.7;max-width:720px}
     
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
     .card{min-height:260px;display:flex;flex-direction:column;justify-content:space-between}
@@ -130,8 +133,8 @@
       <h1 id="heroTitle">跟著蘭獸，探索世界的蘭花</h1>
       <p id="heroDesc">蘭獸承載蘭花跨越八千萬年的生命記憶，從臺灣出發，邀請每一個人為世界地圖留下新的蘭花故事。</p>
       <div class="cta">
-        <button class="primary" id="btnStart" onclick="go('journey')">開始探索</button>
-        <button class="secondary" id="btnJoin" onclick="go('join')">加入下一站</button>
+        <button class="primary" id="btnStart" onclick="go('origin')">開始探索</button>
+        <button class="secondary" id="btnJoin" onclick="go('join')">加入探索（投稿區）</button>
       </div>
     </section>
     <section class="section">
@@ -291,9 +294,9 @@
       zh: {
         subBrand: '蘭獸世界探索', heroTitle: '跟著蘭獸，探索世界的蘭花',
         heroDesc: '蘭獸承載蘭花跨越八千萬年的生命記憶，從臺灣出發，邀請每一個人為世界地圖留下新的蘭花故事。',
-        btnStart: '開始探索', btnJoin: '加入下一站', portalTitle: '選一條路，進入蘭獸世界',
+        btnStart: '開始探索', btnJoin: '加入探索（投稿區）', portalTitle: '選一條路，進入蘭獸世界',
         portalLead: '每個主題都是一座獨立內容館，可以再點進故事、照片、影片與詳細介紹。',
-        navJoin: '加入探索', readMore: '閱讀完整內容 →', btnBack: '← 返回上一頁',
+        navJoin: '加入探索', storyHint: '歡迎投稿你與蘭獸的故事！經蘭協審核後，你的投稿會刊登在這裡，與大家一起分享。', readMore: '閱讀完整內容 →', btnBack: '← 返回上一頁',
         joinTitle: '讓你的城市成為下一站', joinLead: '分享你與蘭獸的照片、城市與故事，經蘭協審核後加入世界探索地圖。',
         joinHead: '投稿與合作', joinDesc: '填寫下方表單上傳照片與故事，審核通過後，你的紀錄將出現在全球蘭獸地圖上！',
         joinList: ['📷 帶著蘭獸旅行並留下影像', '📖 分享地方蘭花與生態故事', '🛡️ 經蘭協審核後加入公開地圖'],
@@ -319,8 +322,8 @@
       en: {
         subBrand: 'World of Orchidsaur', heroTitle: 'Follow Orchidsaur to Explore World Orchids',
         heroDesc: 'Carrying 80 million years of orchid memories from Taiwan...',
-        btnStart: 'Start Exploring', btnJoin: 'Join Next Stop', portalTitle: 'Choose Your Path into Orchidsaur',
-        portalLead: 'Each theme is an independent gallery...', navJoin: 'Join Us', readMore: 'Read Full Story →',
+        btnStart: 'Start Exploring', btnJoin: 'Join Us (Submit a Story)', portalTitle: 'Choose Your Path into Orchidsaur',
+        portalLead: 'Each theme is an independent gallery...', navJoin: 'Join Us', storyHint: 'Share your story with Orchidsaur! After review by the association, approved submissions will appear here.', readMore: 'Read Full Story →',
         btnBack: '← Back to List', joinTitle: 'Make Your City the Next Stop', joinLead: 'Share your photos, city, and story...',
         joinHead: 'Submission & Collaboration', joinDesc: 'Submit your photos and stories below.',
         joinList: ['📷 Travel with Orchidsaur', '📖 Share orchid stories', '🛡️ Join public map'],
@@ -345,8 +348,8 @@
       ja: {
         subBrand: 'オーキッドソーの世界探險', heroTitle: 'オーキッドソーと世界中の蘭を探求しよう',
         heroDesc: '8,000万年の記憶を宿したオーキッドソーが台湾から出発...',
-        btnStart: '探索を始める', btnJoin: '次の目的地に参加', portalTitle: 'テーマを選んでオーキッドソーの世界へ',
-        portalLead: '各テーマは独立したパビリオンです...', navJoin: '参加する', readMore: '詳細を読む →',
+        btnStart: '探索を始める', btnJoin: '参加する（投稿エリア）', portalTitle: 'テーマを選んでオーキッドソーの世界へ',
+        portalLead: '各テーマは独立したパビリオンです...', navJoin: '参加する', storyHint: 'オーキッドソーとの物語を投稿しよう！審査後、ここに掲載されます。', readMore: '詳細を読む →',
         btnBack: '← 前のページへ戻る', joinTitle: 'あなたの街を次の目的地に', joinLead: '写真やストーリーを投稿しよう。',
         joinHead: '投稿とコラボレーション', joinDesc: 'フォームから写真とストーリーを送信。',
         joinList: ['📷 写真を撮影', '📖 ストーリーをシェア', '🛡️ 公開マップへ掲載'],
@@ -577,6 +580,9 @@
         const hasPagination = isStorySection || isJourneySection;
 
         let mastContent = `<p class="eyebrow">${s.no} / EXPLORE</p><h1>${s.title}</h1>`;
+        if (isStorySection) {
+          mastContent = `<div class="mast-row"><div><p class="eyebrow">${s.no} / EXPLORE</p><h1>${s.title}</h1></div><button class="mast-join" onclick="go('join')">${t.navJoin}</button></div><p class="mast-hint">${t.storyHint}</p>`;
+        }
         let sectionBodyHtml = '';
 
         if (hasPagination) {
@@ -602,7 +608,7 @@
               numDisplay = `${t.submissionNo}${numStr}`;
             } else {
               const displayNumber = totalItems - (startIdx + idx);
-              numDisplay = displayNumber < 10 ? '0' + displayNumber : displayNumber;
+              numDisplay = isJourneySection ? (x[3] || '') : (displayNumber < 10 ? '0' + displayNumber : displayNumber);
             }
 
             return `
@@ -960,7 +966,7 @@
         const dateStr = item[3] ? item[3] : '2026-09-01';
         detailType.textContent = `${sections[k].title} ｜ ${t.submissionNo}${numStr} ｜ ${t.submissionDate}${dateStr}`;
       } else {
-        detailType.textContent = sections[k].title;
+        detailType.textContent = sections[k].title + ((k === 'journey' && item[3]) ? ' ｜ ' + item[3] : '');
       }
 
       detailTitle.textContent = item[0];
@@ -992,5 +998,6 @@
     renderUI();
     if (location.hash) go(location.hash.slice(1), false);
   </script>
-   <script src="origin-content.js"></script></body>
+<script src="origin-content.js"></script>
+</body>
 </html>
