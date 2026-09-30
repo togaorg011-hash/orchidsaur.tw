@@ -114,6 +114,11 @@
     .btn-submit{width:100%;padding:14px;border:0;border-radius:999px;background:var(--green);color:white;font-size:16px;font-weight:bold;cursor:pointer}
 
     footer{text-align:center;padding:45px 20px;background:var(--deep);color:#c9d8d1}
+    .flinks{margin-top:18px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;font-size:14px}
+    .fgroup{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 14px}
+    .fname{opacity:.65}
+    .flinks a{color:#e6f0ea;text-decoration:none;border-bottom:1px solid rgba(230,240,234,.4)}
+    .flinks a:hover{border-bottom-color:#fff}
     @media(max-width:900px){nav{display:none}.portal,.grid,.join-container,.form-row{grid-template-columns:1fr}}
   </style>
 </head>
@@ -287,7 +292,18 @@
     </article>
   </main>
 
-  <footer id="footerText">ORCHIDSAUR · 社團法人台灣蘭花產銷發展協會</footer>
+  <footer>
+    <div id="footerText">ORCHIDSAUR · 社團法人台灣蘭花產銷發展協會</div>
+    <div class="flinks">
+      <div class="fgroup"><span class="fname" id="fgToga">蘭協</span>
+        <a href="https://www.toga.org.tw/" target="_blank" rel="noopener" id="flWeb1">官方網站</a>
+        <a href="https://www.facebook.com/togaorg/?locale=zh_TW" target="_blank" rel="noopener">Facebook</a></div>
+      <div class="fgroup"><span class="fname" id="fgTios">TIOS 臺灣國際蘭展</span>
+        <a href="https://tios.tw/" target="_blank" rel="noopener" id="flWeb2">官方網站</a>
+        <a href="https://www.facebook.com/tiostwn/?locale=zh_TW" target="_blank" rel="noopener">Facebook</a>
+        <a href="https://www.instagram.com/2026tios_tfte/" target="_blank" rel="noopener">Instagram</a></div>
+    </div>
+  </footer>
 
   <script>
     let currentLang = 'zh';
@@ -577,6 +593,9 @@
       document.getElementById('btnSubmit').textContent = t.btnSubmit;
       document.getElementById('btnBack').textContent = t.btnBack;
       document.getElementById('footerText').textContent = t.footerText;
+      (function(){var L={zh:['蘭協','TIOS 臺灣國際蘭展','官方網站'],en:['TOGA','TIOS Taiwan Int\'l Orchid Show','Website'],ja:['TOGA','TIOS 台湾国際蘭展','公式サイト']}[currentLang]||['蘭協','TIOS','官方網站'];
+      document.getElementById('fgToga').textContent=L[0];document.getElementById('fgTios').textContent=L[1];
+      document.getElementById('flWeb1').textContent=L[2];document.getElementById('flWeb2').textContent=L[2];})();
 
       nav.innerHTML = order.map(k => `<button onclick="go('${k}')">${sections[k].title}</button>`).join('') + `<button onclick="go('join')">${t.navJoin}</button>`;
       portal.innerHTML = order.map(k => `<button onclick="go('${k}')"><span>${sections[k].no}</span><h3>${sections[k].title}</h3></button>`).join('');
