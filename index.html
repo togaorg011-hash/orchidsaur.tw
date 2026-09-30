@@ -614,7 +614,7 @@
             return `
               <article class="card">
                 <div>
-                  <span class="num">${numDisplay}</span>
+                  ${numDisplay ? `<span class="num">${numDisplay}</span>` : ''}
                   <h3>${x[0]}</h3>
                   <p>${x[1]}</p>
                 </div>
@@ -646,7 +646,6 @@
               ${s.items.map((x, i) => `
                 <article class="card">
                   <div>
-                    <span class="num">${(i + 1) < 10 ? '0' + (i + 1) : (i + 1)}</span>
                     <h3>${x[0]}</h3>
                     <p>${x[1]}</p>
                   </div>
