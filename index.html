@@ -57,6 +57,17 @@
     
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
     .card{min-height:260px;display:flex;flex-direction:column;justify-content:space-between}
+    .card .cover{display:block;width:calc(100% + 48px);height:190px;object-fit:cover;margin:-24px -24px 18px;border-radius:20px 20px 0 0;background:#e4eae6}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin:18px 0 8px}
+    .gallery figure{margin:0;cursor:zoom-in}
+    .gallery img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;background:#e4eae6}
+    .gallery figcaption{font-size:14px;line-height:1.6;color:var(--muted);margin-top:6px}
+    #lightbox{position:fixed;inset:0;background:rgba(10,20,15,.92);z-index:9999;display:none;align-items:center;justify-content:center;flex-direction:column;padding:20px}
+    #lightbox.on{display:flex}
+    #lightbox img{max-width:100%;max-height:80vh;border-radius:8px}
+    #lightbox .lbcap{color:#e6f0ea;margin-top:12px;font-size:15px;text-align:center;max-width:800px}
+    #lightbox button{position:absolute;background:rgba(255,255,255,.15);border:0;color:#fff;font-size:26px;width:46px;height:46px;border-radius:50%;cursor:pointer}
+    #lightbox .lbx{top:16px;right:16px}#lightbox .lbp{left:12px;top:50%}#lightbox .lbn{right:12px;top:50%}
     .card .num{color:var(--gold);font:500 18px Georgia;display:block;margin-bottom:6px}
     .card h3{font:500 27px Georgia,"Noto Serif TC",serif;margin:8px 0;line-height:1.3}
     .card p{color:var(--muted);line-height:1.7}
@@ -644,6 +655,7 @@
             return `
               <article class="card">
                 <div>
+                  ${photoList(x).length ? `<img class="cover" loading="lazy" src="${photoList(x)[0].src}" alt="${x[0]}">` : ''}
                   ${numDisplay ? `<span class="num">${numDisplay}</span>` : ''}
                   <h3>${x[0]}</h3>
                   <p>${x[1]}</p>
@@ -676,6 +688,7 @@
               ${s.items.map((x, i) => `
                 <article class="card">
                   <div>
+                    ${photoList(x).length ? `<img class="cover" loading="lazy" src="${photoList(x)[0].src}" alt="${x[0]}">` : ''}
                     <h3>${x[0]}</h3>
                     <p>${x[1]}</p>
                   </div>
@@ -984,6 +997,31 @@
       if (push) location.hash = id;
     }
 
+    /* 照片：項目第 5 欄 item[4] = ['images/資料夾/01.jpg|說明', ...]；第一張當卡片封面 */
+    function photoList(item) {
+      if (!Array.isArray(item[4])) return [];
+      return item[4].map(p => {
+        const parts = String(p).split('|');
+        return { src: parts[0].trim(), cap: (parts[1] || '').trim() };
+      });
+    }
+    let lbList = [], lbIdx = 0;
+    function lbShow() {
+      const p = lbList[lbIdx];
+      document.getElementById('lbImg').src = p.src;
+      document.getElementById('lbCap').textContent = p.cap;
+      document.getElementById('lightbox').classList.add('on');
+    }
+    function openLightbox(i) { lbIdx = i; lbShow(); }
+    function lbMove(d) { lbIdx = (lbIdx + d + lbList.length) % lbList.length; lbShow(); }
+    function closeLightbox() { document.getElementById('lightbox').classList.remove('on'); }
+    document.addEventListener('keydown', e => {
+      if (!document.getElementById('lightbox').classList.contains('on')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') lbMove(-1);
+      if (e.key === 'ArrowRight') lbMove(1);
+    });
+
     function openDetail(k, i, push = true) {
       const t = translations[currentLang];
       const sections = sectionsData[currentLang];
@@ -1000,6 +1038,12 @@
 
       detailTitle.textContent = item[0];
       detailBody.innerHTML = item[2] ? item[2] : `<p>${item[1]}</p>`;
+      lbList = photoList(item);
+      if (lbList.length) {
+        detailBody.innerHTML += '<div class="gallery">' + lbList.map((p, n) =>
+          `<figure onclick="openLightbox(${n})"><img loading="lazy" src="${p.src}" alt="${p.cap || item[0]}">${p.cap ? `<figcaption>${p.cap}</figcaption>` : ''}</figure>`
+        ).join('') + '</div>';
+      }
       
       go('detail', push);
     }
@@ -1027,6 +1071,13 @@
     renderUI();
     if (location.hash) go(location.hash.slice(1), false);
   </script>
+<div id="lightbox" onclick="if(event.target===this)closeLightbox()">
+  <button class="lbx" onclick="closeLightbox()" aria-label="close">×</button>
+  <button class="lbp" onclick="lbMove(-1)" aria-label="prev">‹</button>
+  <button class="lbn" onclick="lbMove(1)" aria-label="next">›</button>
+  <img id="lbImg" alt="">
+  <div class="lbcap" id="lbCap"></div>
+</div>
 <script src="origin-content.js"></script>
 </body>
 </html>
