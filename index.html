@@ -117,8 +117,9 @@
     .flinks{margin-top:18px;display:flex;flex-wrap:wrap;justify-content:center;gap:10px 34px;font-size:14px}
     .fgroup{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:6px 14px}
     .fname{opacity:.65}
-    .flinks a{color:#e6f0ea;text-decoration:none;border-bottom:1px solid rgba(230,240,234,.4)}
-    .flinks a:hover{border-bottom-color:#fff}
+    .flinks a.ico{display:inline-flex;width:38px;height:38px;align-items:center;justify-content:center;border-radius:50%;border:1px solid rgba(230,240,234,.45);color:#e6f0ea;transition:.2s}
+    .flinks a.ico:hover{background:rgba(255,255,255,.14);border-color:#fff}
+    .flinks svg{width:20px;height:20px}
     @media(max-width:900px){nav{display:none}.portal,.grid,.join-container,.form-row{grid-template-columns:1fr}}
   </style>
 </head>
@@ -231,7 +232,7 @@
   <main id="join" class="page">
     <section class="mast">
       <p class="eyebrow">JOIN THE MAP</p>
-      <h1 id="joinTitle">讓你的城市成為下一站</h1>
+      <h1 id="joinTitle">讓你的城市成為<br>下一站</h1>
       <p class="lead" id="joinLead">分享你與蘭獸的照片、城市與故事，經蘭協審核後加入世界探索地圖。</p>
     </section>
     <section class="section">
@@ -296,12 +297,12 @@
     <div id="footerText">ORCHIDSAUR · 社團法人台灣蘭花產銷發展協會</div>
     <div class="flinks">
       <div class="fgroup"><span class="fname" id="fgToga">蘭協</span>
-        <a href="https://www.toga.org.tw/" target="_blank" rel="noopener" id="flWeb1">官方網站</a>
-        <a href="https://www.facebook.com/togaorg/?locale=zh_TW" target="_blank" rel="noopener">Facebook</a></div>
+        <a href="https://www.toga.org.tw/" target="_blank" rel="noopener" class="ico" title="官方網站" aria-label="官方網站" data-k="web"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></svg></a>
+        <a href="https://www.facebook.com/togaorg/?locale=zh_TW" target="_blank" rel="noopener" class="ico" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M13.5 21v-8h2.7l.5-3.2h-3.2V7.9c0-.9.4-1.6 1.7-1.6h1.6V3.4c-.3 0-1.3-.2-2.4-.2-2.5 0-4.1 1.5-4.1 4.2v2.4H7.5V13h2.8v8z"/></svg></a></div>
       <div class="fgroup"><span class="fname" id="fgTios">TIOS 臺灣國際蘭展</span>
-        <a href="https://tios.tw/" target="_blank" rel="noopener" id="flWeb2">官方網站</a>
-        <a href="https://www.facebook.com/tiostwn/?locale=zh_TW" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://www.instagram.com/2026tios_tfte/" target="_blank" rel="noopener">Instagram</a></div>
+        <a href="https://tios.tw/" target="_blank" rel="noopener" class="ico" title="官方網站" aria-label="官方網站" data-k="web"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/></svg></a>
+        <a href="https://www.facebook.com/tiostwn/?locale=zh_TW" target="_blank" rel="noopener" class="ico" title="Facebook" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M13.5 21v-8h2.7l.5-3.2h-3.2V7.9c0-.9.4-1.6 1.7-1.6h1.6V3.4c-.3 0-1.3-.2-2.4-.2-2.5 0-4.1 1.5-4.1 4.2v2.4H7.5V13h2.8v8z"/></svg></a>
+        <a href="https://www.instagram.com/2026tios_tfte/" target="_blank" rel="noopener" class="ico" title="Instagram" aria-label="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none"/></svg></a></div>
     </div>
   </footer>
 
@@ -317,7 +318,7 @@
         btnStart: '開始探索', btnJoin: '加入探索（投稿區）', portalTitle: '選一條路，進入蘭獸世界',
         portalLead: '每個主題都是一座獨立內容館，可以再點進故事、照片、影片與詳細介紹。',
         navJoin: '加入探索', storyHint: '歡迎投稿你與蘭獸的故事！經蘭協審核後，你的投稿會刊登在這裡，與大家一起分享。', readMore: '閱讀完整內容 →', btnBack: '← 返回上一頁',
-        joinTitle: '讓你的城市|成為下一站', joinLead: '分享你與蘭獸的照片、城市與故事，經蘭協審核後加入世界探索地圖。',
+        joinTitle: '讓你的城市成為|下一站', joinLead: '分享你與蘭獸的照片、城市與故事，經蘭協審核後加入世界探索地圖。',
         joinHead: '投稿與合作', joinDesc: '填寫下方表單上傳照片與故事，審核通過後，你的紀錄將出現在全球蘭獸地圖上！',
         joinList: ['📷 帶著蘭獸旅行並留下影像', '📖 分享地方蘭花與生態故事', '🛡️ 經蘭協審核後加入公開地圖'],
         lblName: '姓名 / Name', lblCity: '城市與國家 / City & Country', lblStory: '你的蘭獸故事 / Your story',
@@ -595,7 +596,7 @@
       document.getElementById('footerText').textContent = t.footerText;
       (function(){var L={zh:['蘭協','TIOS 臺灣國際蘭展','官方網站'],en:['TOGA','TIOS Taiwan Int\'l Orchid Show','Website'],ja:['TOGA','TIOS 台湾国際蘭展','公式サイト']}[currentLang]||['蘭協','TIOS','官方網站'];
       document.getElementById('fgToga').textContent=L[0];document.getElementById('fgTios').textContent=L[1];
-      document.getElementById('flWeb1').textContent=L[2];document.getElementById('flWeb2').textContent=L[2];})();
+      document.querySelectorAll('a[data-k=web]').forEach(function(a){a.title=L[2];a.setAttribute('aria-label',L[2]);});})();
 
       nav.innerHTML = order.map(k => `<button onclick="go('${k}')">${sections[k].title}</button>`).join('') + `<button onclick="go('join')">${t.navJoin}</button>`;
       portal.innerHTML = order.map(k => `<button onclick="go('${k}')"><span>${sections[k].no}</span><h3>${sections[k].title}</h3></button>`).join('');
