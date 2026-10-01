@@ -109,6 +109,7 @@
     .beast{font-size:96px}
     .detail h1{font:500 clamp(38px,6vw,68px) Georgia,"Noto Serif TC",serif;margin:12px 0 24px}
     .detail-content{font-size:18px;line-height:1.95;color:#425049}
+    .detail-content blockquote{margin:22px 0;padding:6px 20px;border-left:4px solid #c69542;background:#f9f8f3}
 
     .join-container{display:grid;grid-template-columns:1fr 1.3fr;gap:40px;background:var(--paper);padding:40px;border-radius:24px;border:1px solid var(--line)}
     .join-info h2{font:500 36px Georgia,"Noto Serif TC",serif;margin-top:0}
@@ -1001,6 +1002,7 @@
     function photoList(item) {
       if (!Array.isArray(item[4])) return [];
       return item[4].map(p => {
+        if (p && typeof p === 'object') return { src: p.src, cap: p.cap || '' };
         const parts = String(p).split('|');
         return { src: parts[0].trim(), cap: (parts[1] || '').trim() };
       });
@@ -1078,6 +1080,6 @@
   <img id="lbImg" alt="">
   <div class="lbcap" id="lbCap"></div>
 </div>
-<script src="origin-content.js"></script>
+<script src="content-loader.js"></script>
 </body>
 </html>
