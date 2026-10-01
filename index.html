@@ -1051,8 +1051,7 @@
         dv.className = 'detail-visual has-photo';
         dv.setAttribute('onclick', 'openLightbox(0)');
         dv.innerHTML = `<img src="${lbList[0].src}" alt="${lbList[0].cap || item[0]}">`;
-        dc.textContent = lbList[0].cap || '';
-        dc.style.display = lbList[0].cap ? 'block' : 'none';
+        dc.textContent = ''; dc.style.display = 'none';  /* 大圖下方不放說明文字 */
         if (lbList.length > 1) {
           detailBody.innerHTML += '<div class="gallery">' + lbList.slice(1).map((p, n) =>
             `<figure onclick="openLightbox(${n + 1})"><img loading="lazy" src="${p.src}" alt="${p.cap || item[0]}">${p.cap ? `<figcaption>${p.cap}</figcaption>` : ''}</figure>`
