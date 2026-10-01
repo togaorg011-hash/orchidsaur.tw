@@ -660,7 +660,7 @@
             return `
               <article class="card">
                 <div>
-                  ${photoList(x).length ? `<img class="cover" loading="lazy" src="${photoList(x)[0].src}" alt="${x[0]}">` : ''}
+                  ${photoList(x).length ? `<img class="cover" loading="lazy" src="${photoList(x)[0].src}" alt="${x[0]}"${photoList(x)[0].focus ? ` style="object-position:${photoList(x)[0].focus}"` : ''}>` : ''}
                   ${numDisplay ? `<span class="num">${numDisplay}</span>` : ''}
                   <h3>${x[0]}</h3>
                   <p>${x[1]}</p>
@@ -693,7 +693,7 @@
               ${s.items.map((x, i) => `
                 <article class="card">
                   <div>
-                    ${photoList(x).length ? `<img class="cover" loading="lazy" src="${photoList(x)[0].src}" alt="${x[0]}">` : ''}
+                    ${photoList(x).length ? `<img class="cover" loading="lazy" src="${photoList(x)[0].src}" alt="${x[0]}"${photoList(x)[0].focus ? ` style="object-position:${photoList(x)[0].focus}"` : ''}>` : ''}
                     <h3>${x[0]}</h3>
                     <p>${x[1]}</p>
                   </div>
@@ -1006,7 +1006,7 @@
     function photoList(item) {
       if (!Array.isArray(item[4])) return [];
       return item[4].map(p => {
-        if (p && typeof p === 'object') return { src: p.src, cap: p.cap || '' };
+        if (p && typeof p === 'object') return { src: p.src, cap: p.cap || '', focus: p.focus || '' };
         const parts = String(p).split('|');
         return { src: parts[0].trim(), cap: (parts[1] || '').trim() };
       });

@@ -44,7 +44,7 @@
   function buildItems(list, lang) {
     return list.map(function (it) {
       var photos = (it.photos || []).map(function (p) {
-        return { src: p.src, cap: pick(p.caption, lang) };
+        return { src: p.src, cap: pick(p.caption, lang), focus: p.focus || '' };
       });
       return [pick(it.title, lang), pick(it.summary, lang), md(pick(it.body, lang)), it.date || '', photos, it.lat == null ? null : it.lat, it.lng == null ? null : it.lng];
     });
