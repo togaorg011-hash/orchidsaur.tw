@@ -92,16 +92,24 @@
     .quiz-opt-btn:hover{background:var(--green);color:white}
 
     /* 接花遊戲區域 */
-    .catch-game-area{width:100%;max-width:600px;height:400px;background:linear-gradient(180deg,#eef5eb,#c8e6c9);border:2px solid var(--line);border-radius:20px;position:relative;overflow:hidden;margin:20px auto}
+    .catch-game-area{touch-action:none;width:100%;max-width:600px;height:400px;background:linear-gradient(180deg,#eef5eb,#c8e6c9);border:2px solid var(--line);border-radius:20px;position:relative;overflow:hidden;margin:20px auto}
     .player-basket{position:absolute;bottom:10px;width:70px;height:70px;font-size:50px;text-align:center;line-height:70px;user-select:none}
     .falling-item{position:absolute;font-size:32px;user-select:none}
 
     /* DIY 桌布畫廊 */
-    .canvas-container{width:100%;max-width:800px;aspect-ratio:16/9;border:2px solid var(--line);border-radius:16px;position:relative;overflow:hidden;margin:20px auto;background:linear-gradient(135deg, #a8e6cf, #dbede6);transition:background 0.3s ease}
+    .canvas-container{touch-action:none;width:100%;max-width:800px;aspect-ratio:16/9;border:2px solid var(--line);border-radius:16px;position:relative;overflow:hidden;margin:20px auto;background:linear-gradient(135deg, #a8e6cf, #dbede6);transition:background 0.3s ease}
     .sticker-tool-bar{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:20px}
     .sticker-btn{font-size:18px;padding:8px 16px;background:var(--paper);border:1px solid var(--line);border-radius:12px;cursor:pointer}
     .bg-select-btn{padding:10px 18px;background:var(--cream);border:1px solid var(--line);border-radius:999px;font-weight:bold;cursor:pointer}
-    .draggable-sticker{position:absolute;font-size:48px;cursor:move;user-select:none}
+    .draggable-sticker{position:absolute;line-height:1;cursor:grab;user-select:none;touch-action:none;border:2px dashed transparent;border-radius:8px}
+    .draggable-sticker.sel{border-color:rgba(255,255,255,.9);background:rgba(255,255,255,.18)}
+    .wall-bg{position:absolute;left:0;top:0;width:100%;height:100%;display:block}
+    .draggable-sticker img{display:block;height:100%;width:auto;pointer-events:none;-webkit-user-drag:none}
+    .canvas-container.portrait{max-width:300px;aspect-ratio:9/16}
+    .wall-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
+    .bg-select-btn.on{background:var(--green);color:#fff;border-color:var(--green)}
+    .wall-preview{margin:22px auto 0;max-width:420px}.wall-preview img{width:100%;border-radius:12px;border:1px solid var(--line)}.wall-preview p{font-size:14px;color:var(--muted);margin:8px 0 0}
+    @media(hover:none){#gameWinWrap{display:none}}
 
     .detail{max-width:850px;margin:auto;padding:70px 24px 110px}
     .back{border:0;background:transparent;color:var(--green);font-weight:700;cursor:pointer;margin-bottom:20px;font-size:16px}
@@ -142,6 +150,10 @@
     #journeyMap{height:440px;border-radius:22px;border:1px solid var(--line);overflow:hidden;z-index:0;background:#dfe8e2}
     .pin{background:var(--green);color:#fff;border:3px solid #fff;border-radius:50%;width:30px;height:30px;line-height:24px;text-align:center;font-weight:700;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.35)}
     .pin.multi{background:var(--gold)}
+    .geo-label{pointer-events:none!important;white-space:nowrap}
+    .geo-label span{position:absolute;display:block;transform:translate(-50%,-50%);font-weight:700;color:rgba(23,58,49,.52);text-shadow:0 1px 1px rgba(255,255,255,.9),0 -1px 1px rgba(0,0,0,.2)}
+    .geo-label.cont span{font-size:20px;letter-spacing:.32em;padding-left:.32em}
+    .geo-label.ctry span{font-size:13px;letter-spacing:.1em;transform:translate(-50%,0);margin-top:17px}
     .mp{min-width:200px;max-width:240px}.mp h4{margin:10px 0 2px;font-size:15px;color:var(--ink)}
     .mp img{display:block;width:100%;height:110px;object-fit:cover;border-radius:10px;margin-top:6px}
     .mp .d{color:var(--muted);font-size:12px}.mp button{margin-top:6px;border:0;background:var(--green);color:#fff;border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer}
@@ -218,11 +230,11 @@
           <p id="catchDesc">移動滑鼠控制蘭獸左右移動，接住掉落的盛開蘭花與水滴，避開枯枝！</p>
           <div style="font-size:20px; font-weight:bold; color:var(--green); margin-bottom:10px;"><span id="lblScore">得分</span>：<span id="catchScore">0</span></div>
           
-          <div style="margin-bottom: 15px;">
+          <div style="margin-bottom: 15px;" id="gameWinWrap">
             <button class="btn-submit" style="width:auto; padding:10px 24px;" id="btnOpenGameWin" onclick="openGameWindow()">🚀 以獨立新視窗開啟遊戲</button>
           </div>
 
-          <div class="catch-game-area" id="catchGameArea" onmousemove="moveBasket(event)">
+          <div class="catch-game-area" id="catchGameArea" onpointermove="moveBasket(event)" onpointerdown="moveBasket(event)">
             <div class="player-basket" id="playerBasket" style="left: 260px;">🦕</div>
           </div>
           <button class="btn-submit" style="width:auto; padding:10px 30px; margin-top:10px;" id="btnCatchStart" onclick="startCatchGame()">開始 / 重來</button>
@@ -234,23 +246,39 @@
         <div style="text-align:center;">
           <h2 id="wallTitle">🎨 1920×1080 DIY 電腦桌布畫廊</h2>
           <p id="wallDesc">選擇背景，點擊貼圖加入畫布（可拖曳擺放），輕鬆創作專屬桌面！</p>
-          <div style="display:flex; gap:10px; justify-content:center; margin-bottom:15px;">
-            <button class="bg-select-btn" onclick="setCanvasBg('grass')" id="bgGrass">🌿 綠意草地</button>
-            <button class="bg-select-btn" onclick="setCanvasBg('beach')" id="bgBeach">🏖️ 陽光海灘</button>
-            <button class="bg-select-btn" onclick="setCanvasBg('greenhouse')" id="bgGreenhouse">🏡 綠意溫室</button>
+          <div class="wall-row">
+            <button class="bg-select-btn on" onclick="setWallSize('pc')" id="szPC">🖥️ 電腦桌布</button>
+            <button class="bg-select-btn" onclick="setWallSize('phone')" id="szPhone">📱 手機桌布</button>
+          </div>
+          <div class="wall-row">
+            <button class="bg-select-btn on" onclick="setCanvasBg('forest')" id="bgGrass">🌲 森林</button>
+            <button class="bg-select-btn" onclick="setCanvasBg('beach')" id="bgBeach">🏖️ 海灘</button>
           </div>
           
-          <div class="canvas-container" id="wallpaperCanvas"></div>
+          <div class="canvas-container" id="wallpaperCanvas"><canvas class="wall-bg" id="wallBg" width="960" height="540"></canvas></div>
           
           <div class="sticker-tool-bar">
-            <button class="sticker-btn" onclick="addSticker('🦕')">🦕 <span id="stkBeast">蘭獸</span></button>
+            <span id="stkBeast" style="align-self:center;font-weight:bold">蘭獸</span>
+            <button class="sticker-btn" style="padding:6px 10px" aria-label="站立" onclick="addImgSticker('images/sticker/orchidsaur-standing.png')"><img src="images/sticker/orchidsaur-standing.png" alt="站立" style="height:38px;display:block"></button>
+            <button class="sticker-btn" style="padding:6px 10px" aria-label="趴著" onclick="addImgSticker('images/sticker/orchidsaur-lying.png')"><img src="images/sticker/orchidsaur-lying.png" alt="趴著" style="height:38px;display:block"></button>
+            <button class="sticker-btn" style="padding:6px 10px" aria-label="坐著" onclick="addImgSticker('images/sticker/orchidsaur-sitting.png')"><img src="images/sticker/orchidsaur-sitting.png" alt="坐著" style="height:38px;display:block"></button>
+            <button class="sticker-btn" style="padding:6px 10px" aria-label="低頭" onclick="addImgSticker('images/sticker/orchidsaur-grazing.png')"><img src="images/sticker/orchidsaur-grazing.png" alt="低頭" style="height:38px;display:block"></button>
+            <button class="sticker-btn" style="padding:6px 10px" aria-label="粉斑" onclick="addImgSticker('images/sticker/orchidsaur-pink.png')"><img src="images/sticker/orchidsaur-pink.png" alt="粉斑" style="height:38px;display:block"></button>
+            <button class="sticker-btn" style="padding:6px 10px" aria-label="Logo" onclick="addImgSticker('images/sticker/orchidsaur-logo.png')"><img src="images/sticker/orchidsaur-logo.png" alt="Logo" style="height:38px;display:block"></button>
             <button class="sticker-btn" onclick="addSticker('🌸')">🌸 <span id="stkMoth">蝴蝶蘭</span></button>
             <button class="sticker-btn" onclick="addSticker('🌺')">🌺 <span id="stkCatt">嘉德麗雅蘭</span></button>
             <button class="sticker-btn" onclick="addSticker('☀️')">☀️ <span id="stkSun">陽光</span></button>
             <button class="sticker-btn" onclick="addSticker('🌱')">🌱 <span id="stkSprout">幼芽</span></button>
             <button class="sticker-btn" onclick="addSticker('🐚')">🐚 <span id="stkShell">貝殼</span></button>
-            <button class="btn-submit" style="width:auto;" id="btnDownload" onclick="downloadWallpaperAlert()">下載電腦桌布 (1920x1080)</button>
+            </div>
+          <div class="sticker-tool-bar">
+            <button class="sticker-btn" onclick="resizeSticker(1.2)" id="btnBigger">＋ 放大</button>
+            <button class="sticker-btn" onclick="resizeSticker(1/1.2)" id="btnSmaller">－ 縮小</button>
+            <button class="sticker-btn" onclick="deleteSticker()" id="btnDel">🗑️ 刪除選取</button>
+            <button class="sticker-btn" onclick="clearStickers()" id="btnClear">清空</button>
+            <button class="btn-submit" style="width:auto;" id="btnDownload" onclick="downloadWallpaper()">下載桌布 (PNG)</button>
           </div>
+          <div class="wall-preview" id="wallPreview"></div>
         </div>
       </div>
     </section>
@@ -345,7 +373,7 @@
         heroDesc: '蘭獸承載蘭花|跨越八千萬年的生命記憶，|從臺灣出發，|邀請每一個人|為世界地圖|留下新的蘭花故事。',
         btnStart: '開始探索', btnJoin: '加入探索（投稿區）', portalTitle: '選一條路，進入蘭獸世界',
         portalLead: '每個主題都是一座獨立內容館，可以再點進故事、照片、影片與詳細介紹。',
-        navJoin: '加入探索', storyHint: '歡迎投稿你與蘭獸的故事！經蘭協審核後，你的投稿會刊登在這裡，與大家一起分享。', readMore: '閱讀完整內容 →', mapHint: '蘭獸的足跡遍布世界各地，點選地圖上的標記，查看當地的故事。', btnBack: '← 返回上一頁',
+        navJoin: '加入探索', storyEmpty: '投稿功能即將開放，敬請期待！', storyHint: '歡迎投稿你與蘭獸的故事！經蘭協審核後，你的投稿會刊登在這裡，與大家一起分享。', readMore: '閱讀完整內容 →', mapHint: '蘭獸的足跡遍布世界各地，點選地圖上的標記，查看當地的故事。', btnBack: '← 返回上一頁',
         joinTitle: '讓你的城市成為|下一站', joinLead: '分享你與蘭獸的照片、城市與故事，經蘭協審核後加入世界探索地圖。',
         joinHead: '投稿與合作', joinDesc: '填寫下方表單上傳照片與故事，審核通過後，你的紀錄將出現在全球蘭獸地圖上！',
         joinList: ['📷 帶著蘭獸旅行並留下影像', '📖 分享地方蘭花與生態故事', '🛡️ 經蘭協審核後加入公開地圖'],
@@ -356,23 +384,30 @@
         inputNamePh: '請輸入姓名', inputCityPh: '例如：臺南，臺灣', inputStoryPh: '分享你遇見蘭獸的故事或地方蘭花體驗...',
         prevPage: '上一頁', nextPage: '下一頁', submissionNo: '投稿編號：', submissionDate: '投稿日期：',
         
-        advTitle: '蘭獸探險趣', advLead: '歡迎來到蘭獸互動體驗天地！挑戰知識問答、玩法小遊戲或 DIY 專屬 1920x1080 高解析度電腦桌布！',
+        advTitle: '蘭獸探險趣', advLead: '歡迎來到蘭獸互動體驗天地！挑戰知識問答、玩玩小遊戲，或自己動手做一張專屬的電腦或手機桌布！',
         tabQuiz: '知識闖關', tabCatch: '蘭獸接花', tabWallpaper: '蘭獸桌布畫廊',
         quizProgressPrefix: '題目', quizSuccess: '🎉 闖關成功！', quizSuccessMsg: '恭喜你完成 8 題蘭獸與蘭花知識挑戰，獲得「蘭花小專家」動態徽章！',
         btnReplay: '再玩一次', quizRight: '✨ 答對了！太厲害了！', quizWrong: '❌ 差一點點，再試試看！',
-        catchTitle: '🌸 蘭獸接花大作戰', catchDesc: '移動滑鼠控制蘭獸左右移動，接住掉落的盛開蘭花與水滴，避開枯枝！',
+        catchTitle: '🌸 蘭獸接花大作戰', catchDesc: '電腦用滑鼠、手機用手指左右移動蘭獸，接住掉落的盛開蘭花與水滴，避開枯枝！',
         btnOpenGameWin: '🚀 以獨立新視窗開啟遊戲',
         lblScore: '得分', btnCatchStart: '開始 / 重來', catchAlert: '遊戲開始！請移動滑鼠接住掉落的蘭花 🌸！',
-        wallTitle: '🎨 1920×1080 DIY 電腦桌布畫廊', wallDesc: '選擇背景，點擊貼圖加入畫布（可拖曳擺放），輕鬆創作專屬桌面！',
-        bgGrass: '🌿 綠意草地', bgBeach: '🏖️ 陽光海灘', bgGreenhouse: '🏡 綠意溫室',
+        wallTitle: '🎨 DIY 桌布畫廊', wallDesc: '選擇尺寸與背景，點擊貼圖加入畫布，拖曳擺放、放大縮小，完成後下載專屬桌布！',
+        bgGrass: '🌲 森林', bgBeach: '🏖️ 海灘', bgGreenhouse: '🏡 溫室',
         stkBeast: '蘭獸', stkMoth: '蝴蝶蘭', stkCatt: '嘉德麗雅蘭', stkSun: '陽光', stkSprout: '幼芽', stkShell: '貝殼',
-        btnDownload: '下載電腦桌布 (1920x1080)', downloadAlert: '✅ 桌布設計完成！系統已將您的 1920x1080 電腦桌布準備就緒！'
+        btnDownload: '下載桌布 (PNG)', downloadAlert: '✅ 桌布設計完成！系統已將您的 1920x1080 電腦桌布準備就緒！',
+        szPC: '🖥️ 電腦桌布 1920×1080',
+        szPhone: '📱 手機桌布 1080×1920',
+        btnBigger: '＋ 放大',
+        btnSmaller: '－ 縮小',
+        btnDel: '🗑️ 刪除選取',
+        btnClear: '清空',
+        wallHint: '已產生桌布。若沒有自動下載，請長按（或按右鍵）圖片另存。'
       },
       en: {
         subBrand: 'World of Orchidsaur', heroTitle: 'Follow Orchidsaur to Explore World Orchids',
         heroDesc: 'Carrying 80 million years of orchid memories from Taiwan...',
         btnStart: 'Start Exploring', btnJoin: 'Join Us (Submit a Story)', portalTitle: 'Choose Your Path into Orchidsaur',
-        portalLead: 'Each theme is an independent gallery...', navJoin: 'Join Us', storyHint: 'Share your story with Orchidsaur! After review by the association, approved submissions will appear here.', readMore: 'Read Full Story →', mapHint: 'Orchidsaur has left footprints around the world. Tap a marker to read the story from that place.',
+        portalLead: 'Each theme is an independent gallery...', navJoin: 'Join Us', storyEmpty: 'Submissions open soon. Stay tuned!', storyHint: 'Share your story with Orchidsaur! After review by the association, approved submissions will appear here.', readMore: 'Read Full Story →', mapHint: 'Orchidsaur has left footprints around the world. Tap a marker to read the story from that place.',
         btnBack: '← Back to List', joinTitle: 'Make Your City the Next Stop', joinLead: 'Share your photos, city, and story...',
         joinHead: 'Submission & Collaboration', joinDesc: 'Submit your photos and stories below.',
         joinList: ['📷 Travel with Orchidsaur', '📖 Share orchid stories', '🛡️ Join public map'],
@@ -382,23 +417,30 @@
         inputNamePh: 'Enter your name', inputCityPh: 'e.g. Tainan, Taiwan', inputStoryPh: 'Share your Orchidsaur moment...',
         prevPage: 'Prev', nextPage: 'Next', submissionNo: 'Submission No: ', submissionDate: 'Date: ',
 
-        advTitle: 'Orchidsaur Adventure', advLead: 'Welcome to Orchidsaur Interactive Zone! Challenge trivia, play catch game, or DIY wallpapers!',
+        advTitle: 'Orchidsaur Adventure', advLead: 'Welcome to Orchidsaur Interactive Zone! Try the trivia, play the mini game, or make your own computer or phone wallpaper!',
         tabQuiz: 'Quiz Challenge', tabCatch: 'Catch Orchids', tabWallpaper: 'Wallpaper Gallery',
         quizProgressPrefix: 'Question', quizSuccess: '🎉 Challenge Cleared!', quizSuccessMsg: 'Congratulations on completing all 8 orchid trivia questions!',
         btnReplay: 'Play Again', quizRight: '✨ Correct! Excellent!', quizWrong: '❌ Almost there, try again!',
-        catchTitle: '🌸 Orchids Catch Game', catchDesc: 'Move mouse to catch falling orchids & raindrops while avoiding dry twigs!',
+        catchTitle: '🌸 Orchids Catch Game', catchDesc: 'Move the mouse (or drag your finger) to steer Orchidsaur and catch falling orchids and raindrops. Avoid the dry twigs!',
         btnOpenGameWin: '🚀 Open Game in New Window',
         lblScore: 'Score', btnCatchStart: 'Start / Restart', catchAlert: 'Game Started! Catch falling orchids 🌸!',
-        wallTitle: '🎨 1920×1080 DIY Wallpaper Gallery', wallDesc: 'Select background, add stickers and drag to customize your wallpaper!',
-        bgGrass: '🌿 Green Lawn', bgBeach: '🏖️ Sunny Beach', bgGreenhouse: '🏡 Greenhouse',
+        wallTitle: '🎨 DIY Wallpaper Gallery', wallDesc: 'Pick a size and background, tap stickers to add them, drag to place and resize, then download your wallpaper!',
+        bgGrass: '🌲 Forest', bgBeach: '🏖️ Beach', bgGreenhouse: '🏡 Greenhouse',
         stkBeast: 'Orchidsaur', stkMoth: 'Phalaenopsis', stkCatt: 'Cattleya', stkSun: 'Sun', stkSprout: 'Sprout', stkShell: 'Shell',
-        btnDownload: 'Download Wallpaper (1920x1080)', downloadAlert: '✅ Wallpaper Ready!'
+        btnDownload: 'Download Wallpaper (PNG)', downloadAlert: '✅ Wallpaper Ready!',
+        szPC: '🖥️ Desktop 1920×1080',
+        szPhone: '📱 Phone 1080×1920',
+        btnBigger: '＋ Bigger',
+        btnSmaller: '－ Smaller',
+        btnDel: '🗑️ Delete selected',
+        btnClear: 'Clear all',
+        wallHint: 'Your wallpaper is ready. If it did not download, press and hold (or right-click) the image to save it.'
       },
       ja: {
         subBrand: 'オーキッドソーの世界探險', heroTitle: 'オーキッドソーと世界中の蘭を探求しよう',
         heroDesc: '8,000万年の記憶を宿したオーキッドソーが台湾から出発...',
         btnStart: '探索を始める', btnJoin: '参加する（投稿エリア）', portalTitle: 'テーマを選んでオーキッドソーの世界へ',
-        portalLead: '各テーマは独立したパビリオンです...', navJoin: '参加する', storyHint: 'オーキッドソーとの物語を投稿しよう！審査後、ここに掲載されます。', readMore: '詳細を読む →', mapHint: 'Orchidsaurの足跡は世界中に。地図のマーカーをタップすると、その土地の物語が読めます。',
+        portalLead: '各テーマは独立したパビリオンです...', navJoin: '参加する', storyEmpty: '投稿受付は近日開始予定です。お楽しみに！', storyHint: 'オーキッドソーとの物語を投稿しよう！審査後、ここに掲載されます。', readMore: '詳細を読む →', mapHint: 'Orchidsaurの足跡は世界中に。地図のマーカーをタップすると、その土地の物語が読めます。',
         btnBack: '← 前のページへ戻る', joinTitle: 'あなたの街を次の目的地に', joinLead: '写真やストーリーを投稿しよう。',
         joinHead: '投稿とコラボレーション', joinDesc: 'フォームから写真とストーリーを送信。',
         joinList: ['📷 写真を撮影', '📖 ストーリーをシェア', '🛡️ 公開マップへ掲載'],
@@ -408,17 +450,24 @@
         inputNamePh: 'お名前を入力', inputCityPh: '例：台南、台湾', inputStoryPh: '体験をシェア...',
         prevPage: '前へ', nextPage: '次へ', submissionNo: '投稿番号：', submissionDate: '投稿日：',
 
-        advTitle: '蘭獸探檢趣', advLead: 'オーキッドソー体験ゾーンへようこそ！クイズ、ミニゲーム、壁紙作成を楽しもう！',
+        advTitle: '蘭獸探檢趣', advLead: 'オーキッドソー体験ゾーンへようこそ！クイズやミニゲーム、パソコン・スマホ用の壁紙づくりを楽しもう！',
         tabQuiz: 'クイズに挑戦', tabCatch: '蘭獸の花キャッチ', tabWallpaper: '壁紙ギャラリー',
         quizProgressPrefix: '問題', quizSuccess: '🎉 クリアおめでとう！', quizSuccessMsg: '全8問の蘭クイズをクリアしました！',
         btnReplay: 'もう一度プレイ', quizRight: '✨ 大正解！素晴らしい！', quizWrong: '❌ おしい！もう一度挑戦！',
-        catchTitle: '🌸 蘭獸の花キャッチゲーム', catchDesc: 'マウスを動かして蘭獸を操作し、落ちてくる蘭や水滴をキャッチ！',
+        catchTitle: '🌸 蘭獸の花キャッチゲーム', catchDesc: 'マウス（スマホは指）で蘭獸を左右に動かし、落ちてくる蘭や水滴をキャッチ！枯れ枝には注意！',
         btnOpenGameWin: '🚀 新しいウィンドウでゲームを開く',
         lblScore: 'スコア', btnCatchStart: 'スタート / リセット', catchAlert: 'ゲームスタート！花をキャッチ 🌸！',
-        wallTitle: '🎨 1920×1080 DIY デスクトップ壁紙作成', wallDesc: '背景を選び、ステッカーを配置（ドラッグ可能）してオリジナルの壁紙を作ろう！',
-        bgGrass: '🌿 芝生', bgBeach: '🏖️ ビーチ', bgGreenhouse: '🏡 温室',
+        wallTitle: '🎨 DIY 壁紙ギャラリー', wallDesc: 'サイズと背景を選び、ステッカーを追加。ドラッグで配置、拡大縮小して、壁紙をダウンロードしよう！',
+        bgGrass: '🌲 森', bgBeach: '🏖️ ビーチ', bgGreenhouse: '🏡 温室',
         stkBeast: '蘭獸', stkMoth: 'ファレノプシス', stkCatt: 'カトレア', stkSun: '太陽', stkSprout: '新芽', stkShell: '貝殻',
-        btnDownload: '壁紙をダウンロード (1920x1080)', downloadAlert: '✅ デザイン完了！壁紙が準備できました！'
+        btnDownload: '壁紙をダウンロード (PNG)', downloadAlert: '✅ デザイン完了！壁紙が準備できました！',
+        szPC: '🖥️ パソコン 1920×1080',
+        szPhone: '📱 スマホ 1080×1920',
+        btnBigger: '＋ 拡大',
+        btnSmaller: '－ 縮小',
+        btnDel: '🗑️ 選択を削除',
+        btnClear: 'すべて消す',
+        wallHint: '壁紙ができました。ダウンロードされない場合は、画像を長押し（右クリック）して保存してください。'
       }
     };
 
@@ -454,25 +503,7 @@
             ['氣生根與構造解析', '解析附生蘭的氣生根與蘭獸八足構造的生物學相呼應...', '<h3>氣生根</h3><p>根包組織快速吸水...</p>']
           ]
         },
-        story: {
-          no: '04', title: '與獸同行',
-          items: [
-            ['佛光山的祥瑞守望', '駐立於佛光山的蘭獸，潔白的身影如同平安吉祥的守護者...', '<h3>佛光山的祥瑞守望</h3><p>駐立於高雄佛光山的蘭獸...</p>', '2026-01-10'],
-            ['「白鹿啊！」', '蘭展現場，一位歐巴桑的自然聯想，賦予了蘭獸親切的在地稱呼...', '<h3>「白鹿啊！」的故事</h3><p>一位阿嬤指著潔白的蘭獸叫道：白鹿啊！</p>', '2026-01-18'],
-            ['東京的蘭花對話', '日本花藝師分享，蘭獸為現代都市注入了自然的生命力...', '<h3>東京花藝展覽交流</h3><p>在東京交流展中...</p>', '2026-02-05'],
-            ['臺南花巷巧遇', '穿梭於臺南老街區，民眾捕捉到的蘭獸快閃蹤跡...', '<h3>古都花巷中的驚喜</h3><p>穿梭於臺南古色古香的巷弄...</p>', '2026-02-20'],
-            ['紐約植物園側寫', '皇后區植物園中，來自全球的遊客與蘭獸熱情合照...', '<h3>紐約特展側寫</h3><p>在紐約特展現場...</p>', '2026-03-12'],
-            ['陽台上的小蘭獸', '網友投稿：將蘭獸公仔放在自己照顧的蝴蝶蘭旁...', '<h3>家中的綠色角落</h3><p>愛花民眾分享在自家陽台...</p>', '2026-04-01'],
-            ['歐洲花展驚豔', '在波蘭花展上，國際友人對蘭獸的創作概念讚不絕口...', '<h3>波蘭展覽盛況</h3><p>歐洲民眾熱情體驗...</p>', '2026-05-15'],
-            ['雨林中的足跡', '多明尼加生態紀錄：尋找最原始的蘭花棲地...', '<h3>多明尼加探索誌</h3><p>探尋珍貴的蘭花品種...</p>', '2026-06-08'],
-            ['桃機迎接歸客', '在國門機場療癒的笑臉，給予旅人溫暖的歸途陪伴...', '<h3>國門第一站</h3><p>桃園國際機場的特展裝置...</p>', '2026-07-02'],
-            ['校園生態小導覽', '小學生們圍繞著蘭獸，聆聽八千萬年植物演化故事...', '<h3>環境教育走入校園</h3><p>帶領學童了解生物多樣性...</p>', '2026-07-20'],
-            ['綠意盎然的辦公室', '上班族分享：辦公桌上的蘭獸與小盆栽是每日療癒源泉...', '<h3>職場中的綠色療癒</h3><p>小小的植物與蘭獸陪伴...</p>', '2026-08-11'],
-            ['馬尼拉形象展盛況', '菲律賓民眾排隊與蘭獸合照，感受臺灣萌系魅力...', '<h3>馬尼拉熱情互動</h3><p>於 Taiwan Expo 登場...</p>', '2026-08-25'],
-            ['春節蘭展新亮點', '走春民眾爭相打卡，蘭獸成為花海中最閃耀的主角...', '<h3>新春花海打卡熱點</h3><p>年節期間湧入數萬遊客...</p>', '2026-08-28'],
-            ['蘭花育種家的堅持', '訪問在地花農，講述數十年培育新品種的匠人精神...', '<h3>育種家背後的故事</h3><p>每一朵盛開的優良蘭花品種都是智慧結晶...</p>', '2026-09-01']
-          ]
-        },
+        story: { no: '04', title: '與獸同行', items: [] },
         adventure: { no: '05', title: '蘭獸探險趣', items: [] }
       },
       en: {
@@ -594,7 +625,6 @@
       document.getElementById('wallDesc').textContent = t.wallDesc;
       document.getElementById('bgGrass').textContent = t.bgGrass;
       document.getElementById('bgBeach').textContent = t.bgBeach;
-      document.getElementById('bgGreenhouse').textContent = t.bgGreenhouse;
 
       document.getElementById('stkBeast').textContent = t.stkBeast;
       document.getElementById('stkMoth').textContent = t.stkMoth;
@@ -603,6 +633,7 @@
       document.getElementById('stkSprout').textContent = t.stkSprout;
       document.getElementById('stkShell').textContent = t.stkShell;
       document.getElementById('btnDownload').textContent = t.btnDownload;
+      ['szPC','szPhone','btnBigger','btnSmaller','btnDel','btnClear'].forEach(id => { document.getElementById(id).textContent = t[id]; });
 
       document.getElementById('joinTitle').innerHTML = phrase(t.joinTitle);
       document.getElementById('joinLead').innerHTML = phrase(t.joinLead);
@@ -698,7 +729,7 @@
             `;
           }
 
-          sectionBodyHtml = `<div class="grid">${cardsHtml}</div>${paginationHtml}`;
+          sectionBodyHtml = (isStorySection && !totalItems) ? `<p class="maphint" style="margin-top:38px;font-size:17px">${t.storyEmpty}</p>` : `<div class="grid">${cardsHtml}</div>${paginationHtml}`;
         } else {
           sectionBodyHtml = `
             <div class="grid">
@@ -741,7 +772,7 @@
         const key = x[5].toFixed(2) + ',' + x[6].toFixed(2);
         (groups[key] = groups[key] || { lat: x[5], lng: x[6], list: [] }).list.push(i);
       });
-      journeyMap = L.map(el, { scrollWheelZoom: false, worldCopyJump: true }).setView([24, 120], 2);
+      journeyMap = L.map(el, { scrollWheelZoom: false, worldCopyJump: true, minZoom: 2 }).setView([30, 10], 2);
       L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '&copy; OpenStreetMap contributors' }).addTo(journeyMap);
       const pts = [];
       Object.values(groups).forEach(g => {
@@ -755,6 +786,31 @@
         pts.push([g.lat, g.lng]);
       });
       journeyMap.on('click', () => journeyMap.scrollWheelZoom.enable());
+
+      /* 地名標示（浮凸字）：大洲在縮小時顯示，國家在放大時顯示；臺灣、日本一直顯示 */
+      const li = { zh: 0, en: 1, ja: 2 }[currentLang] || 0;
+      const GEO = [
+        // [緯度, 經度, [中,英,日], 類型, 最小縮放, 最大縮放]
+        [45, 95, ['亞洲', 'ASIA', 'アジア'], 'cont', 0, 3],
+        [58, 22, ['歐洲', 'EUROPE', 'ヨーロッパ'], 'cont', 0, 3],
+        [45, -100, ['北美洲', 'NORTH AMERICA', '北アメリカ'], 'cont', 0, 3],
+        [-14, -60, ['南美洲', 'SOUTH AMERICA', '南アメリカ'], 'cont', 0, 3],
+        [4, 20, ['非洲', 'AFRICA', 'アフリカ'], 'cont', 0, 3],
+        [-25, 135, ['大洋洲', 'OCEANIA', 'オセアニア'], 'cont', 0, 3],
+        [23.7, 120.9, ['臺灣', 'TAIWAN', '台湾'], 'ctry', 2, 18],
+        [36.5, 138.5, ['日本', 'JAPAN', '日本'], 'ctry', 2, 18],
+        [14.6, 121, ['菲律賓', 'PHILIPPINES', 'フィリピン'], 'ctry', 3, 18],
+        [1.3, 103.8, ['新加坡', 'SINGAPORE', 'シンガポール'], 'ctry', 3, 18],
+        [50.6, 10.2, ['德國', 'GERMANY', 'ドイツ'], 'ctry', 3, 18],
+        [53.6, -2.5, ['英國', 'UNITED KINGDOM', 'イギリス'], 'ctry', 3, 18],
+        [52.6, 19.5, ['波蘭', 'POLAND', 'ポーランド'], 'ctry', 3, 18],
+        [39.5, -98, ['美國', 'USA', 'アメリカ'], 'ctry', 3, 18]
+      ].map(g => ({ g, m: L.marker([g[0], g[1]], { interactive: false, keyboard: false, icon: L.divIcon({ className: 'geo-label ' + g[3], html: '<span>' + g[2][li] + '</span>', iconSize: [0, 0] }) }) }));
+      const syncLabels = () => {
+        const z = journeyMap.getZoom();
+        GEO.forEach(o => { const on = z >= o.g[4] && z <= o.g[5] && (o.g[3] !== 'cont' || z <= 3); if (on && !journeyMap.hasLayer(o.m)) o.m.addTo(journeyMap); if (!on && journeyMap.hasLayer(o.m)) journeyMap.removeLayer(o.m); });
+      };
+      journeyMap.on('zoomend', syncLabels); syncLabels();
     }
 
     function switchAdvTab(tabKey) {
@@ -849,44 +905,32 @@
       const randType = items[Math.floor(Math.random() * items.length)];
       item.textContent = randType;
 
-      const startX = Math.random() * (area.clientWidth - 40);
+      const startX = Math.random() * Math.max(10, area.clientWidth - 40);
       item.style.left = startX + 'px';
       item.style.top = '0px';
-
       area.appendChild(item);
 
       let posY = 0;
       const fallSpeed = 3 + Math.random() * 3;
 
       const itemTimer = setInterval(() => {
-        if (!isGameRunning) {
+        if (!isGameRunning) { clearInterval(itemTimer); item.remove(); return; }
+        const H = area.clientHeight;
+        posY += fallSpeed;
+        item.style.top = posY + 'px';
+
+        const basketX = parseFloat(document.getElementById('playerBasket').style.left) || 0;
+        const cx = startX + 16;   /* 掉落物中心 */
+        if (posY + 32 >= H - 75 && posY <= H - 15 && cx >= basketX - 8 && cx <= basketX + 78) {
+          if (randType === '🌸') catchScore += 10;
+          else if (randType === '💧') catchScore += 5;
+          else if (randType === '🍂') catchScore = Math.max(0, catchScore - 10);
+          document.getElementById('catchScore').textContent = catchScore;
           clearInterval(itemTimer);
           item.remove();
           return;
         }
-
-        posY += fallSpeed;
-        item.style.top = posY + 'px';
-
-        const basket = document.getElementById('playerBasket');
-        const basketX = parseFloat(basket.style.left) || 0;
-
-        if (posY >= 330 && posY <= 370) {
-          if (startX >= basketX - 20 && startX <= basketX + 60) {
-            if (randType === '🌸') catchScore += 10;
-            else if (randType === '💧') catchScore += 5;
-            else if (randType === '🍂') catchScore = Math.max(0, catchScore - 10);
-
-            document.getElementById('catchScore').textContent = catchScore;
-            clearInterval(itemTimer);
-            item.remove();
-          }
-        }
-
-        if (posY > 380) {
-          clearInterval(itemTimer);
-          item.remove();
-        }
+        if (posY > H) { clearInterval(itemTimer); item.remove(); }
       }, 30);
     }
 
@@ -965,60 +1009,204 @@
       `);
     }
 
-    /* 桌布 DIY 畫廊邏輯 */
-    function setCanvasBg(type) {
-      const canvas = document.getElementById('wallpaperCanvas');
-      if (type === 'grass') {
-        canvas.style.background = 'linear-gradient(135deg, #a8e6cf, #dbede6)';
-      } else if (type === 'beach') {
-        canvas.style.background = 'linear-gradient(180deg, #81d4fa 0%, #ffe082 70%, #ffecb3 100%)';
-      } else if (type === 'greenhouse') {
-        canvas.style.background = 'linear-gradient(135deg, #e8f5e9, #c8e6c9, #a5d6a7)';
+    /* 桌布 DIY 畫廊邏輯：貼圖位置、大小都用比例記錄，這樣畫面縮放、下載高解析度時位置都一致 */
+    const WALL_SIZE = { pc: [1920, 1080], phone: [1080, 1920] };
+    let wallBg = 'forest', wallSize = 'pc', stickers = [], selSticker = null;
+
+    /* 背景場景：用程式畫出來（固定亂數種子，預覽和下載的畫面一致） */
+    function seeded(seed) {
+      return function () { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+    }
+    function lin(g, x0, y0, x1, y1, stops) { const gr = g.createLinearGradient(x0, y0, x1, y1); stops.forEach(s => gr.addColorStop(s[0], s[1])); return gr; }
+
+    function drawForest(g, W, H) {
+      const R = seeded(7), u = Math.min(W, H);
+      g.fillStyle = lin(g, 0, 0, 0, H * 0.75, [[0, '#bfe8b8'], [0.6, '#8fd49a'], [1, '#5fb77c']]); g.fillRect(0, 0, W, H);
+      const sx = W * 0.74, sy = H * 0.16;
+      let rg = g.createRadialGradient(sx, sy, 0, sx, sy, Math.max(W, H) * 0.55);
+      rg.addColorStop(0, 'rgba(255,252,210,.95)'); rg.addColorStop(0.25, 'rgba(255,250,200,.45)'); rg.addColorStop(1, 'rgba(255,250,200,0)');
+      g.fillStyle = rg; g.fillRect(0, 0, W, H);
+      g.fillStyle = 'rgba(255,255,225,.13)';
+      [[-0.1, 0.0], [0.05, 0.12], [0.18, 0.26], [0.32, 0.40]].forEach(p => {
+        g.beginPath(); g.moveTo(sx, sy); g.lineTo(sx - W * (0.45 + p[0] * 0.6), H); g.lineTo(sx - W * (0.45 + p[1] * 0.6) - W * 0.12, H); g.closePath(); g.fill();
+      });
+      const cols = ['#79c288', '#4fa46c', '#2f8553', '#1b6a41'];
+      for (let L = 0; L < 4; L++) {
+        const baseY = H * (0.60 + 0.08 * L), th = u * (0.50 + 0.12 * L) * (W > H ? 0.62 : 0.55), tw = th * 0.42;
+        g.fillStyle = cols[L];
+        for (let x = -tw * 0.5; x < W + tw; x += tw * (0.62 + R() * 0.3)) {
+          const h = th * (0.75 + R() * 0.5), w = tw * (0.85 + R() * 0.3), y = baseY + (R() - 0.5) * H * 0.02;
+          for (let k = 0; k < 4; k++) {
+            const top = y - h + k * h * 0.22, bot = y - h * (0.98 - (k + 1) * 0.28 - (k == 3 ? 0.1 : 0)) + h * 0.14, ww = w * (0.45 + k * 0.17);
+            g.beginPath(); g.moveTo(x, top); g.lineTo(x + ww, bot + h * 0.12); g.lineTo(x - ww, bot + h * 0.12); g.closePath(); g.fill();
+          }
+          g.fillRect(x - w * 0.04, y - h * 0.1, w * 0.08, h * 0.12);
+        }
+        g.fillRect(0, baseY, W, H - baseY);
+        g.fillStyle = lin(g, 0, baseY - th, 0, baseY + H * 0.05, [[0, 'rgba(225,248,225,0)'], [1, 'rgba(225,248,225,' + (0.34 - L * 0.07) + ')']]);
+        g.fillRect(0, baseY - th, W, th + H * 0.05);
+      }
+      g.fillStyle = lin(g, 0, H * 0.86, 0, H, [[0, '#2c8a4f'], [1, '#0f4a2a']]); g.beginPath(); g.moveTo(0, H * 0.9);
+      for (let x = 0; x <= W; x += W / 24) g.lineTo(x, H * 0.88 + Math.sin(x / W * 9) * H * 0.012);
+      g.lineTo(W, H); g.lineTo(0, H); g.closePath(); g.fill();
+      for (let i = 0; i < 38; i++) {
+        g.fillStyle = 'rgba(255,255,200,' + (0.25 + R() * 0.45) + ')'; g.beginPath(); g.arc(R() * W, H * (0.3 + R() * 0.6), u * (0.003 + R() * 0.005), 0, 7); g.fill();
       }
     }
 
-    function addSticker(emoji) {
-      const canvas = document.getElementById('wallpaperCanvas');
-      const sticker = document.createElement('div');
-      sticker.className = 'draggable-sticker';
-      sticker.textContent = emoji;
-      sticker.style.left = '40%';
-      sticker.style.top = '40%';
-
-      let isDragging = false;
-      let offsetX = 0, offsetY = 0;
-
-      sticker.addEventListener('mousedown', (e) => {
-        isDragging = true;
-        const rect = canvas.getBoundingClientRect();
-        offsetX = e.clientX - sticker.getBoundingClientRect().left;
-        offsetY = e.clientY - sticker.getBoundingClientRect().top;
-      });
-
-      window.addEventListener('mousemove', (e) => {
-        if (!isDragging) return;
-        const rect = canvas.getBoundingClientRect();
-        let x = e.clientX - rect.left - offsetX;
-        let y = e.clientY - rect.top - offsetY;
-
-        if (x < 0) x = 0;
-        if (y < 0) y = 0;
-        if (x > rect.width - 50) x = rect.width - 50;
-        if (y > rect.height - 50) y = rect.height - 50;
-
-        sticker.style.left = x + 'px';
-        sticker.style.top = y + 'px';
-      });
-
-      window.addEventListener('mouseup', () => {
-        isDragging = false;
-      });
-
-      canvas.appendChild(sticker);
+    function drawBeach(g, W, H) {
+      const R = seeded(11), u = Math.min(W, H), hz = H * 0.50;
+      g.fillStyle = lin(g, 0, 0, 0, hz, [[0, '#3f9fe6'], [1, '#c6ecfb']]); g.fillRect(0, 0, W, hz);
+      const sx = W * 0.72, sy = H * 0.17;
+      let rg = g.createRadialGradient(sx, sy, 0, sx, sy, u * 0.45);
+      rg.addColorStop(0, 'rgba(255,255,235,1)'); rg.addColorStop(0.18, 'rgba(255,248,200,.9)'); rg.addColorStop(0.2, 'rgba(255,245,190,.4)'); rg.addColorStop(1, 'rgba(255,245,190,0)');
+      g.fillStyle = rg; g.fillRect(0, 0, W, hz);
+      for (let i = 0; i < 6; i++) {
+        const cx = R() * W, cy = H * (0.06 + R() * 0.32), s = u * (0.05 + R() * 0.05);
+        g.fillStyle = 'rgba(255,255,255,.88)';
+        [[0, 0, 1], [-1.1, 0.25, 0.75], [1.2, 0.2, 0.8], [0.4, -0.4, 0.7], [-0.5, -0.3, 0.6]].forEach(c => { g.beginPath(); g.ellipse(cx + c[0] * s, cy + c[1] * s, s * c[2] * 1.2, s * c[2] * 0.7, 0, 0, 7); g.fill(); });
+      }
+      g.fillStyle = lin(g, 0, hz, 0, H * 0.74, [[0, '#2a9ad8'], [0.5, '#1c86c8'], [1, '#6fd0e6']]); g.fillRect(0, hz, W, H * 0.3);
+      g.strokeStyle = 'rgba(255,255,255,.4)'; g.lineWidth = Math.max(2, u * 0.003);
+      for (let i = 0; i < 9; i++) {
+        const y = hz + H * (0.02 + i * 0.026), amp = H * 0.004 * (1 + i * 0.5), ph = R() * 6;
+        g.beginPath(); for (let x = 0; x <= W; x += 8) { const yy = y + Math.sin(x / W * (10 + i) + ph) * amp; x ? g.lineTo(x, yy) : g.moveTo(x, yy); } g.stroke();
+      }
+      const shore = x => H * 0.73 + Math.sin(x / W * 6.5) * H * 0.018 + Math.sin(x / W * 2.3 + 1) * H * 0.014;
+      g.beginPath(); g.moveTo(0, shore(0)); for (let x = 0; x <= W; x += 8) g.lineTo(x, shore(x)); g.lineTo(W, H); g.lineTo(0, H); g.closePath();
+      g.fillStyle = lin(g, 0, H * 0.7, 0, H, [[0, '#e9d49a'], [0.25, '#f6e7b8'], [1, '#e6cb8a']]); g.fill();
+      g.beginPath(); for (let x = 0; x <= W; x += 8) { const y = shore(x) - H * 0.006; x ? g.lineTo(x, y) : g.moveTo(x, y); }
+      g.strokeStyle = 'rgba(255,255,255,.85)'; g.lineWidth = Math.max(4, u * 0.012); g.stroke();
+      g.strokeStyle = 'rgba(255,255,255,.45)'; g.lineWidth = Math.max(2, u * 0.005);
+      g.beginPath(); for (let x = 0; x <= W; x += 8) { const y = shore(x) - H * 0.03; x ? g.lineTo(x, y) : g.moveTo(x, y); } g.stroke();
+      for (let i = 0; i < 70; i++) { g.fillStyle = 'rgba(190,150,90,' + (0.15 + R() * 0.25) + ')'; g.beginPath(); g.ellipse(R() * W, H * (0.78 + R() * 0.22), u * 0.004, u * 0.0025, 0, 0, 7); g.fill(); }
     }
 
-    function downloadWallpaperAlert() {
-      alert(translations[currentLang].downloadAlert);
+    function drawScene(cv, type) {
+      const g = cv.getContext('2d');
+      (type === 'beach' ? drawBeach : drawForest)(g, cv.width, cv.height);
+    }
+    function renderBg() {
+      const cv = document.getElementById('wallBg');
+      cv.width = wallSize === 'phone' ? 540 : 960; cv.height = wallSize === 'phone' ? 960 : 540;
+      drawScene(cv, wallBg);
+    }
+
+    function setCanvasBg(type) {
+      wallBg = type;
+      renderBg();
+      document.querySelectorAll('#bgGrass,#bgBeach').forEach(b => b.classList.remove('on'));
+      document.getElementById(type === 'beach' ? 'bgBeach' : 'bgGrass').classList.add('on');
+    }
+
+    function setWallSize(sz) {
+      wallSize = sz;
+      document.getElementById('wallpaperCanvas').classList.toggle('portrait', sz === 'phone');
+      document.getElementById('szPC').classList.toggle('on', sz === 'pc');
+      document.getElementById('szPhone').classList.toggle('on', sz === 'phone');
+      renderBg();
+      layoutStickers();
+    }
+
+    function wallUnit() {
+      const c = document.getElementById('wallpaperCanvas');
+      return Math.min(c.clientWidth, c.clientHeight);
+    }
+    function layoutStickers() {
+      const c = document.getElementById('wallpaperCanvas'), u = wallUnit();
+      stickers.forEach(st => {
+        if (st.src) st.el.style.height = (st.sz * u) + 'px'; else st.el.style.fontSize = (st.sz * u) + 'px';
+        st.el.style.left = (st.x * c.clientWidth) + 'px';
+        st.el.style.top = (st.y * c.clientHeight) + 'px';
+      });
+    }
+    window.addEventListener('resize', layoutStickers);
+
+    function selectSticker(st) {
+      selSticker = st;
+      stickers.forEach(o => o.el.classList.toggle('sel', o === st));
+    }
+
+    function addImgSticker(src) { addSticker(null, src); }
+    function addSticker(emoji, src) {
+      const canvas = document.getElementById('wallpaperCanvas');
+      const el = document.createElement('div');
+      el.className = 'draggable-sticker';
+      const st = { el, emoji, src, x: 0.4, y: 0.4, sz: src ? 0.3 : 0.2 };
+      if (src) { const im = new Image(); im.src = src; im.draggable = false; el.appendChild(im); st.img = im; }
+      else el.textContent = emoji;
+      stickers.push(st);
+      canvas.appendChild(el);
+      layoutStickers();
+      selectSticker(st);
+
+      let dragging = false, offX = 0, offY = 0;
+      el.addEventListener('pointerdown', e => {
+        e.preventDefault();
+        selectSticker(st);
+        dragging = true;
+        const r = el.getBoundingClientRect();
+        offX = e.clientX - r.left; offY = e.clientY - r.top;
+        el.setPointerCapture(e.pointerId);
+      });
+      el.addEventListener('pointermove', e => {
+        if (!dragging) return;
+        const cr = canvas.getBoundingClientRect(), w = el.offsetWidth, h = el.offsetHeight;
+        let x = e.clientX - cr.left - offX, y = e.clientY - cr.top - offY;
+        x = Math.max(0, Math.min(cr.width - w, x));
+        y = Math.max(0, Math.min(cr.height - h, y));
+        st.x = x / cr.width; st.y = y / cr.height;
+        el.style.left = x + 'px'; el.style.top = y + 'px';
+      });
+      const stop = () => { dragging = false; };
+      el.addEventListener('pointerup', stop);
+      el.addEventListener('pointercancel', stop);
+    }
+
+    function resizeSticker(f) {
+      if (!selSticker) return;
+      selSticker.sz = Math.max(0.06, Math.min(0.9, selSticker.sz * f));
+      layoutStickers();
+    }
+    function deleteSticker() {
+      if (!selSticker) return;
+      selSticker.el.remove();
+      stickers = stickers.filter(o => o !== selSticker);
+      selSticker = null;
+    }
+    function clearStickers() {
+      stickers.forEach(o => o.el.remove());
+      stickers = []; selSticker = null;
+      document.getElementById('wallPreview').innerHTML = '';
+    }
+
+    function downloadWallpaper() {
+      const W = WALL_SIZE[wallSize][0], H = WALL_SIZE[wallSize][1];
+      const cv = document.createElement('canvas');
+      cv.width = W; cv.height = H;
+      const g = cv.getContext('2d');
+      drawScene(cv, wallBg);
+      const u = Math.min(W, H);
+      g.globalAlpha = 1; g.fillStyle = '#000';
+      g.textAlign = 'center'; g.textBaseline = 'middle';
+      stickers.forEach(st => {
+        if (st.src) {
+          const h = st.sz * u, im = st.img;
+          if (im && im.complete && im.naturalWidth) g.drawImage(im, st.x * W, st.y * H, h * im.naturalWidth / im.naturalHeight, h);
+          return;
+        }
+        const fs = st.sz * u;
+        g.font = fs + 'px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif';
+        g.fillText(st.emoji, st.x * W + fs / 2, st.y * H + fs / 2);
+      });
+      cv.toBlob(blob => {
+        if (!blob) return;
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'orchidsaur-wallpaper-' + wallSize + '.png';
+        document.body.appendChild(a); a.click(); a.remove();
+        document.getElementById('wallPreview').innerHTML = '<img src="' + url + '" alt=""><p>' + translations[currentLang].wallHint + '</p>';
+      }, 'image/png');
     }
 
     function changeSectionPage(key, page) {
@@ -1132,6 +1320,7 @@
     });
 
     renderUI();
+    setCanvasBg('forest');
     if (location.hash) go(location.hash.slice(1), false);
   </script>
 <div id="lightbox" onclick="if(event.target===this)closeLightbox()">
