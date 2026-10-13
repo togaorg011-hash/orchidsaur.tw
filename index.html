@@ -136,7 +136,19 @@
     .flinks a.ico:hover{background:rgba(255,255,255,.14);border-color:#fff}
     .flinks svg{width:20px;height:20px}
     @media(max-width:900px){nav{display:none}.portal,.grid,.join-container,.form-row{grid-template-columns:1fr}}
+  
+    .mapwrap{margin:38px 0 0}
+    .maphint{margin:0 0 12px;color:var(--muted);font-size:15px}
+    #journeyMap{height:440px;border-radius:22px;border:1px solid var(--line);overflow:hidden;z-index:0;background:#dfe8e2}
+    .pin{background:var(--green);color:#fff;border:3px solid #fff;border-radius:50%;width:30px;height:30px;line-height:24px;text-align:center;font-weight:700;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.35)}
+    .pin.multi{background:var(--gold)}
+    .mp{min-width:200px;max-width:240px}.mp h4{margin:10px 0 2px;font-size:15px;color:var(--ink)}
+    .mp img{display:block;width:100%;height:110px;object-fit:cover;border-radius:10px;margin-top:6px}
+    .mp .d{color:var(--muted);font-size:12px}.mp button{margin-top:6px;border:0;background:var(--green);color:#fff;border-radius:999px;padding:6px 12px;font-size:13px;cursor:pointer}
+    @media(max-width:900px){#journeyMap{height:340px}}
   </style>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
   <header class="top">
@@ -333,7 +345,7 @@
         heroDesc: '蘭獸承載蘭花|跨越八千萬年的生命記憶，|從臺灣出發，|邀請每一個人|為世界地圖|留下新的蘭花故事。',
         btnStart: '開始探索', btnJoin: '加入探索（投稿區）', portalTitle: '選一條路，進入蘭獸世界',
         portalLead: '每個主題都是一座獨立內容館，可以再點進故事、照片、影片與詳細介紹。',
-        navJoin: '加入探索', storyHint: '歡迎投稿你與蘭獸的故事！經蘭協審核後，你的投稿會刊登在這裡，與大家一起分享。', readMore: '閱讀完整內容 →', btnBack: '← 返回上一頁',
+        navJoin: '加入探索', storyHint: '歡迎投稿你與蘭獸的故事！經蘭協審核後，你的投稿會刊登在這裡，與大家一起分享。', readMore: '閱讀完整內容 →', mapHint: '蘭獸的足跡遍布世界各地，點選地圖上的標記，查看當地的故事。', btnBack: '← 返回上一頁',
         joinTitle: '讓你的城市成為|下一站', joinLead: '分享你與蘭獸的照片、城市與故事，經蘭協審核後加入世界探索地圖。',
         joinHead: '投稿與合作', joinDesc: '填寫下方表單上傳照片與故事，審核通過後，你的紀錄將出現在全球蘭獸地圖上！',
         joinList: ['📷 帶著蘭獸旅行並留下影像', '📖 分享地方蘭花與生態故事', '🛡️ 經蘭協審核後加入公開地圖'],
@@ -360,7 +372,7 @@
         subBrand: 'World of Orchidsaur', heroTitle: 'Follow Orchidsaur to Explore World Orchids',
         heroDesc: 'Carrying 80 million years of orchid memories from Taiwan...',
         btnStart: 'Start Exploring', btnJoin: 'Join Us (Submit a Story)', portalTitle: 'Choose Your Path into Orchidsaur',
-        portalLead: 'Each theme is an independent gallery...', navJoin: 'Join Us', storyHint: 'Share your story with Orchidsaur! After review by the association, approved submissions will appear here.', readMore: 'Read Full Story →',
+        portalLead: 'Each theme is an independent gallery...', navJoin: 'Join Us', storyHint: 'Share your story with Orchidsaur! After review by the association, approved submissions will appear here.', readMore: 'Read Full Story →', mapHint: 'Orchidsaur has left footprints around the world. Tap a marker to read the story from that place.',
         btnBack: '← Back to List', joinTitle: 'Make Your City the Next Stop', joinLead: 'Share your photos, city, and story...',
         joinHead: 'Submission & Collaboration', joinDesc: 'Submit your photos and stories below.',
         joinList: ['📷 Travel with Orchidsaur', '📖 Share orchid stories', '🛡️ Join public map'],
@@ -386,7 +398,7 @@
         subBrand: 'オーキッドソーの世界探險', heroTitle: 'オーキッドソーと世界中の蘭を探求しよう',
         heroDesc: '8,000万年の記憶を宿したオーキッドソーが台湾から出発...',
         btnStart: '探索を始める', btnJoin: '参加する（投稿エリア）', portalTitle: 'テーマを選んでオーキッドソーの世界へ',
-        portalLead: '各テーマは独立したパビリオンです...', navJoin: '参加する', storyHint: 'オーキッドソーとの物語を投稿しよう！審査後、ここに掲載されます。', readMore: '詳細を読む →',
+        portalLead: '各テーマは独立したパビリオンです...', navJoin: '参加する', storyHint: 'オーキッドソーとの物語を投稿しよう！審査後、ここに掲載されます。', readMore: '詳細を読む →', mapHint: 'Orchidsaurの足跡は世界中に。地図のマーカーをタップすると、その土地の物語が読めます。',
         btnBack: '← 前のページへ戻る', joinTitle: 'あなたの街を次の目的地に', joinLead: '写真やストーリーを投稿しよう。',
         joinHead: '投稿とコラボレーション', joinDesc: 'フォームから写真とストーリーを送信。',
         joinList: ['📷 写真を撮影', '📖 ストーリーをシェア', '🛡️ 公開マップへ掲載'],
@@ -704,14 +716,45 @@
           `;
         }
 
+        if (isJourneySection) sectionBodyHtml = `<div class="mapwrap"><p class="maphint">${t.mapHint}</p><div id="journeyMap"></div></div>` + sectionBodyHtml;
         document.getElementById(k).innerHTML = `
           <section class="mast">${mastContent}</section>
           <section class="section">${sectionBodyHtml}</section>
         `;
       });
 
+      initJourneyMap();
       initShuffledQuiz();
       loadQuizQuestion();
+    }
+
+    let journeyMap = null;
+    function initJourneyMap() {
+      const el = document.getElementById('journeyMap');
+      if (journeyMap) { journeyMap.remove(); journeyMap = null; }
+      if (!el || typeof L === 'undefined') return;
+      const t = translations[currentLang];
+      const items = sectionsData[currentLang].journey.items;
+      const groups = {};
+      items.forEach((x, i) => {
+        if (x[5] == null || x[6] == null) return;
+        const key = x[5].toFixed(2) + ',' + x[6].toFixed(2);
+        (groups[key] = groups[key] || { lat: x[5], lng: x[6], list: [] }).list.push(i);
+      });
+      journeyMap = L.map(el, { scrollWheelZoom: false, worldCopyJump: true }).setView([24, 120], 2);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '&copy; OpenStreetMap contributors' }).addTo(journeyMap);
+      const pts = [];
+      Object.values(groups).forEach(g => {
+        const multi = g.list.length > 1;
+        const icon = L.divIcon({ className: '', html: `<div class="pin${multi ? ' multi' : ''}">${multi ? g.list.length : '●'}</div>`, iconSize: [30, 30], iconAnchor: [15, 15] });
+        const html = g.list.slice().reverse().map(i => {
+          const x = items[i], ph = photoList(x)[0];
+          return `<div class="mp">${ph ? `<img src="${ph.src}" alt="">` : ''}<h4>${x[0]}</h4><div class="d">${x[3] || ''}</div><button onclick="openDetail('journey',${i})">${t.readMore}</button></div>`;
+        }).join('<hr style="border:0;border-top:1px solid #d7ddcf;margin:10px 0">');
+        L.marker([g.lat, g.lng], { icon }).addTo(journeyMap).bindPopup(html, { maxHeight: 320 });
+        pts.push([g.lat, g.lng]);
+      });
+      journeyMap.on('click', () => journeyMap.scrollWheelZoom.enable());
     }
 
     function switchAdvTab(tabKey) {
@@ -999,6 +1042,7 @@
       document.querySelectorAll('.page').forEach(x => x.classList.toggle('active', x.id === id));
       document.querySelectorAll('nav button').forEach((x, i) => { if (order[i]) x.classList.toggle('active', order[i] === id); });
       scrollTo(0, 0);
+      if (id === 'journey' && journeyMap) setTimeout(() => journeyMap.invalidateSize(), 50);
       if (push) location.hash = id;
     }
 
