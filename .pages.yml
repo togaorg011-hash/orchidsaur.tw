@@ -6,6 +6,7 @@ media:
   output: /images
   categories: [image]
   label: 網站照片
+  rename: safe
 
 content:
   - name: journey
@@ -50,7 +51,7 @@ content:
         type: object
         list: true
         fields:
-          - { name: src, label: 照片, type: image, required: true }
+          - { name: src, label: 照片, type: image, required: true, options: { rename: safe } }
           - name: caption
             label: 圖說
             type: object
@@ -93,7 +94,7 @@ content:
         type: object
         list: true
         fields:
-          - { name: src, label: 照片, type: image, required: true }
+          - { name: src, label: 照片, type: image, required: true, options: { rename: safe } }
           - name: caption
             label: 圖說
             type: object
@@ -136,7 +137,7 @@ content:
         type: object
         list: true
         fields:
-          - { name: src, label: 照片, type: image, required: true }
+          - { name: src, label: 照片, type: image, required: true, options: { rename: safe } }
           - name: caption
             label: 圖說
             type: object
