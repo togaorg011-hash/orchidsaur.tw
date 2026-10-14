@@ -93,7 +93,7 @@
 
     /* 接花遊戲區域 */
     .catch-game-area{touch-action:none;width:100%;max-width:600px;height:400px;background:linear-gradient(180deg,#eef5eb,#c8e6c9);border:2px solid var(--line);border-radius:20px;position:relative;overflow:hidden;margin:20px auto}
-    .player-basket{position:absolute;bottom:10px;width:70px;height:70px;font-size:50px;text-align:center;line-height:70px;user-select:none}
+    .player-basket{position:absolute;bottom:10px;width:70px;height:70px;display:flex;align-items:flex-end;user-select:none}
     .falling-item{position:absolute;font-size:32px;user-select:none}
 
     /* DIY 桌布畫廊 */
@@ -109,7 +109,6 @@
     .wall-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:14px}
     .bg-select-btn.on{background:var(--green);color:#fff;border-color:var(--green)}
     .wall-preview{margin:22px auto 0;max-width:420px}.wall-preview img{width:100%;border-radius:12px;border:1px solid var(--line)}.wall-preview p{font-size:14px;color:var(--muted);margin:8px 0 0}
-    @media(hover:none){#gameWinWrap{display:none}}
 
     .detail{max-width:850px;margin:auto;padding:70px 24px 110px}
     .back{border:0;background:transparent;color:var(--green);font-weight:700;cursor:pointer;margin-bottom:20px;font-size:16px}
@@ -241,12 +240,9 @@
           <p id="catchDesc">移動滑鼠控制蘭獸左右移動，接住掉落的盛開蘭花與水滴，避開枯枝！</p>
           <div style="font-size:20px; font-weight:bold; color:var(--green); margin-bottom:10px;"><span id="lblScore">得分</span>：<span id="catchScore">0</span></div>
           
-          <div style="margin-bottom: 15px;" id="gameWinWrap">
-            <button class="btn-submit" style="width:auto; padding:10px 24px;" id="btnOpenGameWin" onclick="openGameWindow()">🚀 以獨立新視窗開啟遊戲</button>
-          </div>
 
           <div class="catch-game-area" id="catchGameArea" onpointermove="moveBasket(event)" onpointerdown="moveBasket(event)">
-            <div class="player-basket" id="playerBasket" style="left: 260px;">🦕</div>
+            <div class="player-basket" id="playerBasket" style="left: 260px;"><img src="images/sticker/orchidsaur-standing.png" alt="蘭獸" draggable="false" style="display:block;width:70px;height:auto;pointer-events:none;filter:drop-shadow(0 2px 3px rgba(23,58,49,.55))"></div>
           </div>
           <button class="btn-submit" style="width:auto; padding:10px 30px; margin-top:10px;" id="btnCatchStart" onclick="startCatchGame()">開始 / 重來</button>
         </div>
@@ -404,7 +400,6 @@
         quizProgressPrefix: '題目', quizSuccess: '🎉 闖關成功！', quizSuccessMsg: '恭喜你完成所有蘭獸與蘭花知識挑戰，獲得「蘭花小專家」動態徽章！',
         btnReplay: '再玩一次', quizRight: '✨ 答對了！太厲害了！', quizWrong: '❌ 差一點點，再試試看！',
         catchTitle: '🌸 蘭獸接花大作戰', catchDesc: '電腦用滑鼠、手機用手指左右移動蘭獸，接住掉落的盛開蘭花與水滴，避開枯枝！',
-        btnOpenGameWin: '🚀 以獨立新視窗開啟遊戲',
         lblScore: '得分', btnCatchStart: '開始 / 重來', catchAlert: '遊戲開始！請移動滑鼠接住掉落的蘭花 🌸！',
         wallTitle: '🎨 DIY 桌布畫廊', wallDesc: '選擇尺寸與背景，點擊貼圖加入畫布，拖曳擺放、放大縮小，完成後下載專屬桌布！',
         bgGrass: '🌲 森林', bgBeach: '🏖️ 海灘', bgGreenhouse: '🏡 溫室',
@@ -445,7 +440,6 @@
         quizProgressPrefix: 'Question', quizSuccess: '🎉 Challenge Cleared!', quizSuccessMsg: 'Congratulations on completing all the orchid trivia questions!',
         btnReplay: 'Play Again', quizRight: '✨ Correct! Excellent!', quizWrong: '❌ Almost there, try again!',
         catchTitle: '🌸 Orchids Catch Game', catchDesc: 'Move the mouse (or drag your finger) to steer Orchidsaur and catch falling orchids and raindrops. Avoid the dry twigs!',
-        btnOpenGameWin: '🚀 Open Game in New Window',
         lblScore: 'Score', btnCatchStart: 'Start / Restart', catchAlert: 'Game Started! Catch falling orchids 🌸!',
         wallTitle: '🎨 DIY Wallpaper Gallery', wallDesc: 'Pick a size and background, tap stickers to add them, drag to place and resize, then download your wallpaper!',
         bgGrass: '🌲 Forest', bgBeach: '🏖️ Beach', bgGreenhouse: '🏡 Greenhouse',
@@ -486,7 +480,6 @@
         quizProgressPrefix: '問題', quizSuccess: '🎉 クリアおめでとう！', quizSuccessMsg: 'すべての蘭クイズをクリアしました！',
         btnReplay: 'もう一度プレイ', quizRight: '✨ 大正解！素晴らしい！', quizWrong: '❌ おしい！もう一度挑戦！',
         catchTitle: '🌸 蘭獸の花キャッチゲーム', catchDesc: 'マウス（スマホは指）で蘭獸を左右に動かし、落ちてくる蘭や水滴をキャッチ！枯れ枝には注意！',
-        btnOpenGameWin: '🚀 新しいウィンドウでゲームを開く',
         lblScore: 'スコア', btnCatchStart: 'スタート / リセット', catchAlert: 'ゲームスタート！花をキャッチ 🌸！',
         wallTitle: '🎨 DIY 壁紙ギャラリー', wallDesc: 'サイズと背景を選び、ステッカーを追加。ドラッグで配置、拡大縮小して、壁紙をダウンロードしよう！',
         bgGrass: '🌲 森', bgBeach: '🏖️ ビーチ', bgGreenhouse: '🏡 温室',
@@ -622,7 +615,6 @@
       document.getElementById('catchDesc').textContent = t.catchDesc;
       document.getElementById('lblScore').textContent = t.lblScore;
       document.getElementById('btnCatchStart').textContent = t.btnCatchStart;
-      document.getElementById('btnOpenGameWin').textContent = t.btnOpenGameWin;
 
       document.getElementById('wallTitle').textContent = t.wallTitle;
       document.getElementById('wallDesc').textContent = t.wallDesc;
@@ -935,81 +927,6 @@
         }
         if (posY > H) { clearInterval(itemTimer); item.remove(); }
       }, 30);
-    }
-
-    function openGameWindow() {
-      const newWin = window.open("", "_blank", "width=700,height=600");
-      newWin.document.write(`
-        <!DOCTYPE html>
-        <html>
-        <head>
-          <title>🌸 蘭獸接花大作戰</title>
-          <style>
-            body { font-family: sans-serif; text-align: center; background: #f5f1e7; margin:0; padding: 20px; }
-            .area { width: 100%; height: 450px; background: linear-gradient(180deg,#eef5eb,#c8e6c9); border: 2px solid #275f4d; border-radius: 16px; position: relative; overflow: hidden; margin-top: 15px; }
-            .basket { position: absolute; bottom: 10px; width: 70px; height: 70px; font-size: 50px; line-height:70px; user-select:none; }
-            .item { position: absolute; font-size: 32px; user-select:none; }
-            button { padding: 10px 20px; font-weight: bold; background: #275f4d; color: white; border: 0; border-radius: 8px; cursor: pointer; }
-          </style>
-        </head>
-        <body>
-          <h2>🌸 蘭獸接花大作戰 (獨立視窗)</h2>
-          <div style="font-size:20px; font-weight:bold; color:#275f4d;">得分：<span id="score">0</span></div>
-          <div class="area" id="area" onmousemove="move(event)">
-            <div class="basket" id="basket" style="left:260px;">🦕</div>
-          </div>
-          <br>
-          <button onclick="start()">開始 / 重來</button>
-
-          <script>
-            let score = 0;
-            let timer = null;
-            function move(e) {
-              const area = document.getElementById('area');
-              const rect = area.getBoundingClientRect();
-              let x = e.clientX - rect.left - 35;
-              if (x < 0) x = 0;
-              if (x > rect.width - 70) x = rect.width - 70;
-              document.getElementById('basket').style.left = x + 'px';
-            }
-            function start() {
-              if (timer) clearInterval(timer);
-              score = 0;
-              document.getElementById('score').textContent = score;
-              document.querySelectorAll('.item').forEach(e => e.remove());
-              timer = setInterval(spawn, 700);
-            }
-            function spawn() {
-              const area = document.getElementById('area');
-              const item = document.createElement('div');
-              item.className = 'item';
-              const types = ['🌸', '💧', '🍂'];
-              const t = types[Math.floor(Math.random()*types.length)];
-              item.textContent = t;
-              const startX = Math.random() * (area.clientWidth - 40);
-              item.style.left = startX + 'px';
-              item.style.top = '0px';
-              area.appendChild(item);
-              let posY = 0;
-              const loop = setInterval(() => {
-                posY += 4;
-                item.style.top = posY + 'px';
-                const basketX = parseFloat(document.getElementById('basket').style.left) || 0;
-                if (posY >= 380 && posY <= 420 && startX >= basketX - 20 && startX <= basketX + 60) {
-                  if (t === '🌸') score += 10;
-                  else if (t === '💧') score += 5;
-                  else if (t === '🍂') score = Math.max(0, score - 10);
-                  document.getElementById('score').textContent = score;
-                  clearInterval(loop);
-                  item.remove();
-                }
-                if (posY > 430) { clearInterval(loop); item.remove(); }
-              }, 30);
-            }
-          <\/script>
-        </body>
-        </html>
-      `);
     }
 
     /* 桌布 DIY 畫廊邏輯：貼圖位置、大小都用比例記錄，這樣畫面縮放、下載高解析度時位置都一致 */
