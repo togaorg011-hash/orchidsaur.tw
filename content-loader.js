@@ -58,7 +58,7 @@
       var story = String(r.story || '');
       var summary = story.length > 70 ? story.slice(0, 70) + '…' : story;
       var body = '<p><b>' + BY[lang] + '：' + esc(r.nickname) + '</b></p>' + story.replace(/\r\n?/g, '\n').split(/\n+/).filter(Boolean).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('');
-      return [esc(r.location), esc(summary), body, String(r.created_at || '').slice(0, 10), [{ src: r.photo_url, cap: '', focus: '' }], null, null];
+      return [esc(r.title || r.location), esc(summary), body, String(r.created_at || '').slice(0, 10), [{ src: r.photo_url, cap: '', focus: '' }], null, null, r.location || ''];
     });
   }
   function loadSubmissions() {

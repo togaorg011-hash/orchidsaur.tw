@@ -301,6 +301,10 @@
         </div>
 
         <form id="submissionForm" onsubmit="handleSubmit(event)" novalidate>
+          <div class="form-group">
+            <label for="inputTitle" id="lblTitle">投稿標題</label>
+            <input type="text" id="inputTitle" name="title" maxlength="40" required>
+          </div>
           <div class="form-row">
             <div class="form-group">
               <label for="inputName" id="lblName">暱稱</label>
@@ -380,12 +384,13 @@
         joinTitle: '讓你的城市成為|下一站', joinLead: '分享你與蘭獸的照片、地點與故事，經蘭協審核後刊登在「與獸同行」。',
         joinHead: '投稿與合作', joinDesc: '填寫下方表單上傳一張照片與你的故事，審核通過後，就會出現在「與獸同行」頁面！',
         joinList: ['📷 帶著蘭獸旅行並留下影像', '📖 分享地方蘭花與生態故事', '🛡️ 經蘭協審核後刊登在「與獸同行」'],
-        lblName: '暱稱', lblCity: '地點（城市與國家）', lblStory: '你的蘭獸故事',
+        lblName: '暱稱', lblCity: '探索地點（城市與國家）', lblStory: '你的蘭獸故事',
         lblMedia: '照片（1 張）', filePlaceholder: '📁 點擊此處選擇照片', fileSelected: '✅ 已選擇：',
         btnSubmit: '送出探索故事', footerText: 'ORCHIDSAUR · 社團法人台灣蘭花產銷發展協會',
         demoSubmitAlert: '【前端門面測試成功！】\n我們已成功接收到你輸入的資料。',
         inputNamePh: '你想被稱呼的名字', inputCityPh: '例如：臺南，臺灣', inputStoryPh: '分享你遇見蘭獸的故事或地方蘭花體驗...',
-        fName: '暱稱', fCity: '地點', fStory: '故事', fPhoto: '照片', fConsent: '同意授權', subErrFillPrefix: '請完成：', removePhoto: '移除照片',
+        lblTitle: '投稿標題', inputTitlePh: '例如：蘭獸在花市的一天', fTitle: '標題', submissionPlace: '探索地點：',
+        fName: '暱稱', fCity: '探索地點', fStory: '故事', fPhoto: '照片', fConsent: '同意授權', subErrFillPrefix: '請完成：', removePhoto: '移除照片',
         privacyNote: '請不要在故事中留下電話、地址或 Email。暱稱、地點、故事與照片經審核後，會刊登在「與獸同行」。',
         consentText: '我同意將投稿的照片與文字授權社團法人台灣蘭花產銷發展協會，於蘭獸官網展示；照片為我本人拍攝，且照片中沒有未經同意的可辨識他人。本會保有解釋權。',
         subSending: '送出中，請稍候…', subOk: '🎉 已收到你的投稿！經蘭協審核通過後，就會刊登在「與獸同行」。',
@@ -421,11 +426,12 @@
         btnBack: '← Back to List', joinTitle: 'Make Your City the Next Stop', joinLead: 'Share your photo, place and story with Orchidsaur. After review by the association, approved submissions are published in Walk with Orchidsaur.',
         joinHead: 'Submission & Collaboration', joinDesc: 'Fill in the form below with one photo and your story. Once approved, it will appear in Walk with Orchidsaur.',
         joinList: ['📷 Travel with Orchidsaur', '📖 Share local orchid stories', '🛡️ Published after review'],
-        lblName: 'Nickname', lblCity: 'Place (city & country)', lblStory: 'Your story', lblMedia: 'Photo (1 image)',
+        lblName: 'Nickname', lblCity: 'Location (city & country)', lblStory: 'Your story', lblMedia: 'Photo (1 image)',
         filePlaceholder: '📁 Click here to choose a photo', fileSelected: '✅ Selected: ', btnSubmit: 'Submit Story',
         footerText: 'ORCHIDSAUR · TOGA', demoSubmitAlert: '[Frontend Test Success!]',
         inputNamePh: 'The name you would like shown', inputCityPh: 'e.g. Tainan, Taiwan', inputStoryPh: 'Share your Orchidsaur moment...',
-        fName: 'nickname', fCity: 'place', fStory: 'story', fPhoto: 'photo', fConsent: 'permission box', subErrFillPrefix: 'Please complete: ', removePhoto: 'Remove photo',
+        lblTitle: 'Title', inputTitlePh: 'e.g. A day at the flower market', fTitle: 'title', submissionPlace: 'Location: ',
+        fName: 'nickname', fCity: 'location', fStory: 'story', fPhoto: 'photo', fConsent: 'permission box', subErrFillPrefix: 'Please complete: ', removePhoto: 'Remove photo',
         privacyNote: 'Please do not include phone numbers, addresses or emails in your story. After review, your nickname, place, story and photo will be published in Walk with Orchidsaur.',
         consentText: 'I allow the Taiwan Orchid Growers Association (TOGA) to display my submitted photo and text on the Orchidsaur website. I took the photo myself, and it shows no identifiable people who have not agreed. TOGA reserves the right of interpretation.',
         subSending: 'Sending, please wait…', subOk: '🎉 Thank you! Your submission will be published in Walk with Orchidsaur once it has been approved.',
@@ -461,11 +467,12 @@
         btnBack: '← 前のページへ戻る', joinTitle: 'あなたの街を次の目的地に', joinLead: '蘭獸との写真・場所・ストーリーを投稿しよう。審査後、「蘭獸と同行」に掲載されます。',
         joinHead: '投稿とコラボレーション', joinDesc: '下のフォームから写真1枚とストーリーを送信してください。承認されると「蘭獸と同行」に表示されます。',
         joinList: ['📷 蘭獸と旅して写真を撮る', '📖 地域の蘭の話をシェア', '🛡️ 審査後に掲載'],
-        lblName: 'ニックネーム', lblCity: '場所（都市と国名）', lblStory: 'あなたのストーリー', lblMedia: '写真（1枚）',
+        lblName: 'ニックネーム', lblCity: '探索場所（都市と国名）', lblStory: 'あなたのストーリー', lblMedia: '写真（1枚）',
         filePlaceholder: '📁 写真を選択', fileSelected: '✅ 選択：', btnSubmit: 'ストーリーを送信',
         footerText: 'ORCHIDSAUR · TOGA', demoSubmitAlert: '【テスト成功！】',
         inputNamePh: '表示したいお名前', inputCityPh: '例：台南、台湾', inputStoryPh: '蘭獸との体験をシェア...',
-        fName: 'ニックネーム', fCity: '場所', fStory: 'ストーリー', fPhoto: '写真', fConsent: '同意チェック', subErrFillPrefix: '未入力：', removePhoto: '写真を削除',
+        lblTitle: 'タイトル', inputTitlePh: '例：花市場での一日', fTitle: 'タイトル', submissionPlace: '探索場所：',
+        fName: 'ニックネーム', fCity: '探索場所', fStory: 'ストーリー', fPhoto: '写真', fConsent: '同意チェック', subErrFillPrefix: '未入力：', removePhoto: '写真を削除',
         privacyNote: '電話番号・住所・メールアドレスはストーリーに書かないでください。ニックネーム・場所・ストーリー・写真は、審査後に「蘭獸と同行」に掲載されます。',
         consentText: '投稿した写真と文章を、台湾蘭花産業発展協会（TOGA）が蘭獸公式サイトで掲載することに同意します。写真は自分で撮影したもので、同意のない人物は写っていません。本会は解釈権を有します。',
         subSending: '送信中です…', subOk: '🎉 投稿を受け付けました。承認後、「蘭獸と同行」に掲載されます。',
@@ -632,6 +639,8 @@
       document.getElementById('joinDesc').innerHTML = phrase(t.joinDesc);
       document.getElementById('joinList').innerHTML = t.joinList.map(li => `<li>${li}</li>`).join('');
       
+      document.getElementById('lblTitle').textContent = t.lblTitle;
+      document.getElementById('inputTitle').placeholder = t.inputTitlePh;
       document.getElementById('lblName').textContent = t.lblName;
       document.getElementById('lblCity').textContent = t.lblCity;
       document.getElementById('lblStory').textContent = t.lblStory;
@@ -1306,12 +1315,12 @@
         const displayNumber = i + 1;
         const numStr = displayNumber < 10 ? '0' + displayNumber : displayNumber;
         const dateStr = item[3] ? item[3] : '2026-09-01';
-        detailType.textContent = `${sections[k].title} ｜ ${t.submissionNo}${numStr} ｜ ${t.submissionDate}${dateStr}`;
+        detailType.textContent = `${sections[k].title} ｜ ${t.submissionNo}${numStr} ｜ ${t.submissionDate}${dateStr}` + (item[7] ? ` ｜ ${t.submissionPlace}${item[7]}` : '');
       } else {
         detailType.textContent = sections[k].title + ((k === 'journey' && item[3]) ? ' ｜ ' + item[3] : '');
       }
 
-      detailTitle.textContent = item[0];
+      if (k === 'story') detailTitle.innerHTML = item[0]; else detailTitle.textContent = item[0];
       detailBody.innerHTML = item[2] ? item[2] : `<p>${item[1]}</p>`;
       lbList = photoList(item);
       const dv = document.getElementById('detailVisual'), dc = document.getElementById('detailCap');
@@ -1368,6 +1377,7 @@
       const t = translations[currentLang];
       const f = document.getElementById('submissionForm');
       if (document.getElementById('inputWebsite').value) { showSubmitMsg(t.subOk, 'ok'); f.reset(); return; }   /* 防機器人：隱藏欄位被填就假裝成功 */
+      const title = document.getElementById('inputTitle').value.trim();
       const nickname = document.getElementById('inputName').value.trim();
       const location_ = document.getElementById('inputCity').value.trim();
       const story = document.getElementById('inputStory').value.trim();
@@ -1375,6 +1385,7 @@
       const consent = document.getElementById('inputConsent');
       document.querySelectorAll('#submissionForm .bad').forEach(x => x.classList.remove('bad'));
       const missing = [];
+      if (!title) missing.push([t.fTitle, document.getElementById('inputTitle')]);
       if (!nickname) missing.push([t.fName, document.getElementById('inputName')]);
       if (!location_) missing.push([t.fCity, document.getElementById('inputCity')]);
       if (!story) missing.push([t.fStory, document.getElementById('inputStory')]);
@@ -1392,7 +1403,7 @@
       if (!window.orchidSB) return showSubmitMsg(t.subErrNet, 'err');
       const btn = document.getElementById('btnSubmit');
       btn.disabled = true; showSubmitMsg(t.subSending, '');
-      window.orchidSB.submit({ nickname: nickname, location: location_, story: story, file: file }).then(() => {
+      window.orchidSB.submit({ title: title, nickname: nickname, location: location_, story: story, file: file }).then(() => {
         try { localStorage.setItem('orchidLastSubmit', String(Date.now())); } catch (x) {}
         f.reset(); updateFileName(document.getElementById('inputFile')); updateStoryCount();
         showSubmitMsg(t.subOk, 'ok');
@@ -1407,7 +1418,7 @@
       document.getElementById('storyCount').textContent = el.value.length + ' / 600';
     }
     document.getElementById('inputStory').addEventListener('input', updateStoryCount);
-    ['inputName','inputCity','inputStory'].forEach(id => document.getElementById(id).addEventListener('input', e => e.target.classList.remove('bad')));
+    ['inputTitle','inputName','inputCity','inputStory'].forEach(id => document.getElementById(id).addEventListener('input', e => e.target.classList.remove('bad')));
     document.getElementById('inputConsent').addEventListener('change', e => e.target.closest('.consent-row').classList.remove('bad'));
 
     addEventListener('hashchange', () => {

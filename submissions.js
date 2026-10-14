@@ -18,7 +18,7 @@
 
   /* 取得已核准的投稿（舊 → 新） */
   function fetchApproved() {
-    var q = '/rest/v1/submissions?select=id,created_at,nickname,location,story,photo_path&status=eq.approved&order=created_at.asc&limit=500';
+    var q = '/rest/v1/submissions?select=id,created_at,title,nickname,location,story,photo_path&status=eq.approved&order=created_at.asc&limit=500';
     return fetch(URL_BASE + q, { headers: headers() })
       .then(function (r) { if (!r.ok) throw new Error('read ' + r.status); return r.json(); })
       .then(function (rows) { return rows.map(function (r) { r.photo_url = photoUrl(r.photo_path); return r; }); });
@@ -65,7 +65,7 @@
       if (!r.ok) throw new Error('upload ' + r.status);
       return fetch(URL_BASE + '/rest/v1/submissions', {
         method: 'POST', headers: headers({ 'Content-Type': 'application/json', Prefer: 'return=minimal' }),
-        body: JSON.stringify({ nickname: data.nickname, location: data.location, story: data.story, photo_path: path, consent: true, status: 'pending' })
+        body: JSON.stringify({ title: data.title, nickname: data.nickname, location: data.location, story: data.story, photo_path: path, consent: true, status: 'pending' })
       });
     }).then(function (r) { if (!r.ok) throw new Error('save ' + r.status); });
   }
