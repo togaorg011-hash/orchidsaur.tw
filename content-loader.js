@@ -50,13 +50,29 @@
     });
   }
 
+  /* 04 與獸同行：把「已核准」的民眾投稿轉成卡片（文字一律先跳脫，避免被塞入網頁語法） */
+  function esc(t) { return String(t == null ? '' : t).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+  var BY = { zh: '投稿人', en: 'Submitted by', ja: '投稿者' };
+  function buildStory(rows, lang) {
+    return rows.map(function (r) {
+      var story = String(r.story || '');
+      var summary = story.length > 70 ? story.slice(0, 70) + '…' : story;
+      var body = '<p><b>' + BY[lang] + '：' + esc(r.nickname) + '</b></p>' + story.replace(/\r\n?/g, '\n').split(/\n+/).filter(Boolean).map(function (p) { return '<p>' + esc(p) + '</p>'; }).join('');
+      return [esc(r.location), esc(summary), body, String(r.created_at || '').slice(0, 10), [{ src: r.photo_url, cap: '', focus: '' }], null, null];
+    });
+  }
+  function loadSubmissions() {
+    if (!window.orchidSB) return Promise.resolve([]);
+    return window.orchidSB.fetchApproved().catch(function (e) { console.warn('投稿載入失敗', e); return []; });
+  }
+
   function loadQuiz() {
     return fetch('content/quiz.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; });
   }
 
   function load() {
     var keys = Object.keys(FILES);
-    return loadQuiz().then(function (q) { window.orchidQuiz = q; }).then(function () { return Promise.all(keys.map(function (k) {
+    return Promise.all([loadQuiz(), loadSubmissions()]).then(function (r) { window.orchidQuiz = r[0]; window.orchidStoryRows = r[1]; }).then(function () { return Promise.all(keys.map(function (k) {
       return fetch(FILES[k], { cache: 'no-cache' }).then(function (r) {
         if (!r.ok) throw new Error(FILES[k] + ' ' + r.status);
         return r.json();
@@ -67,6 +83,7 @@
         window.orchidData[k] = res[n];
         LANGS.forEach(function (lang) { sectionsData[lang][k].items = buildItems(res[n], lang); });
       });
+      LANGS.forEach(function (lang) { sectionsData[lang].story.items = buildStory(window.orchidStoryRows || [], lang); });
       renderUI();
       if (location.hash && document.getElementById(location.hash.slice(1))) go(location.hash.slice(1), false);
     }).catch(function (e) {

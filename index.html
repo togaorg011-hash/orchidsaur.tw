@@ -133,6 +133,10 @@
     .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
     .form-file{border:1px dashed var(--line);padding:16px;border-radius:12px;background:#f9f8f3;text-align:center;cursor:pointer}
     .form-file input{display:none}
+    .consent-row{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.7;margin-bottom:16px;cursor:pointer}
+    .consent-row input{margin-top:5px;flex:none}
+    .btn-submit:disabled{opacity:.6;cursor:wait}
+    #submitMsg.ok{color:var(--green)}#submitMsg.err{color:#a33}
     .form-file label{cursor:pointer;color:var(--green);font-weight:bold}
     .btn-submit{width:100%;padding:14px;border:0;border-radius:999px;background:var(--green);color:white;font-size:16px;font-weight:bold;cursor:pointer}
 
@@ -289,37 +293,42 @@
           </ul>
         </div>
 
-        <form id="submissionForm" onsubmit="handleDemoSubmit(event)">
+        <form id="submissionForm" onsubmit="handleSubmit(event)" novalidate>
           <div class="form-row">
             <div class="form-group">
-              <label for="inputName" id="lblName">姓名 / Name</label>
-              <input type="text" id="inputName" name="name" required>
+              <label for="inputName" id="lblName">暱稱</label>
+              <input type="text" id="inputName" name="nickname" maxlength="30" required>
             </div>
             <div class="form-group">
-              <label for="inputEmail">Email</label>
-              <input type="email" id="inputEmail" name="email" placeholder="example@email.com" required>
+              <label for="inputCity" id="lblCity">地點</label>
+              <input type="text" id="inputCity" name="location" maxlength="60" required>
             </div>
           </div>
 
           <div class="form-group">
-            <label for="inputCity" id="lblCity">城市與國家 / City & Country</label>
-            <input type="text" id="inputCity" name="city" required>
+            <label for="inputStory" id="lblStory">你的蘭獸故事</label>
+            <textarea id="inputStory" name="story" rows="5" maxlength="600" required></textarea>
+            <small id="storyCount" style="color:var(--muted)">0 / 600</small>
           </div>
 
           <div class="form-group">
-            <label for="inputStory" id="lblStory">你的蘭獸故事 / Your story</label>
-            <textarea id="inputStory" name="story" rows="4" required></textarea>
-          </div>
-
-          <div class="form-group">
-            <label id="lblMedia">照片或影片 / Photo or video</label>
+            <label id="lblMedia">照片（1 張）</label>
             <div class="form-file">
-              <label for="inputFile" id="fileLabel">📁 點擊此處選擇照片或影片檔</label>
-              <input type="file" id="inputFile" name="file" accept="image/*,video/*" onchange="updateFileName(this)">
+              <label for="inputFile" id="fileLabel">📁 點擊此處選擇照片</label>
+              <input type="file" id="inputFile" name="file" accept="image/*" onchange="updateFileName(this)">
             </div>
+            <img id="filePreview" alt="" style="display:none;max-width:100%;max-height:220px;border-radius:12px;margin-top:10px;align-self:flex-start">
           </div>
+
+          <div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden" aria-hidden="true">
+            <label>Website <input type="text" id="inputWebsite" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+
+          <p id="privacyNote" style="color:var(--muted);font-size:14px;line-height:1.7;margin:0 0 12px"></p>
+          <label class="consent-row"><input type="checkbox" id="inputConsent"> <span id="consentText"></span></label>
 
           <button type="submit" class="btn-submit" id="btnSubmit">送出探索故事</button>
+          <p id="submitMsg" role="status" aria-live="polite" style="margin-top:14px;font-weight:bold;line-height:1.7"></p>
         </form>
       </div>
     </section>
@@ -360,15 +369,21 @@
         heroDesc: '蘭獸承載蘭花|跨越八千萬年的生命記憶，|從臺灣出發，|邀請每一個人|為世界地圖|留下新的蘭花故事。',
         btnStart: '開始探索', btnJoin: '加入探索（投稿區）', portalTitle: '選一條路，進入蘭獸世界',
         portalLead: '每個主題都是一座獨立內容館，可以再點進故事、照片、影片與詳細介紹。',
-        navJoin: '加入探索', storyEmpty: '投稿功能即將開放，敬請期待！', storyHint: '歡迎投稿你與蘭獸的故事！經蘭協審核後，你的投稿會刊登在這裡，與大家一起分享。', readMore: '閱讀完整內容 →', mapHint: '蘭獸的足跡遍布世界各地，點選地圖上的標記，查看當地的故事。', btnBack: '← 返回上一頁',
-        joinTitle: '讓你的城市成為|下一站', joinLead: '分享你與蘭獸的照片、城市與故事，經蘭協審核後加入世界探索地圖。',
-        joinHead: '投稿與合作', joinDesc: '填寫下方表單上傳照片與故事，審核通過後，你的紀錄將出現在全球蘭獸地圖上！',
-        joinList: ['📷 帶著蘭獸旅行並留下影像', '📖 分享地方蘭花與生態故事', '🛡️ 經蘭協審核後加入公開地圖'],
-        lblName: '姓名 / Name', lblCity: '城市與國家 / City & Country', lblStory: '你的蘭獸故事 / Your story',
-        lblMedia: '照片或影片 / Photo or video', filePlaceholder: '📁 點擊此處選擇照片或影片檔', fileSelected: '✅ 已選擇檔案：',
+        navJoin: '加入探索', storyEmpty: '還沒有刊登的投稿，成為第一位分享的人吧！', storyHint: '歡迎投稿你與蘭獸的故事！經蘭協審核後，你的投稿會刊登在這裡，與大家一起分享。', readMore: '閱讀完整內容 →', mapHint: '蘭獸的足跡遍布世界各地，點選地圖上的標記，查看當地的故事。', btnBack: '← 返回上一頁',
+        joinTitle: '讓你的城市成為|下一站', joinLead: '分享你與蘭獸的照片、地點與故事，經蘭協審核後刊登在「與獸同行」。',
+        joinHead: '投稿與合作', joinDesc: '填寫下方表單上傳一張照片與你的故事，審核通過後，就會出現在「與獸同行」頁面！',
+        joinList: ['📷 帶著蘭獸旅行並留下影像', '📖 分享地方蘭花與生態故事', '🛡️ 經蘭協審核後刊登在「與獸同行」'],
+        lblName: '暱稱', lblCity: '地點（城市與國家）', lblStory: '你的蘭獸故事',
+        lblMedia: '照片（1 張）', filePlaceholder: '📁 點擊此處選擇照片', fileSelected: '✅ 已選擇：',
         btnSubmit: '送出探索故事', footerText: 'ORCHIDSAUR · 社團法人台灣蘭花產銷發展協會',
         demoSubmitAlert: '【前端門面測試成功！】\n我們已成功接收到你輸入的資料。',
-        inputNamePh: '請輸入姓名', inputCityPh: '例如：臺南，臺灣', inputStoryPh: '分享你遇見蘭獸的故事或地方蘭花體驗...',
+        inputNamePh: '你想被稱呼的名字', inputCityPh: '例如：臺南，臺灣', inputStoryPh: '分享你遇見蘭獸的故事或地方蘭花體驗...',
+        privacyNote: '請不要在故事中留下電話、地址或 Email。暱稱、地點、故事與照片經審核後會公開顯示在網站上。',
+        consentText: '我同意將投稿的照片與文字授權社團法人台灣蘭花產銷發展協會，於蘭獸官網展示；照片為我本人拍攝，且照片中沒有未經同意的可辨識他人。',
+        subSending: '送出中，請稍候…', subOk: '🎉 已收到你的投稿！經蘭協審核通過後，就會刊登在「與獸同行」。',
+        subErrFill: '請填寫暱稱、地點與故事。', subErrPhoto: '請選擇一張照片。', subErrConsent: '請先勾選同意授權。',
+        subErrBadPhoto: '這張照片無法處理，請換一張（建議 JPG 或 PNG）。', subErrNet: '送出失敗，請稍後再試一次。', subErrWait: '請稍候一分鐘再送出下一筆。',
+        byLabel: '投稿人',
         prevPage: '上一頁', nextPage: '下一頁', submissionNo: '投稿編號：', submissionDate: '投稿日期：',
         
         advTitle: '蘭獸探險趣', advLead: '歡迎來到蘭獸互動體驗天地！挑戰知識問答、玩玩小遊戲，或自己動手做一張專屬的電腦或手機桌布！',
@@ -394,14 +409,20 @@
         subBrand: 'World of Orchidsaur', heroTitle: 'Follow Orchidsaur to Explore World Orchids',
         heroDesc: 'Carrying 80 million years of orchid memories from Taiwan...',
         btnStart: 'Start Exploring', btnJoin: 'Join Us (Submit a Story)', portalTitle: 'Choose Your Path into Orchidsaur',
-        portalLead: 'Each theme is an independent gallery...', navJoin: 'Join Us', storyEmpty: 'Submissions open soon. Stay tuned!', storyHint: 'Share your story with Orchidsaur! After review by the association, approved submissions will appear here.', readMore: 'Read Full Story →', mapHint: 'Orchidsaur has left footprints around the world. Tap a marker to read the story from that place.',
-        btnBack: '← Back to List', joinTitle: 'Make Your City the Next Stop', joinLead: 'Share your photos, city, and story...',
-        joinHead: 'Submission & Collaboration', joinDesc: 'Submit your photos and stories below.',
-        joinList: ['📷 Travel with Orchidsaur', '📖 Share orchid stories', '🛡️ Join public map'],
-        lblName: 'Name', lblCity: 'City & Country', lblStory: 'Your Story', lblMedia: 'Photo or Video',
-        filePlaceholder: '📁 Click here to select a file', fileSelected: '✅ Selected file: ', btnSubmit: 'Submit Story',
+        portalLead: 'Each theme is an independent gallery...', navJoin: 'Join Us', storyEmpty: 'No submissions yet. Be the first to share!', storyHint: 'Share your story with Orchidsaur! After review by the association, approved submissions will appear here.', readMore: 'Read Full Story →', mapHint: 'Orchidsaur has left footprints around the world. Tap a marker to read the story from that place.',
+        btnBack: '← Back to List', joinTitle: 'Make Your City the Next Stop', joinLead: 'Share your photo, place and story with Orchidsaur. After review by the association, approved submissions are published in Walk with Orchidsaur.',
+        joinHead: 'Submission & Collaboration', joinDesc: 'Fill in the form below with one photo and your story. Once approved, it will appear in Walk with Orchidsaur.',
+        joinList: ['📷 Travel with Orchidsaur', '📖 Share local orchid stories', '🛡️ Published after review'],
+        lblName: 'Nickname', lblCity: 'Place (city & country)', lblStory: 'Your story', lblMedia: 'Photo (1 image)',
+        filePlaceholder: '📁 Click here to choose a photo', fileSelected: '✅ Selected: ', btnSubmit: 'Submit Story',
         footerText: 'ORCHIDSAUR · TOGA', demoSubmitAlert: '[Frontend Test Success!]',
-        inputNamePh: 'Enter your name', inputCityPh: 'e.g. Tainan, Taiwan', inputStoryPh: 'Share your Orchidsaur moment...',
+        inputNamePh: 'The name you would like shown', inputCityPh: 'e.g. Tainan, Taiwan', inputStoryPh: 'Share your Orchidsaur moment...',
+        privacyNote: 'Please do not include phone numbers, addresses or emails in your story. Your nickname, place, story and photo will be shown publicly after review.',
+        consentText: 'I allow the Taiwan Orchid Growers Association (TOGA) to display my submitted photo and text on the Orchidsaur website. I took the photo myself, and it shows no identifiable people who have not agreed.',
+        subSending: 'Sending, please wait…', subOk: '🎉 Thank you! Your submission will be published in Walk with Orchidsaur once it has been approved.',
+        subErrFill: 'Please fill in nickname, place and story.', subErrPhoto: 'Please choose one photo.', subErrConsent: 'Please tick the permission box first.',
+        subErrBadPhoto: 'This photo could not be processed. Please try another one (JPG or PNG).', subErrNet: 'Could not send. Please try again later.', subErrWait: 'Please wait a minute before sending another one.',
+        byLabel: 'Submitted by',
         prevPage: 'Prev', nextPage: 'Next', submissionNo: 'Submission No: ', submissionDate: 'Date: ',
 
         advTitle: 'Orchidsaur Adventure', advLead: 'Welcome to Orchidsaur Interactive Zone! Try the trivia, play the mini game, or make your own computer or phone wallpaper!',
@@ -427,14 +448,20 @@
         subBrand: 'オーキッドソーの世界探險', heroTitle: 'オーキッドソーと世界中の蘭を探求しよう',
         heroDesc: '8,000万年の記憶を宿したオーキッドソーが台湾から出発...',
         btnStart: '探索を始める', btnJoin: '参加する（投稿エリア）', portalTitle: 'テーマを選んでオーキッドソーの世界へ',
-        portalLead: '各テーマは独立したパビリオンです...', navJoin: '参加する', storyEmpty: '投稿受付は近日開始予定です。お楽しみに！', storyHint: 'オーキッドソーとの物語を投稿しよう！審査後、ここに掲載されます。', readMore: '詳細を読む →', mapHint: 'Orchidsaurの足跡は世界中に。地図のマーカーをタップすると、その土地の物語が読めます。',
-        btnBack: '← 前のページへ戻る', joinTitle: 'あなたの街を次の目的地に', joinLead: '写真やストーリーを投稿しよう。',
-        joinHead: '投稿とコラボレーション', joinDesc: 'フォームから写真とストーリーを送信。',
-        joinList: ['📷 写真を撮影', '📖 ストーリーをシェア', '🛡️ 公開マップへ掲載'],
-        lblName: 'お名前', lblCity: '都市と国名', lblStory: 'あなたのストーリー', lblMedia: '写真または動画',
-        filePlaceholder: '📁 ファイルを選択', fileSelected: '✅ 選択されたファイル: ', btnSubmit: 'ストーリーを送信',
+        portalLead: '各テーマは独立したパビリオンです...', navJoin: '参加する', storyEmpty: 'まだ投稿はありません。最初の投稿者になりましょう！', storyHint: 'オーキッドソーとの物語を投稿しよう！審査後、ここに掲載されます。', readMore: '詳細を読む →', mapHint: 'Orchidsaurの足跡は世界中に。地図のマーカーをタップすると、その土地の物語が読めます。',
+        btnBack: '← 前のページへ戻る', joinTitle: 'あなたの街を次の目的地に', joinLead: '蘭獸との写真・場所・ストーリーを投稿しよう。審査後、「蘭獸と同行」に掲載されます。',
+        joinHead: '投稿とコラボレーション', joinDesc: '下のフォームから写真1枚とストーリーを送信してください。承認されると「蘭獸と同行」に表示されます。',
+        joinList: ['📷 蘭獸と旅して写真を撮る', '📖 地域の蘭の話をシェア', '🛡️ 審査後に掲載'],
+        lblName: 'ニックネーム', lblCity: '場所（都市と国名）', lblStory: 'あなたのストーリー', lblMedia: '写真（1枚）',
+        filePlaceholder: '📁 写真を選択', fileSelected: '✅ 選択：', btnSubmit: 'ストーリーを送信',
         footerText: 'ORCHIDSAUR · TOGA', demoSubmitAlert: '【テスト成功！】',
-        inputNamePh: 'お名前を入力', inputCityPh: '例：台南、台湾', inputStoryPh: '体験をシェア...',
+        inputNamePh: '表示したいお名前', inputCityPh: '例：台南、台湾', inputStoryPh: '蘭獸との体験をシェア...',
+        privacyNote: '電話番号・住所・メールアドレスはストーリーに書かないでください。ニックネーム・場所・ストーリー・写真は、審査後にサイトで公開されます。',
+        consentText: '投稿した写真と文章を、台湾蘭花産業発展協会（TOGA）が蘭獸公式サイトで掲載することに同意します。写真は自分で撮影したもので、同意のない人物は写っていません。',
+        subSending: '送信中です…', subOk: '🎉 投稿を受け付けました。承認後、「蘭獸と同行」に掲載されます。',
+        subErrFill: 'ニックネーム・場所・ストーリーを入力してください。', subErrPhoto: '写真を1枚選んでください。', subErrConsent: '掲載への同意にチェックしてください。',
+        subErrBadPhoto: 'この写真は処理できませんでした。別の写真（JPG・PNG）をお試しください。', subErrNet: '送信できませんでした。しばらくしてからもう一度お試しください。', subErrWait: '次の投稿は1分ほどお待ちください。',
+        byLabel: '投稿者',
         prevPage: '前へ', nextPage: '次へ', submissionNo: '投稿番号：', submissionDate: '投稿日：',
 
         advTitle: '蘭獸探檢趣', advLead: 'オーキッドソー体験ゾーンへようこそ！クイズやミニゲーム、パソコン・スマホ用の壁紙づくりを楽しもう！',
@@ -605,6 +632,9 @@
       document.getElementById('inputStory').placeholder = t.inputStoryPh;
       
       document.getElementById('btnSubmit').textContent = t.btnSubmit;
+      document.getElementById('privacyNote').textContent = t.privacyNote;
+      document.getElementById('consentText').textContent = t.consentText;
+      updateFileName(document.getElementById('inputFile'));
       document.getElementById('btnBack').textContent = t.btnBack;
       document.getElementById('footerText').textContent = t.footerText;
       (function(){var L={zh:['蘭協','TIOS 臺灣國際蘭展','官方網站'],en:['TOGA','TIOS Taiwan Int\'l Orchid Show','Website'],ja:['TOGA','TIOS 台湾国際蘭展','公式サイト']}[currentLang]||['蘭協','TIOS','官方網站'];
@@ -1298,18 +1328,53 @@
 
     function updateFileName(input) {
       const label = document.getElementById('fileLabel');
+      const prev = document.getElementById('filePreview');
       const t = translations[currentLang];
       if (input.files && input.files[0]) {
         label.textContent = `${t.fileSelected}${input.files[0].name}`;
+        try { if (prev.dataset.u) URL.revokeObjectURL(prev.dataset.u); prev.dataset.u = URL.createObjectURL(input.files[0]); prev.src = prev.dataset.u; prev.style.display = 'block'; } catch (e) {}
       } else {
         label.textContent = t.filePlaceholder;
+        prev.style.display = 'none';
       }
     }
 
-    function handleDemoSubmit(e) {
-      e.preventDefault();
-      alert(translations[currentLang].demoSubmitAlert);
+    function showSubmitMsg(text, cls) {
+      const m = document.getElementById('submitMsg');
+      m.textContent = text; m.className = cls || '';
     }
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const t = translations[currentLang];
+      const f = document.getElementById('submissionForm');
+      if (document.getElementById('inputWebsite').value) { showSubmitMsg(t.subOk, 'ok'); f.reset(); return; }   /* 防機器人：隱藏欄位被填就假裝成功 */
+      const nickname = document.getElementById('inputName').value.trim();
+      const location_ = document.getElementById('inputCity').value.trim();
+      const story = document.getElementById('inputStory').value.trim();
+      const file = document.getElementById('inputFile').files[0];
+      if (!nickname || !location_ || !story) return showSubmitMsg(t.subErrFill, 'err');
+      if (!file) return showSubmitMsg(t.subErrPhoto, 'err');
+      if (!document.getElementById('inputConsent').checked) return showSubmitMsg(t.subErrConsent, 'err');
+      try { if (Date.now() - Number(localStorage.getItem('orchidLastSubmit') || 0) < 60000) return showSubmitMsg(t.subErrWait, 'err'); } catch (x) {}
+      if (!window.orchidSB) return showSubmitMsg(t.subErrNet, 'err');
+      const btn = document.getElementById('btnSubmit');
+      btn.disabled = true; showSubmitMsg(t.subSending, '');
+      window.orchidSB.submit({ nickname: nickname, location: location_, story: story, file: file }).then(() => {
+        try { localStorage.setItem('orchidLastSubmit', String(Date.now())); } catch (x) {}
+        f.reset(); updateFileName(document.getElementById('inputFile')); updateStoryCount();
+        showSubmitMsg(t.subOk, 'ok');
+      }).catch(err => {
+        console.error('投稿失敗', err);
+        showSubmitMsg(/^photo/.test(err.message) ? t.subErrBadPhoto : t.subErrNet, 'err');
+      }).then(() => { btn.disabled = false; });
+    }
+
+    function updateStoryCount() {
+      const el = document.getElementById('inputStory');
+      document.getElementById('storyCount').textContent = el.value.length + ' / 600';
+    }
+    document.getElementById('inputStory').addEventListener('input', updateStoryCount);
 
     addEventListener('hashchange', () => {
       const h = location.hash.slice(1);
@@ -1327,6 +1392,7 @@
   <img id="lbImg" alt="">
   <div class="lbcap" id="lbCap"></div>
 </div>
+<script src="submissions.js"></script>
 <script src="content-loader.js"></script>
 </body>
 </html>
