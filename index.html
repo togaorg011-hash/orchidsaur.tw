@@ -135,6 +135,12 @@
     .form-file input{display:none}
     .consent-row{display:flex;gap:10px;align-items:flex-start;font-size:14px;line-height:1.7;margin-bottom:16px;cursor:pointer}
     .consent-row input{margin-top:5px;flex:none}
+    .consent-row span{font-weight:bold}
+    .bad{border-color:#c0392b!important;background:#fff6f5}
+    .photo-wrap{position:relative;align-self:flex-start;margin-top:10px;max-width:100%}
+    .photo-wrap img{display:block;max-width:100%;max-height:220px;border-radius:12px}
+    .photo-x{position:absolute;top:8px;right:8px;width:34px;height:34px;border-radius:50%;border:0;background:rgba(0,0,0,.65);color:#fff;font-size:20px;line-height:34px;cursor:pointer;padding:0}
+    .photo-x:hover{background:#a33}
     .btn-submit:disabled{opacity:.6;cursor:wait}
     #submitMsg.ok{color:var(--green)}#submitMsg.err{color:#a33}
     .form-file label{cursor:pointer;color:var(--green);font-weight:bold}
@@ -203,11 +209,11 @@
   <main id="science" class="page"></main>
   <main id="story" class="page"></main>
 
-  <!-- 05 蘭獸探險趣 -->
+  <!-- 05 蘭獸遊樂園 -->
   <main id="adventure" class="page">
     <section class="mast">
       <p class="eyebrow">05 / EXPLORE & GAME</p>
-      <h1 id="advMastTitle">蘭獸探險趣</h1>
+      <h1 id="advMastTitle">蘭獸遊樂園</h1>
       <p class="lead" id="advMastLead">歡迎來到蘭獸互動體驗天地！挑戰知識問答、玩法小遊戲或 DIY 專屬 1920x1080 高解析度電腦桌布！</p>
     </section>
     <section class="section">
@@ -317,7 +323,7 @@
               <label for="inputFile" id="fileLabel">📁 點擊此處選擇照片</label>
               <input type="file" id="inputFile" name="file" accept="image/*" onchange="updateFileName(this)">
             </div>
-            <img id="filePreview" alt="" style="display:none;max-width:100%;max-height:220px;border-radius:12px;margin-top:10px;align-self:flex-start">
+            <div class="photo-wrap" id="photoWrap" style="display:none"><img id="filePreview" alt=""><button type="button" class="photo-x" id="btnRemovePhoto" onclick="removePhoto()">✕</button></div>
           </div>
 
           <div style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden" aria-hidden="true">
@@ -378,15 +384,16 @@
         btnSubmit: '送出探索故事', footerText: 'ORCHIDSAUR · 社團法人台灣蘭花產銷發展協會',
         demoSubmitAlert: '【前端門面測試成功！】\n我們已成功接收到你輸入的資料。',
         inputNamePh: '你想被稱呼的名字', inputCityPh: '例如：臺南，臺灣', inputStoryPh: '分享你遇見蘭獸的故事或地方蘭花體驗...',
-        privacyNote: '請不要在故事中留下電話、地址或 Email。暱稱、地點、故事與照片經審核後會公開顯示在網站上。',
-        consentText: '我同意將投稿的照片與文字授權社團法人台灣蘭花產銷發展協會，於蘭獸官網展示；照片為我本人拍攝，且照片中沒有未經同意的可辨識他人。',
+        fName: '暱稱', fCity: '地點', fStory: '故事', fPhoto: '照片', fConsent: '同意授權', subErrFillPrefix: '請完成：', removePhoto: '移除照片',
+        privacyNote: '請不要在故事中留下電話、地址或 Email。暱稱、地點、故事與照片經審核後，會刊登在「與獸同行」。',
+        consentText: '我同意將投稿的照片與文字授權社團法人台灣蘭花產銷發展協會，於蘭獸官網展示；照片為我本人拍攝，且照片中沒有未經同意的可辨識他人。本會保有解釋權。',
         subSending: '送出中，請稍候…', subOk: '🎉 已收到你的投稿！經蘭協審核通過後，就會刊登在「與獸同行」。',
         subErrFill: '請填寫暱稱、地點與故事。', subErrPhoto: '請選擇一張照片。', subErrConsent: '請先勾選同意授權。',
         subErrBadPhoto: '這張照片無法處理，請換一張（建議 JPG 或 PNG）。', subErrNet: '送出失敗，請稍後再試一次。', subErrWait: '請稍候一分鐘再送出下一筆。',
         byLabel: '投稿人',
         prevPage: '上一頁', nextPage: '下一頁', submissionNo: '投稿編號：', submissionDate: '投稿日期：',
         
-        advTitle: '蘭獸探險趣', advLead: '歡迎來到蘭獸互動體驗天地！挑戰知識問答、玩玩小遊戲，或自己動手做一張專屬的電腦或手機桌布！',
+        advTitle: '蘭獸遊樂園', advLead: '歡迎來到蘭獸互動體驗天地！挑戰知識問答、玩玩小遊戲，或自己動手做一張專屬的電腦或手機桌布！',
         tabQuiz: '知識闖關', tabCatch: '蘭獸接花', tabWallpaper: '蘭獸桌布畫廊',
         quizProgressPrefix: '題目', quizSuccess: '🎉 闖關成功！', quizSuccessMsg: '恭喜你完成所有蘭獸與蘭花知識挑戰，獲得「蘭花小專家」動態徽章！',
         btnReplay: '再玩一次', quizRight: '✨ 答對了！太厲害了！', quizWrong: '❌ 差一點點，再試試看！',
@@ -417,15 +424,16 @@
         filePlaceholder: '📁 Click here to choose a photo', fileSelected: '✅ Selected: ', btnSubmit: 'Submit Story',
         footerText: 'ORCHIDSAUR · TOGA', demoSubmitAlert: '[Frontend Test Success!]',
         inputNamePh: 'The name you would like shown', inputCityPh: 'e.g. Tainan, Taiwan', inputStoryPh: 'Share your Orchidsaur moment...',
-        privacyNote: 'Please do not include phone numbers, addresses or emails in your story. Your nickname, place, story and photo will be shown publicly after review.',
-        consentText: 'I allow the Taiwan Orchid Growers Association (TOGA) to display my submitted photo and text on the Orchidsaur website. I took the photo myself, and it shows no identifiable people who have not agreed.',
+        fName: 'nickname', fCity: 'place', fStory: 'story', fPhoto: 'photo', fConsent: 'permission box', subErrFillPrefix: 'Please complete: ', removePhoto: 'Remove photo',
+        privacyNote: 'Please do not include phone numbers, addresses or emails in your story. After review, your nickname, place, story and photo will be published in Walk with Orchidsaur.',
+        consentText: 'I allow the Taiwan Orchid Growers Association (TOGA) to display my submitted photo and text on the Orchidsaur website. I took the photo myself, and it shows no identifiable people who have not agreed. TOGA reserves the right of interpretation.',
         subSending: 'Sending, please wait…', subOk: '🎉 Thank you! Your submission will be published in Walk with Orchidsaur once it has been approved.',
         subErrFill: 'Please fill in nickname, place and story.', subErrPhoto: 'Please choose one photo.', subErrConsent: 'Please tick the permission box first.',
         subErrBadPhoto: 'This photo could not be processed. Please try another one (JPG or PNG).', subErrNet: 'Could not send. Please try again later.', subErrWait: 'Please wait a minute before sending another one.',
         byLabel: 'Submitted by',
         prevPage: 'Prev', nextPage: 'Next', submissionNo: 'Submission No: ', submissionDate: 'Date: ',
 
-        advTitle: 'Orchidsaur Adventure', advLead: 'Welcome to Orchidsaur Interactive Zone! Try the trivia, play the mini game, or make your own computer or phone wallpaper!',
+        advTitle: 'Orchidsaur Playground', advLead: 'Welcome to Orchidsaur Interactive Zone! Try the trivia, play the mini game, or make your own computer or phone wallpaper!',
         tabQuiz: 'Quiz Challenge', tabCatch: 'Catch Orchids', tabWallpaper: 'Wallpaper Gallery',
         quizProgressPrefix: 'Question', quizSuccess: '🎉 Challenge Cleared!', quizSuccessMsg: 'Congratulations on completing all the orchid trivia questions!',
         btnReplay: 'Play Again', quizRight: '✨ Correct! Excellent!', quizWrong: '❌ Almost there, try again!',
@@ -456,15 +464,16 @@
         filePlaceholder: '📁 写真を選択', fileSelected: '✅ 選択：', btnSubmit: 'ストーリーを送信',
         footerText: 'ORCHIDSAUR · TOGA', demoSubmitAlert: '【テスト成功！】',
         inputNamePh: '表示したいお名前', inputCityPh: '例：台南、台湾', inputStoryPh: '蘭獸との体験をシェア...',
-        privacyNote: '電話番号・住所・メールアドレスはストーリーに書かないでください。ニックネーム・場所・ストーリー・写真は、審査後にサイトで公開されます。',
-        consentText: '投稿した写真と文章を、台湾蘭花産業発展協会（TOGA）が蘭獸公式サイトで掲載することに同意します。写真は自分で撮影したもので、同意のない人物は写っていません。',
+        fName: 'ニックネーム', fCity: '場所', fStory: 'ストーリー', fPhoto: '写真', fConsent: '同意チェック', subErrFillPrefix: '未入力：', removePhoto: '写真を削除',
+        privacyNote: '電話番号・住所・メールアドレスはストーリーに書かないでください。ニックネーム・場所・ストーリー・写真は、審査後に「蘭獸と同行」に掲載されます。',
+        consentText: '投稿した写真と文章を、台湾蘭花産業発展協会（TOGA）が蘭獸公式サイトで掲載することに同意します。写真は自分で撮影したもので、同意のない人物は写っていません。本会は解釈権を有します。',
         subSending: '送信中です…', subOk: '🎉 投稿を受け付けました。承認後、「蘭獸と同行」に掲載されます。',
         subErrFill: 'ニックネーム・場所・ストーリーを入力してください。', subErrPhoto: '写真を1枚選んでください。', subErrConsent: '掲載への同意にチェックしてください。',
         subErrBadPhoto: 'この写真は処理できませんでした。別の写真（JPG・PNG）をお試しください。', subErrNet: '送信できませんでした。しばらくしてからもう一度お試しください。', subErrWait: '次の投稿は1分ほどお待ちください。',
         byLabel: '投稿者',
         prevPage: '前へ', nextPage: '次へ', submissionNo: '投稿番号：', submissionDate: '投稿日：',
 
-        advTitle: '蘭獸探檢趣', advLead: 'オーキッドソー体験ゾーンへようこそ！クイズやミニゲーム、パソコン・スマホ用の壁紙づくりを楽しもう！',
+        advTitle: '蘭獸あそびば', advLead: 'オーキッドソー体験ゾーンへようこそ！クイズやミニゲーム、パソコン・スマホ用の壁紙づくりを楽しもう！',
         tabQuiz: 'クイズに挑戦', tabCatch: '蘭獸の花キャッチ', tabWallpaper: '壁紙ギャラリー',
         quizProgressPrefix: '問題', quizSuccess: '🎉 クリアおめでとう！', quizSuccessMsg: 'すべての蘭クイズをクリアしました！',
         btnReplay: 'もう一度プレイ', quizRight: '✨ 大正解！素晴らしい！', quizWrong: '❌ おしい！もう一度挑戦！',
@@ -518,21 +527,21 @@
           ]
         },
         story: { no: '04', title: '與獸同行', items: [] },
-        adventure: { no: '05', title: '蘭獸探險趣', items: [] }
+        adventure: { no: '05', title: '蘭獸遊樂園', items: [] }
       },
       en: {
         origin: { no: '01', title: 'Origin', items: [] },
         journey: { no: '02', title: 'Tour Exhibition', items: [] },
         science: { no: '03', title: 'Science', items: [] },
         story: { no: '04', title: 'Walk with Orchidsaur', items: [] },
-        adventure: { no: '05', title: 'Orchidsaur Adventure', items: [] }
+        adventure: { no: '05', title: 'Orchidsaur Playground', items: [] }
       },
       ja: {
         origin: { no: '01', title: '起源', items: [] },
         journey: { no: '02', title: '巡迴展歷', items: [] },
         science: { no: '03', title: '科学教室', items: [] },
         story: { no: '04', title: '蘭獸と同行', items: [] },
-        adventure: { no: '05', title: '蘭獸探檢趣', items: [] }
+        adventure: { no: '05', title: '蘭獸あそびば', items: [] }
       }
     };
 
@@ -1329,14 +1338,23 @@
     function updateFileName(input) {
       const label = document.getElementById('fileLabel');
       const prev = document.getElementById('filePreview');
+      const wrap = document.getElementById('photoWrap');
       const t = translations[currentLang];
+      const rb = document.getElementById('btnRemovePhoto'); rb.title = t.removePhoto; rb.setAttribute('aria-label', t.removePhoto);
       if (input.files && input.files[0]) {
         label.textContent = `${t.fileSelected}${input.files[0].name}`;
-        try { if (prev.dataset.u) URL.revokeObjectURL(prev.dataset.u); prev.dataset.u = URL.createObjectURL(input.files[0]); prev.src = prev.dataset.u; prev.style.display = 'block'; } catch (e) {}
+        document.querySelector('.form-file').classList.remove('bad');
+        try { if (prev.dataset.u) URL.revokeObjectURL(prev.dataset.u); prev.dataset.u = URL.createObjectURL(input.files[0]); prev.src = prev.dataset.u; wrap.style.display = 'block'; } catch (e) {}
       } else {
         label.textContent = t.filePlaceholder;
-        prev.style.display = 'none';
+        wrap.style.display = 'none';
       }
+    }
+
+    function removePhoto() {
+      const input = document.getElementById('inputFile');
+      input.value = '';
+      updateFileName(input);
     }
 
     function showSubmitMsg(text, cls) {
@@ -1353,9 +1371,22 @@
       const location_ = document.getElementById('inputCity').value.trim();
       const story = document.getElementById('inputStory').value.trim();
       const file = document.getElementById('inputFile').files[0];
-      if (!nickname || !location_ || !story) return showSubmitMsg(t.subErrFill, 'err');
-      if (!file) return showSubmitMsg(t.subErrPhoto, 'err');
-      if (!document.getElementById('inputConsent').checked) return showSubmitMsg(t.subErrConsent, 'err');
+      const consent = document.getElementById('inputConsent');
+      document.querySelectorAll('#submissionForm .bad').forEach(x => x.classList.remove('bad'));
+      const missing = [];
+      if (!nickname) missing.push([t.fName, document.getElementById('inputName')]);
+      if (!location_) missing.push([t.fCity, document.getElementById('inputCity')]);
+      if (!story) missing.push([t.fStory, document.getElementById('inputStory')]);
+      if (!file) missing.push([t.fPhoto, document.querySelector('.form-file')]);
+      if (!consent.checked) missing.push([t.fConsent, consent.closest('.consent-row')]);
+      if (missing.length) {
+        missing.forEach(m => m[1].classList.add('bad'));
+        showSubmitMsg(t.subErrFillPrefix + missing.map(m => m[0]).join(currentLang === 'en' ? ', ' : '、'), 'err');
+        const first = missing[0][1];
+        first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        if (first.focus && first.tagName !== 'LABEL' && !first.classList.contains('form-file')) first.focus();
+        return;
+      }
       try { if (Date.now() - Number(localStorage.getItem('orchidLastSubmit') || 0) < 60000) return showSubmitMsg(t.subErrWait, 'err'); } catch (x) {}
       if (!window.orchidSB) return showSubmitMsg(t.subErrNet, 'err');
       const btn = document.getElementById('btnSubmit');
@@ -1375,6 +1406,8 @@
       document.getElementById('storyCount').textContent = el.value.length + ' / 600';
     }
     document.getElementById('inputStory').addEventListener('input', updateStoryCount);
+    ['inputName','inputCity','inputStory'].forEach(id => document.getElementById(id).addEventListener('input', e => e.target.classList.remove('bad')));
+    document.getElementById('inputConsent').addEventListener('change', e => e.target.closest('.consent-row').classList.remove('bad'));
 
     addEventListener('hashchange', () => {
       const h = location.hash.slice(1);
