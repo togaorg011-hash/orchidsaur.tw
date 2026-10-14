@@ -50,14 +50,18 @@
     });
   }
 
+  function loadQuiz() {
+    return fetch('content/quiz.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : []; }).catch(function () { return []; });
+  }
+
   function load() {
     var keys = Object.keys(FILES);
-    return Promise.all(keys.map(function (k) {
+    return loadQuiz().then(function (q) { window.orchidQuiz = q; }).then(function () { return Promise.all(keys.map(function (k) {
       return fetch(FILES[k], { cache: 'no-cache' }).then(function (r) {
         if (!r.ok) throw new Error(FILES[k] + ' ' + r.status);
         return r.json();
       });
-    })).then(function (res) {
+    })); }).then(function (res) {
       keys.forEach(function (k, n) {
         window.orchidData = window.orchidData || {};
         window.orchidData[k] = res[n];

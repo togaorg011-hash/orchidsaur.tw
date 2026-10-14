@@ -373,7 +373,7 @@
         
         advTitle: '蘭獸探險趣', advLead: '歡迎來到蘭獸互動體驗天地！挑戰知識問答、玩玩小遊戲，或自己動手做一張專屬的電腦或手機桌布！',
         tabQuiz: '知識闖關', tabCatch: '蘭獸接花', tabWallpaper: '蘭獸桌布畫廊',
-        quizProgressPrefix: '題目', quizSuccess: '🎉 闖關成功！', quizSuccessMsg: '恭喜你完成 8 題蘭獸與蘭花知識挑戰，獲得「蘭花小專家」動態徽章！',
+        quizProgressPrefix: '題目', quizSuccess: '🎉 闖關成功！', quizSuccessMsg: '恭喜你完成所有蘭獸與蘭花知識挑戰，獲得「蘭花小專家」動態徽章！',
         btnReplay: '再玩一次', quizRight: '✨ 答對了！太厲害了！', quizWrong: '❌ 差一點點，再試試看！',
         catchTitle: '🌸 蘭獸接花大作戰', catchDesc: '電腦用滑鼠、手機用手指左右移動蘭獸，接住掉落的盛開蘭花與水滴，避開枯枝！',
         btnOpenGameWin: '🚀 以獨立新視窗開啟遊戲',
@@ -406,7 +406,7 @@
 
         advTitle: 'Orchidsaur Adventure', advLead: 'Welcome to Orchidsaur Interactive Zone! Try the trivia, play the mini game, or make your own computer or phone wallpaper!',
         tabQuiz: 'Quiz Challenge', tabCatch: 'Catch Orchids', tabWallpaper: 'Wallpaper Gallery',
-        quizProgressPrefix: 'Question', quizSuccess: '🎉 Challenge Cleared!', quizSuccessMsg: 'Congratulations on completing all 8 orchid trivia questions!',
+        quizProgressPrefix: 'Question', quizSuccess: '🎉 Challenge Cleared!', quizSuccessMsg: 'Congratulations on completing all the orchid trivia questions!',
         btnReplay: 'Play Again', quizRight: '✨ Correct! Excellent!', quizWrong: '❌ Almost there, try again!',
         catchTitle: '🌸 Orchids Catch Game', catchDesc: 'Move the mouse (or drag your finger) to steer Orchidsaur and catch falling orchids and raindrops. Avoid the dry twigs!',
         btnOpenGameWin: '🚀 Open Game in New Window',
@@ -439,7 +439,7 @@
 
         advTitle: '蘭獸探檢趣', advLead: 'オーキッドソー体験ゾーンへようこそ！クイズやミニゲーム、パソコン・スマホ用の壁紙づくりを楽しもう！',
         tabQuiz: 'クイズに挑戦', tabCatch: '蘭獸の花キャッチ', tabWallpaper: '壁紙ギャラリー',
-        quizProgressPrefix: '問題', quizSuccess: '🎉 クリアおめでとう！', quizSuccessMsg: '全8問の蘭クイズをクリアしました！',
+        quizProgressPrefix: '問題', quizSuccess: '🎉 クリアおめでとう！', quizSuccessMsg: 'すべての蘭クイズをクリアしました！',
         btnReplay: 'もう一度プレイ', quizRight: '✨ 大正解！素晴らしい！', quizWrong: '❌ おしい！もう一度挑戦！',
         catchTitle: '🌸 蘭獸の花キャッチゲーム', catchDesc: 'マウス（スマホは指）で蘭獸を左右に動かし、落ちてくる蘭や水滴をキャッチ！枯れ枝には注意！',
         btnOpenGameWin: '🚀 新しいウィンドウでゲームを開く',
@@ -509,39 +509,7 @@
       }
     };
 
-    /* 多語系 8 題問答題庫 (已修正月份文字與全世界趴趴走) */
-    const multiQuizData = {
-      zh: [
-        { q: "這隻擁有蘭花身體特徵與遠古記憶的白色吉祥物叫什麼名字？", opts: ["Orchidsaur（蘭獸）", "Pikachu（皮卡丘）", "DinoGreen（綠恐龍）", "FloraBot（花花機器人）"], ans: 0 },
-        { q: "Orchidsaur（蘭獸）的名字是由哪兩個英文單字結合而成的？", opts: ["Ocean（海洋）＋ Shark（鯊魚）", "Orchid（蘭花）＋ Dinosaur（恐龍）", "Organic（有機）＋ Solar（太陽能）", "Orient（東方）＋ Sail（航行）"], ans: 1 },
-        { q: "蘭獸身上最標誌性的特徵之一是有著「8 隻腳」，這象徵著什麼？", opts: ["方便去搬重物", "跑得跟賽車一樣快", "蘭花的氣生根與強韌的環境適應力", "只是為了穿更多雙鞋子"], ans: 2 },
-        { q: "科學家透過什麼線索，推算蘭科植物的祖先早在恐龍時期就已經出現？", opts: ["海底沉積岩中的魚類化石", "封存在琥珀中的蜜蜂花粉", "埃及金字塔內的壁畫圖騰", "古老圖書館書籍"], ans: 1 },
-        { q: "盛大的「臺灣國際蘭展」通常在每年幾月舉行？", opts: ["每年 3 月", "每年 7 月", "每年 10 月", "每年 12 月"], ans: 0 },
-        { q: "臺灣國際蘭展的經典展場位於哪裡？", opts: ["花蓮太魯閣國家公園", "新竹科學園區", "臺南後壁區（農業部花卉創新園區）", "澎湖花火節主舞台"], ans: 2 },
-        { q: "照顧家裡的蝴蝶蘭時，下列哪一種做法是正確的？", opts: ["天天瘋狂澆水把盆栽當水族箱養", "保持通風良好、放置於半陰散射光處，等介質乾了再澆水", "拿海水泡蘭花幫它補鹽分", "放在完全黑漆漆的房間讓它生病"], ans: 1 },
-        { q: "蘭獸曾經在哪裡留下過探索足跡與展出身影呢？", opts: ["全世界趴趴走", "只在電玩遊戲裡出現過", "只存在於夢境中", "從未對外展示過"], ans: 0 }
-      ],
-      en: [
-        { q: "What is the name of this white mascot with orchid features?", opts: ["Orchidsaur", "Pikachu", "DinoGreen", "FloraBot"], ans: 0 },
-        { q: "What words make up the name 'Orchidsaur'?", opts: ["Ocean + Shark", "Orchid + Dinosaur", "Organic + Solar", "Orient + Sail"], ans: 1 },
-        { q: "What do the 8 legs of Orchidsaur represent?", opts: ["Heavy lifting", "Racing speed", "Aerial roots & strong adaptability", "Wearing more shoes"], ans: 2 },
-        { q: "How did scientists discover orchids existed in the dinosaur age?", opts: ["Fish fossils in rock", "Bee pollen trapped in amber", "Egyptian pyramid murals", "Ancient library books"], ans: 1 },
-        { q: "When is the Taiwan International Orchid Show usually held?", opts: ["Every March", "Every July", "Every October", "Every December"], ans: 0 },
-        { q: "Where is the main venue for the Taiwan International Orchid Show?", opts: ["Taroko National Park", "Hsinchu Science Park", "Houbi District, Tainan (Flower Innovation Park)", "Penghu Stage"], ans: 2 },
-        { q: "Which of the following is correct when caring for a Moth Orchid?", opts: ["Water every day like an aquarium", "Ensure good ventilation, indirect light, water when dry", "Soak in seawater for salt", "Keep in a pitch black room"], ans: 1 },
-        { q: "Where has Orchidsaur travelled and been exhibited?", opts: ["Traveling all over the world!", "Only in video games", "Only in dreams", "Never exhibited publicly"], ans: 0 }
-      ],
-      ja: [
-        { q: "蘭の特徴と古代の記憶を持つこの白いマスコットの名前は？", opts: ["Orchidsaur（蘭獸）", "Pikachu（ピカチュウ）", "DinoGreen（ディノグリーン）", "FloraBot（フローラボット）"], ans: 0 },
-        { q: "Orchidsaurの名前の由来となった2つの英單語は？", opts: ["Ocean（海）＋ Shark（サメ）", "Orchid（蘭）＋ Dinosaur（恐竜）", "Organic（オーガニック）＋ Solar（ソーラー）", "Orient（東洋）＋ Sail（航海）"], ans: 1 },
-        { q: "蘭獸の8本足は何を象徴していますか？", opts: ["重い荷物を運ぶため", "レーシングカー並みの速さ", "氣生根と強い環境適応力", "靴をたくさん履くため"], ans: 2 },
-        { q: "恐竜時代に蘭が存在したことを示す科学的証拠は何ですか？", opts: ["海底の魚化石", "琥珀に閉じ込められたミツバチの花粉", "ピラミッドの壁画", "古書物の記述"], ans: 1 },
-        { q: "「台湾国際蘭展」は毎年何月に開催されますか？", opts: ["毎年 3月", "毎年 7月", "毎年 10月", "毎年 12月"], ans: 0 },
-        { q: "台湾国際蘭展のメイン会場はどこですか？", opts: ["太魯閣国家公園", "新竹サイエンスパーク", "台南市後壁区（農業部花卉創新園區）", "澎湖ステージ"], ans: 2 },
-        { q: "家庭で胡蝶蘭を育てる際、正しいお手入れ方法はどれ？", opts: ["水族館のように毎日水やり", "風通しの良い半日陰、乾いたら水やり", "海水に浸す", "真っ暗な部屋に置く"], ans: 1 },
-        { q: "蘭獸はどこで展示されたことがありますか？", opts: ["世界中を駆け回っています！", "ゲームの中だけ", "夢の中だけ", "展示されたことはない"], ans: 0 }
-      ]
-    };
+    /* 問答題庫：內容放在 content/quiz.json（可用後台編輯），載入後存在 window.orchidQuiz */
 
     let activeShuffledQuiz = [];
     let currentQuizIdx = 0;
@@ -560,7 +528,11 @@
 
     /* 初始化並隨機化問答題目與選項位置 */
     function initShuffledQuiz() {
-      const rawList = multiQuizData[currentLang] || multiQuizData['zh'];
+      const pk = (o) => (o && (o[currentLang] || o.zh)) || '';
+      const rawList = (window.orchidQuiz || []).map(x => {
+        const opts = [pk(x.right)].concat((x.wrong || []).map(pk)).filter(Boolean);
+        return { q: pk(x.q), opts: opts, ans: 0 };
+      }).filter(x => x.q && x.opts.length > 1);
       const shuffledQuestions = shuffleArray(rawList);
 
       activeShuffledQuiz = shuffledQuestions.map(item => {

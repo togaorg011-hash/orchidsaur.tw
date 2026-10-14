@@ -1,0 +1,234 @@
+[
+  {
+    "q": {
+      "zh": "這隻擁有蘭花身體特徵與遠古記憶的白色吉祥物叫什麼名字？",
+      "en": "What is the name of this white mascot with orchid features?",
+      "ja": "蘭の特徴と古代の記憶を持つこの白いマスコットの名前は？"
+    },
+    "right": {
+      "zh": "Orchidsaur（蘭獸）",
+      "en": "Orchidsaur",
+      "ja": "Orchidsaur（蘭獸）"
+    },
+    "wrong": [
+      {
+        "zh": "Pikachu（皮卡丘）",
+        "en": "Pikachu",
+        "ja": "Pikachu（ピカチュウ）"
+      },
+      {
+        "zh": "DinoGreen（綠恐龍）",
+        "en": "DinoGreen",
+        "ja": "DinoGreen（ディノグリーン）"
+      },
+      {
+        "zh": "FloraBot（花花機器人）",
+        "en": "FloraBot",
+        "ja": "FloraBot（フローラボット）"
+      }
+    ]
+  },
+  {
+    "q": {
+      "zh": "Orchidsaur（蘭獸）的名字是由哪兩個英文單字結合而成的？",
+      "en": "What words make up the name 'Orchidsaur'?",
+      "ja": "Orchidsaurの名前の由来となった2つの英單語は？"
+    },
+    "right": {
+      "zh": "Orchid（蘭花）＋ Dinosaur（恐龍）",
+      "en": "Orchid + Dinosaur",
+      "ja": "Orchid（蘭）＋ Dinosaur（恐竜）"
+    },
+    "wrong": [
+      {
+        "zh": "Ocean（海洋）＋ Shark（鯊魚）",
+        "en": "Ocean + Shark",
+        "ja": "Ocean（海）＋ Shark（サメ）"
+      },
+      {
+        "zh": "Organic（有機）＋ Solar（太陽能）",
+        "en": "Organic + Solar",
+        "ja": "Organic（オーガニック）＋ Solar（ソーラー）"
+      },
+      {
+        "zh": "Orient（東方）＋ Sail（航行）",
+        "en": "Orient + Sail",
+        "ja": "Orient（東洋）＋ Sail（航海）"
+      }
+    ]
+  },
+  {
+    "q": {
+      "zh": "蘭獸身上最標誌性的特徵之一是有著「8 隻腳」，這象徵著什麼？",
+      "en": "What do the 8 legs of Orchidsaur represent?",
+      "ja": "蘭獸の8本足は何を象徴していますか？"
+    },
+    "right": {
+      "zh": "蘭花的氣生根與強韌的環境適應力",
+      "en": "Aerial roots & strong adaptability",
+      "ja": "氣生根と強い環境適応力"
+    },
+    "wrong": [
+      {
+        "zh": "方便去搬重物",
+        "en": "Heavy lifting",
+        "ja": "重い荷物を運ぶため"
+      },
+      {
+        "zh": "跑得跟賽車一樣快",
+        "en": "Racing speed",
+        "ja": "レーシングカー並みの速さ"
+      },
+      {
+        "zh": "只是為了穿更多雙鞋子",
+        "en": "Wearing more shoes",
+        "ja": "靴をたくさん履くため"
+      }
+    ]
+  },
+  {
+    "q": {
+      "zh": "科學家透過什麼線索，推算蘭科植物的祖先早在恐龍時期就已經出現？",
+      "en": "How did scientists discover orchids existed in the dinosaur age?",
+      "ja": "恐竜時代に蘭が存在したことを示す科学的証拠は何ですか？"
+    },
+    "right": {
+      "zh": "封存在琥珀中的蜜蜂花粉",
+      "en": "Bee pollen trapped in amber",
+      "ja": "琥珀に閉じ込められたミツバチの花粉"
+    },
+    "wrong": [
+      {
+        "zh": "海底沉積岩中的魚類化石",
+        "en": "Fish fossils in rock",
+        "ja": "海底の魚化石"
+      },
+      {
+        "zh": "埃及金字塔內的壁畫圖騰",
+        "en": "Egyptian pyramid murals",
+        "ja": "ピラミッドの壁画"
+      },
+      {
+        "zh": "古老圖書館書籍",
+        "en": "Ancient library books",
+        "ja": "古書物の記述"
+      }
+    ]
+  },
+  {
+    "q": {
+      "zh": "盛大的「臺灣國際蘭展」通常在每年幾月舉行？",
+      "en": "When is the Taiwan International Orchid Show usually held?",
+      "ja": "「台湾国際蘭展」は毎年何月に開催されますか？"
+    },
+    "right": {
+      "zh": "每年 3 月",
+      "en": "Every March",
+      "ja": "毎年 3月"
+    },
+    "wrong": [
+      {
+        "zh": "每年 7 月",
+        "en": "Every July",
+        "ja": "毎年 7月"
+      },
+      {
+        "zh": "每年 10 月",
+        "en": "Every October",
+        "ja": "毎年 10月"
+      },
+      {
+        "zh": "每年 12 月",
+        "en": "Every December",
+        "ja": "毎年 12月"
+      }
+    ]
+  },
+  {
+    "q": {
+      "zh": "臺灣國際蘭展的經典展場位於哪裡？",
+      "en": "Where is the main venue for the Taiwan International Orchid Show?",
+      "ja": "台湾国際蘭展のメイン会場はどこですか？"
+    },
+    "right": {
+      "zh": "臺南後壁區（農業部花卉創新園區）",
+      "en": "Houbi District, Tainan (Flower Innovation Park)",
+      "ja": "台南市後壁区（農業部花卉創新園區）"
+    },
+    "wrong": [
+      {
+        "zh": "花蓮太魯閣國家公園",
+        "en": "Taroko National Park",
+        "ja": "太魯閣国家公園"
+      },
+      {
+        "zh": "新竹科學園區",
+        "en": "Hsinchu Science Park",
+        "ja": "新竹サイエンスパーク"
+      },
+      {
+        "zh": "澎湖花火節主舞台",
+        "en": "Penghu Stage",
+        "ja": "澎湖ステージ"
+      }
+    ]
+  },
+  {
+    "q": {
+      "zh": "照顧家裡的蝴蝶蘭時，下列哪一種做法是正確的？",
+      "en": "Which of the following is correct when caring for a Moth Orchid?",
+      "ja": "家庭で胡蝶蘭を育てる際、正しいお手入れ方法はどれ？"
+    },
+    "right": {
+      "zh": "保持通風良好、放置於半陰散射光處，等介質乾了再澆水",
+      "en": "Ensure good ventilation, indirect light, water when dry",
+      "ja": "風通しの良い半日陰、乾いたら水やり"
+    },
+    "wrong": [
+      {
+        "zh": "天天瘋狂澆水把盆栽當水族箱養",
+        "en": "Water every day like an aquarium",
+        "ja": "水族館のように毎日水やり"
+      },
+      {
+        "zh": "拿海水泡蘭花幫它補鹽分",
+        "en": "Soak in seawater for salt",
+        "ja": "海水に浸す"
+      },
+      {
+        "zh": "放在完全黑漆漆的房間讓它生病",
+        "en": "Keep in a pitch black room",
+        "ja": "真っ暗な部屋に置く"
+      }
+    ]
+  },
+  {
+    "q": {
+      "zh": "蘭獸曾經在哪裡留下過探索足跡與展出身影呢？",
+      "en": "Where has Orchidsaur travelled and been exhibited?",
+      "ja": "蘭獸はどこで展示されたことがありますか？"
+    },
+    "right": {
+      "zh": "全世界趴趴走",
+      "en": "Traveling all over the world!",
+      "ja": "世界中を駆け回っています！"
+    },
+    "wrong": [
+      {
+        "zh": "只在電玩遊戲裡出現過",
+        "en": "Only in video games",
+        "ja": "ゲームの中だけ"
+      },
+      {
+        "zh": "只存在於夢境中",
+        "en": "Only in dreams",
+        "ja": "夢の中だけ"
+      },
+      {
+        "zh": "從未對外展示過",
+        "en": "Never exhibited publicly",
+        "ja": "展示されたことはない"
+      }
+    ]
+  }
+]
