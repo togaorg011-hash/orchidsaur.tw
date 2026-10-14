@@ -257,20 +257,7 @@
           
           <div class="canvas-container" id="wallpaperCanvas"><canvas class="wall-bg" id="wallBg" width="960" height="540"></canvas></div>
           
-          <div class="sticker-tool-bar">
-            <span id="stkBeast" style="align-self:center;font-weight:bold">蘭獸</span>
-            <button class="sticker-btn" style="padding:6px 10px" aria-label="站立" onclick="addImgSticker('images/sticker/orchidsaur-standing.png')"><img src="images/sticker/orchidsaur-standing.png" alt="站立" style="height:38px;display:block"></button>
-            <button class="sticker-btn" style="padding:6px 10px" aria-label="趴著" onclick="addImgSticker('images/sticker/orchidsaur-lying.png')"><img src="images/sticker/orchidsaur-lying.png" alt="趴著" style="height:38px;display:block"></button>
-            <button class="sticker-btn" style="padding:6px 10px" aria-label="坐著" onclick="addImgSticker('images/sticker/orchidsaur-sitting.png')"><img src="images/sticker/orchidsaur-sitting.png" alt="坐著" style="height:38px;display:block"></button>
-            <button class="sticker-btn" style="padding:6px 10px" aria-label="低頭" onclick="addImgSticker('images/sticker/orchidsaur-grazing.png')"><img src="images/sticker/orchidsaur-grazing.png" alt="低頭" style="height:38px;display:block"></button>
-            <button class="sticker-btn" style="padding:6px 10px" aria-label="粉斑" onclick="addImgSticker('images/sticker/orchidsaur-pink.png')"><img src="images/sticker/orchidsaur-pink.png" alt="粉斑" style="height:38px;display:block"></button>
-            <button class="sticker-btn" style="padding:6px 10px" aria-label="Logo" onclick="addImgSticker('images/sticker/orchidsaur-logo.png')"><img src="images/sticker/orchidsaur-logo.png" alt="Logo" style="height:38px;display:block"></button>
-            <button class="sticker-btn" onclick="addSticker('🌸')">🌸 <span id="stkMoth">蝴蝶蘭</span></button>
-            <button class="sticker-btn" onclick="addSticker('🌺')">🌺 <span id="stkCatt">嘉德麗雅蘭</span></button>
-            <button class="sticker-btn" onclick="addSticker('☀️')">☀️ <span id="stkSun">陽光</span></button>
-            <button class="sticker-btn" onclick="addSticker('🌱')">🌱 <span id="stkSprout">幼芽</span></button>
-            <button class="sticker-btn" onclick="addSticker('🐚')">🐚 <span id="stkShell">貝殼</span></button>
-            </div>
+          <div class="sticker-tool-bar" id="stickerBar"></div>
           <div class="sticker-tool-bar">
             <button class="sticker-btn" onclick="resizeSticker(1.2)" id="btnBigger">＋ 放大</button>
             <button class="sticker-btn" onclick="resizeSticker(1/1.2)" id="btnSmaller">－ 縮小</button>
@@ -626,14 +613,9 @@
       document.getElementById('bgGrass').textContent = t.bgGrass;
       document.getElementById('bgBeach').textContent = t.bgBeach;
 
-      document.getElementById('stkBeast').textContent = t.stkBeast;
-      document.getElementById('stkMoth').textContent = t.stkMoth;
-      document.getElementById('stkCatt').textContent = t.stkCatt;
-      document.getElementById('stkSun').textContent = t.stkSun;
-      document.getElementById('stkSprout').textContent = t.stkSprout;
-      document.getElementById('stkShell').textContent = t.stkShell;
       document.getElementById('btnDownload').textContent = t.btnDownload;
       ['szPC','szPhone','btnBigger','btnSmaller','btnDel','btnClear'].forEach(id => { document.getElementById(id).textContent = t[id]; });
+      buildStickerBar();
 
       document.getElementById('joinTitle').innerHTML = phrase(t.joinTitle);
       document.getElementById('joinLead').innerHTML = phrase(t.joinLead);
@@ -1125,6 +1107,49 @@
     function selectSticker(st) {
       selSticker = st;
       stickers.forEach(o => o.el.classList.toggle('sel', o === st));
+    }
+
+    /* 貼圖列：要新增貼圖，在下面這份清單加一行即可。img = 圖片貼圖，emoji = 表情符號貼圖；名稱依序為 中文、英文、日文；沒有名稱就只顯示圖示 */
+    const STICKERS = [
+      { img: 'orchidsaur-standing.png', alt: ['站立', 'Standing', '立ち'] },
+      { img: 'orchidsaur-lying.png', alt: ['趴著', 'Lying', '伏せ'] },
+      { img: 'orchidsaur-sitting.png', alt: ['坐著', 'Sitting', '座り'] },
+      { img: 'orchidsaur-grazing.png', alt: ['低頭', 'Grazing', 'うつむき'] },
+      { img: 'orchidsaur-pink.png', alt: ['粉斑', 'Pink', 'ピンク'] },
+      { emoji: '🌸', name: ['蝴蝶蘭', 'Phalaenopsis', 'ファレノプシス'] },
+      { emoji: '🌺', name: ['嘉德麗雅蘭', 'Cattleya', 'カトレア'] },
+      { emoji: '🌱', name: ['幼芽', 'Sprout', '新芽'] },
+      { emoji: '☀️', name: ['陽光', 'Sun', '太陽'] },
+      { emoji: '🐚', name: ['貝殼', 'Shell', '貝殻'] },
+      { emoji: '🐿️', name: ['松鼠', 'Squirrel', 'リス'] },
+      { img: 'orchidsaur-deer.svg', name: ['梅花鹿', 'Sika deer', 'シカ'] },
+      { emoji: '🐗', name: ['野豬', 'Wild boar', 'イノシシ'] },
+      { img: 'orchidsaur-bear.svg', name: ['黑熊', 'Black bear', 'ツキノワグマ'] },
+      { emoji: '🦊', name: ['狐狸', 'Fox', 'キツネ'] },
+      { emoji: '🦀', name: ['螃蟹', 'Crab', 'カニ'] },
+      { emoji: '🐋', name: ['鯨魚', 'Whale', 'クジラ'] },
+      { img: 'orchidsaur-sandcastle.svg', name: ['沙雕城堡', 'Sandcastle', '砂のお城'] }
+    ];
+    function buildStickerBar() {
+      const li = { zh: 0, en: 1, ja: 2 }[currentLang] || 0, bar = document.getElementById('stickerBar');
+      if (!bar) return;
+      bar.innerHTML = '';
+      STICKERS.forEach(st => {
+        const btn = document.createElement('button');
+        btn.className = 'sticker-btn';
+        const label = (st.name || st.alt)[li];
+        btn.setAttribute('aria-label', label);
+        if (st.img) {
+          const src = 'images/sticker/' + st.img;
+          btn.innerHTML = '<img src="' + src + '" alt="" style="height:' + (st.name ? 26 : 38) + 'px;display:block">' + (st.name ? '<span>' + label + '</span>' : '');
+          btn.style.cssText = 'display:inline-flex;align-items:center;gap:6px;' + (st.name ? '' : 'padding:6px 10px;background:#b9d7ca');
+          btn.onclick = () => addImgSticker(src);
+        } else {
+          btn.innerHTML = st.emoji + ' <span>' + label + '</span>';
+          btn.onclick = () => addSticker(st.emoji);
+        }
+        bar.appendChild(btn);
+      });
     }
 
     function addImgSticker(src) { addSticker(null, src); }
