@@ -6,7 +6,6 @@ media:
   output: /images
   categories: [image]
   label: 網站照片
-  rename: safe
 
 content:
   - name: journey
@@ -51,7 +50,7 @@ content:
         type: object
         list: true
         fields:
-          - { name: src, label: 照片, type: image, required: true, options: { rename: safe } }
+          - { name: src, label: 照片, type: image, required: true }
           - name: caption
             label: 圖說
             type: object
@@ -94,7 +93,7 @@ content:
         type: object
         list: true
         fields:
-          - { name: src, label: 照片, type: image, required: true, options: { rename: safe } }
+          - { name: src, label: 照片, type: image, required: true }
           - name: caption
             label: 圖說
             type: object
@@ -137,7 +136,7 @@ content:
         type: object
         list: true
         fields:
-          - { name: src, label: 照片, type: image, required: true, options: { rename: safe } }
+          - { name: src, label: 照片, type: image, required: true }
           - name: caption
             label: 圖說
             type: object
@@ -146,3 +145,33 @@ content:
               - { name: en, label: English, type: string }
               - { name: ja, label: 日本語, type: string }
           - { name: focus, label: 封面對焦位置（進階，可留空）, type: string }
+
+  - name: quiz
+    label: 遊戲區－知識闖關題庫
+    type: file
+    path: content/quiz.json
+    format: json
+    list: true
+    fields:
+      - name: q
+        label: 題目
+        type: object
+        fields:
+          - { name: zh, label: 中文, type: string }
+          - { name: en, label: English, type: string }
+          - { name: ja, label: 日本語, type: string }
+      - name: right
+        label: 正確答案
+        type: object
+        fields:
+          - { name: zh, label: 中文, type: string }
+          - { name: en, label: English, type: string }
+          - { name: ja, label: 日本語, type: string }
+      - name: wrong
+        label: 錯誤選項（放 3 個；遊戲會自動打亂順序）
+        type: object
+        list: true
+        fields:
+          - { name: zh, label: 中文, type: string }
+          - { name: en, label: English, type: string }
+          - { name: ja, label: 日本語, type: string }
