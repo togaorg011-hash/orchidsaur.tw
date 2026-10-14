@@ -115,6 +115,7 @@
     .back{border:0;background:transparent;color:var(--green);font-weight:700;cursor:pointer;margin-bottom:20px;font-size:16px}
     .detail-visual.has-photo{height:auto;background:#e4eae6;overflow:hidden;cursor:zoom-in;display:block}
     .detail-visual.has-photo img{width:100%;height:auto;max-height:640px;object-fit:cover;object-position:50% 40%;display:block}
+    .detail-visual.has-photo.contain img{object-fit:contain;max-height:600px;background:#e4eae6}
     .detail-cap{font-size:14px;color:var(--muted);margin:-14px 4px 22px;line-height:1.6}
     .detail-visual{height:360px;margin:28px 0;border-radius:28px;background:radial-gradient(circle at 50% 42%,#fff 0 8%,transparent 9%),radial-gradient(ellipse at 50% 65%,#eef2e8 0 24%,transparent 25%),linear-gradient(140deg,#cbdcbd,#eff0df);display:grid;place-items:center}
     .beast{font-size:96px}
@@ -1316,7 +1317,7 @@
       const dv = document.getElementById('detailVisual'), dc = document.getElementById('detailCap');
       if (lbList.length) {
         /* 第一張照片放在最上方大圖（取代恐龍圖示），其餘放在內文最後的相簿 */
-        dv.className = 'detail-visual has-photo';
+        dv.className = 'detail-visual has-photo' + (k === 'story' ? ' contain' : '');
         dv.setAttribute('onclick', 'openLightbox(0)');
         dv.innerHTML = `<img src="${lbList[0].src}" alt="${lbList[0].cap || item[0]}">`;
         dc.textContent = ''; dc.style.display = 'none';  /* 大圖下方不放說明文字 */
