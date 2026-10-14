@@ -92,8 +92,9 @@
     .quiz-opt-btn:hover{background:var(--green);color:white}
 
     /* 接花遊戲區域 */
-    .catch-game-area{touch-action:none;width:100%;max-width:600px;height:400px;background:linear-gradient(180deg,#eef5eb,#c8e6c9);border:2px solid var(--line);border-radius:20px;position:relative;overflow:hidden;margin:20px auto}
-    .player-basket{position:absolute;bottom:10px;width:70px;height:70px;display:flex;align-items:flex-end;user-select:none}
+    .catch-game-area{touch-action:none;width:100%;max-width:600px;height:400px;background:linear-gradient(180deg,#f6e7cf,#dcb98a);border:2px solid var(--line);border-radius:20px;position:relative;overflow:hidden;margin:20px auto}
+    .catch-game-area::after{content:'';position:absolute;left:0;right:0;bottom:0;height:26px;background:#b98f5e;pointer-events:none}
+    .player-basket{position:absolute;bottom:16px;z-index:1;width:70px;height:70px;display:flex;align-items:flex-end;user-select:none}
     .falling-item{position:absolute;font-size:32px;user-select:none}
 
     /* DIY 桌布畫廊 */
