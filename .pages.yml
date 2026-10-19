@@ -144,7 +144,7 @@ content:
           - { name: icon, label: 代表圖示（表情符號）, type: string }
 
   - name: journey
-    label: 03 冒險足跡（原巡迴展歷）
+    label: 03 冒險足跡
     type: file
     path: content/journey.json
     format: json
@@ -196,7 +196,7 @@ content:
           - { name: focus, label: 封面對焦位置（進階，例：50% 20%，可留空）, type: string }
 
   - name: science
-    label: 04 生態圖鑑（原科學教室）
+    label: 04 生態圖鑑
     type: file
     path: content/science.json
     format: json
