@@ -1,5 +1,6 @@
 /* 蘭獸網站：內容載入器
-   把 content/ 資料夾裡的 JSON 內容檔讀進來，顯示在 01 起源、02 巡迴展歷、03 科學教室。
+   把 content/ 資料夾裡的 JSON 內容檔讀進來，顯示在 01 起源傳說、03 冒險足跡、04 生態圖鑑。
+   （02 天賦鑑定的題目在 content/personality.json，由 index.html 自己讀取）
    一般更新內容只需要改 content/*.json（或用後台），不需要改這支檔案。 */
 (function () {
   var FILES = { origin: 'content/origin.json', journey: 'content/journey.json', science: 'content/science.json' };
@@ -17,7 +18,8 @@
     return t
       .replace(/\*\*(.+?)\*\*/g, '<b>$1</b>')
       .replace(/\*(.+?)\*/g, '<i>$1</i>')
-      .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+      .replace(/\[([^\]]+)\]\((#[\w-]+)\)/g, '<a href="$2">$1</a>');   /* 站內連結，例如 [去測驗](#test) */
   }
   function md(src) {
     if (!src) return '';
@@ -44,7 +46,7 @@
   function buildItems(list, lang) {
     return list.map(function (it) {
       var photos = (it.photos || []).map(function (p) {
-        return { src: p.src, cap: pick(p.caption, lang), focus: p.focus || '' };
+        return { src: p.src, cap: pick(p.caption, lang), focus: p.focus || '', ai: !!p.ai };
       });
       return [pick(it.title, lang), pick(it.summary, lang), md(pick(it.body, lang)), it.date || '', photos, it.lat == null ? null : it.lat, it.lng == null ? null : it.lng];
     });

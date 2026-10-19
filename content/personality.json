@@ -1,0 +1,218 @@
+{
+  "questions": [
+    {
+      "q": { "zh": "第一天進到新班級或新社團，你會？", "en": "First day in a new class or club. What's your move?", "ja": "新しいクラスやサークルの初日、あなたはどうする？" },
+      "options": [
+        { "type": "附著", "text": { "zh": "先找個固定的位子坐好，熟悉環境再說", "en": "Find a seat, settle in, and get a feel for the place first", "ja": "まずは自分の席を決めて、場の雰囲気に慣れてから" } },
+        { "type": "連結", "text": { "zh": "主動跟旁邊的人打招呼", "en": "Say hi to whoever's sitting next to you", "ja": "隣の人に自分から声をかける" } },
+        { "type": "守護", "text": { "zh": "看看有沒有人跟我一樣落單，過去陪他", "en": "Look for someone who's also on their own and go keep them company", "ja": "自分と同じくひとりぼっちの人を探して、そばに行く" } },
+        { "type": "探索", "text": { "zh": "到處逛逛，想知道這裡有什麼好玩的", "en": "Wander around to see what's fun here", "ja": "あちこち歩き回って、楽しそうなものを探す" } }
+      ]
+    },
+    {
+      "q": { "zh": "報告截止前一天，發現整份做錯方向，你會？", "en": "The night before a big project is due, you realize the whole thing went in the wrong direction. You…", "ja": "レポート締め切りの前日、全部方向がずれていたと気づいた。あなたは？" },
+      "options": [
+        { "type": "吸收", "text": { "zh": "馬上查資料、問學長姐，把能用的資源全找出來", "en": "Dig up every resource you can: search everything, ask older students for help", "ja": "すぐに調べたり先輩に聞いたりして、使えるものを全部集める" } },
+        { "type": "再生", "text": { "zh": "深呼吸，大不了重做，這次會更好", "en": "Take a deep breath. Worst case, start over, and round two will be even better", "ja": "深呼吸。やり直せばいい、次はもっといいものになる" } },
+        { "type": "平衡", "text": { "zh": "先冷靜排出優先順序，一件一件來", "en": "Stay calm, set priorities, and tackle it one step at a time", "ja": "落ち着いて優先順位をつけ、ひとつずつ片づける" } },
+        { "type": "探索", "text": { "zh": "乾脆換個全新的做法，說不定更有趣", "en": "Try a totally new approach. It might turn out more interesting anyway", "ja": "いっそまったく新しいやり方に変える。そのほうが面白いかも" } }
+      ]
+    },
+    {
+      "q": { "zh": "放假一整天沒有安排，你最可能？", "en": "A whole day off with zero plans. You're most likely to…", "ja": "予定のない休日まる一日。いちばんやりそうなのは？" },
+      "options": [
+        { "type": "吸收", "text": { "zh": "看紀錄片或聽 podcast，學點新東西", "en": "Watch a documentary or listen to a podcast and learn something new", "ja": "ドキュメンタリーやポッドキャストで新しいことを学ぶ" } },
+        { "type": "連結", "text": { "zh": "揪朋友出門，人越多越好", "en": "Round up your friends. The more, the merrier", "ja": "友だちを誘って出かける。人数は多いほど楽しい" } },
+        { "type": "探索", "text": { "zh": "搭車去一個沒去過的地方", "en": "Hop on a train or bus to somewhere you've never been", "ja": "電車やバスで、行ったことのない場所へ" } },
+        { "type": "適應", "text": { "zh": "看心情，走到哪玩到哪", "en": "Go with the flow and see where the day takes you", "ja": "気分しだいで、行き当たりばったりに楽しむ" } }
+      ]
+    },
+    {
+      "q": { "zh": "分組報告遇到不熟的組員，你通常？", "en": "Group project with teammates you barely know. You usually…", "ja": "グループ発表で、あまり知らないメンバーと組むことに。あなたはたいてい？" },
+      "options": [
+        { "type": "附著", "text": { "zh": "把自己負責的部分做到最好", "en": "Make your own part the best it can be", "ja": "自分の担当を、とことんいいものに仕上げる" } },
+        { "type": "平衡", "text": { "zh": "幫大家協調分工，讓進度不卡關", "en": "Help split up the work so nobody gets stuck", "ja": "役割分担をまとめて、作業が止まらないようにする" } },
+        { "type": "再生", "text": { "zh": "就算一開始不順，也相信能慢慢磨合", "en": "Trust that the team will click eventually, even if it's bumpy at first", "ja": "最初はうまくいかなくても、だんだん息が合うと信じる" } },
+        { "type": "適應", "text": { "zh": "配合大家的節奏，需要我做什麼都行", "en": "Match the team's rhythm. Whatever they need, you're in", "ja": "みんなのペースに合わせる。頼まれたことは何でもやる" } }
+      ]
+    },
+    {
+      "q": { "zh": "好朋友心情不好來找你，你會？", "en": "Your best friend is feeling down and comes to you. You…", "ja": "親友が落ち込んで相談に来た。あなたは？" },
+      "options": [
+        { "type": "守護", "text": { "zh": "二話不說陪在他身邊", "en": "Drop everything and stay right by their side", "ja": "何も言わずに、そばにいてあげる" } },
+        { "type": "吸收", "text": { "zh": "認真聽他說完，幫他整理問題", "en": "Listen to the whole story, then help them sort things out", "ja": "最後までしっかり話を聞いて、問題を一緒に整理する" } },
+        { "type": "連結", "text": { "zh": "找大家一起約出來散散心", "en": "Get the whole crew together to help them take their mind off it", "ja": "みんなを誘って、気分転換に出かける" } },
+        { "type": "再生", "text": { "zh": "跟他分享自己走出低潮的經驗", "en": "Share how you bounced back from your own low point", "ja": "自分がどん底から立ち直った経験を話す" } }
+      ]
+    },
+    {
+      "q": { "zh": "搬進新宿舍，室友的生活習慣跟你很不一樣，你會？", "en": "You move into a dorm, and your roommate's habits are nothing like yours. You…", "ja": "新しい寮に入ったら、ルームメイトの生活習慣が自分とまるで違う。あなたは？" },
+      "options": [
+        { "type": "附著", "text": { "zh": "先把自己的小角落布置好，有安全感就沒問題", "en": "Set up your own cozy corner first. Once you feel at home, you're good", "ja": "まず自分のコーナーを整える。落ち着ける場所があれば大丈夫" } },
+        { "type": "適應", "text": { "zh": "調整一下自己的作息，很快就習慣了", "en": "Shift your routine a little. You'll get used to it fast", "ja": "自分の生活リズムを少し変えれば、すぐ慣れる" } },
+        { "type": "平衡", "text": { "zh": "找時間好好溝通，訂出大家都舒服的規則", "en": "Find a time to talk and agree on house rules that work for everyone", "ja": "時間をとって話し合い、お互い心地よいルールを決める" } },
+        { "type": "守護", "text": { "zh": "先說清楚彼此的界線，互相尊重最重要", "en": "Talk about boundaries early on. Mutual respect comes first", "ja": "最初にお互いの線引きをはっきりさせる。尊重し合うのがいちばん" } }
+      ]
+    },
+    {
+      "q": { "zh": "朋友最常怎麼形容你？", "en": "How do your friends usually describe you?", "ja": "友だちからいちばんよく言われるのは？" },
+      "options": [
+        { "type": "附著", "text": { "zh": "一旦認定就很專一、很有毅力", "en": "Once you commit to something, you're all in and never let go", "ja": "一度決めたら一途で、粘り強い" } },
+        { "type": "探索", "text": { "zh": "永遠有新點子，帶大家去冒險", "en": "Always full of new ideas, always leading the next adventure", "ja": "いつも新しいアイデアがあって、みんなを冒険に連れ出す" } },
+        { "type": "平衡", "text": { "zh": "情緒穩定，是大家的定心丸", "en": "Calm and steady, the one who keeps everyone grounded", "ja": "気持ちが安定していて、みんなの心の支え" } },
+        { "type": "再生", "text": { "zh": "怎麼打都打不倒，復原超快", "en": "Unstoppable. Knock you down, and you bounce right back", "ja": "何があってもへこたれず、立ち直りがとにかく早い" } }
+      ]
+    },
+    {
+      "q": { "zh": "如果可以擁有一種超能力，你最想要？", "en": "If you could have one superpower, you'd pick…", "ja": "ひとつだけ超能力が手に入るなら、何がほしい？" },
+      "options": [
+        { "type": "吸收", "text": { "zh": "看一眼就把整本書記住", "en": "Memorizing an entire book at a single glance", "ja": "ひと目見ただけで本を丸ごと覚えられる力" } },
+        { "type": "適應", "text": { "zh": "到任何地方都能馬上融入", "en": "Fitting in instantly, wherever you go", "ja": "どこに行ってもすぐになじめる力" } },
+        { "type": "連結", "text": { "zh": "跟任何人都能聊得來", "en": "Getting along with absolutely anyone", "ja": "誰とでも話が合う力" } },
+        { "type": "守護", "text": { "zh": "一張能保護身邊所有人的防護罩", "en": "A force field that protects everyone around you", "ja": "まわりのみんなを守れるバリア" } }
+      ]
+    },
+    {
+      "q": { "zh": "考試前一週，你的讀書方式是？", "en": "It's the week before exams. Your study style is…", "ja": "試験前の一週間、あなたの勉強スタイルは？" },
+      "options": [
+        { "type": "附著", "text": { "zh": "固定在同一個位置、同一個時段讀，最有效率", "en": "Same seat, same time, every day. That's when you focus best", "ja": "毎日同じ場所、同じ時間に勉強するのがいちばんはかどる" } },
+        { "type": "吸收", "text": { "zh": "把筆記、考古題、影片全部找來，能看的都看", "en": "Collect every note, past exam, and video you can find, and go through it all", "ja": "ノートも過去問も動画も全部集めて、見られるものは全部見る" } },
+        { "type": "平衡", "text": { "zh": "排好讀書計畫，每天照進度走", "en": "Make a study plan and stick to the schedule every day", "ja": "勉強計画を立てて、毎日予定どおりに進める" } },
+        { "type": "再生", "text": { "zh": "上次考不好沒關係，這次換個方法捲土重來", "en": "Last exam didn't go well? No problem. New method, big comeback", "ja": "前回だめでも大丈夫。やり方を変えて、今回こそ巻き返す" } }
+      ]
+    },
+    {
+      "q": { "zh": "班上投票決定畢業旅行去哪裡，你會？", "en": "Your class is voting on where to go for the graduation trip. You…", "ja": "卒業旅行の行き先をクラスで投票で決めることに。あなたは？" },
+      "options": [
+        { "type": "適應", "text": { "zh": "去哪都可以，跟大家一起最重要", "en": "Anywhere's fine. Being together is what matters", "ja": "どこでもいい。みんなと一緒ならそれがいちばん" } },
+        { "type": "探索", "text": { "zh": "投一個大家都沒去過的地方", "en": "Vote for a place nobody's been to yet", "ja": "誰も行ったことのない場所に一票" } },
+        { "type": "連結", "text": { "zh": "負責揪團、建群組，把大家湊齊", "en": "Start the group chat and get everyone on board", "ja": "グループチャットを作って、みんなを集める係になる" } },
+        { "type": "守護", "text": { "zh": "先確認每個人都能去、預算大家都負擔得起", "en": "First make sure everyone can come and the budget works for all", "ja": "まず全員が行けるか、予算がみんなに無理ないかを確かめる" } }
+      ]
+    },
+    {
+      "q": { "zh": "你理想中的居家週末是？", "en": "Your ideal weekend at home?", "ja": "理想のおうち週末は？" },
+      "options": [
+        { "type": "附著", "text": { "zh": "窩在最喜歡的角落，一整天不想動", "en": "Curled up in your favorite spot, not moving all day", "ja": "お気に入りの場所にこもって、一日じゅう動かない" } },
+        { "type": "適應", "text": { "zh": "有什麼做什麼，看心情安排", "en": "Do whatever you feel like, whenever you feel like it", "ja": "そのときの気分で、やりたいことをやる" } },
+        { "type": "連結", "text": { "zh": "開視訊跟朋友一起打電動、聊天", "en": "Video-call your friends to game and chat", "ja": "友だちとビデオ通話をつないで、ゲームやおしゃべり" } },
+        { "type": "再生", "text": { "zh": "好好睡一覺，把這週的疲累全部充飽", "en": "Sleep in and fully recharge after a long week", "ja": "ぐっすり眠って、一週間の疲れをすっかり回復" } }
+      ]
+    },
+    {
+      "q": { "zh": "你最喜歡聽到哪一句稱讚？", "en": "Which compliment would make your day?", "ja": "いちばん言われてうれしいほめ言葉は？" },
+      "options": [
+        { "type": "吸收", "text": { "zh": "「你懂好多喔！」", "en": "\"You know so much!\"", "ja": "「物知りだね！」" } },
+        { "type": "探索", "text": { "zh": "「跟你出去最好玩！」", "en": "\"Hanging out with you is always the most fun!\"", "ja": "「一緒に出かけるといちばん楽しい！」" } },
+        { "type": "平衡", "text": { "zh": "「有你在我就安心了。」", "en": "\"I feel safe when you're around.\"", "ja": "「あなたがいると安心する。」" } },
+        { "type": "守護", "text": { "zh": "「謝謝你一直在我身邊。」", "en": "\"Thank you for always being there for me.\"", "ja": "「いつもそばにいてくれてありがとう。」" } }
+      ]
+    }
+  ],
+  "types": [
+    {
+      "key": "附著", "color": "#a07a52", "icon": "🪵",
+      "name": { "zh": "附著型", "en": "Anchor", "ja": "くっつきタイプ" },
+      "title": { "zh": "落地生根的專注職人", "en": "The Focused Maker Who Puts Down Roots", "ja": "根を張る集中職人" },
+      "motto": { "zh": "給我一塊安穩的地方，我就能慢慢長成最強的樣子。", "en": "Give me one steady spot, and I'll slowly grow into my strongest self.", "ja": "落ち着ける場所さえあれば、ゆっくりいちばん強い自分に育っていける。" },
+      "desc": { "zh": "就像緊抓樹皮的氣生根，你一旦找到方向就不輕易放手。你不追求熱鬧，但你堅持的事都會開花結果。", "en": "Like an aerial root gripping tree bark, once you find your direction, you don't let go. You're not chasing the spotlight, but everything you stick with ends up blooming.", "ja": "木の皮にしっかりしがみつく気根のように、あなたは方向が決まったら簡単には手放しません。にぎやかさは求めなくても、続けてきたことはきっと花を咲かせます。" },
+      "skills": [
+        { "name": { "zh": "專注力", "en": "Focus", "ja": "集中力" }, "stars": 5 },
+        { "name": { "zh": "毅力", "en": "Grit", "ja": "粘り強さ" }, "stars": 4 }
+      ],
+      "partner": "探索",
+      "partnerText": { "zh": "帶你看見新世界，你幫他把點子做完", "en": "They show you brand-new worlds, and you help them see their ideas through.", "ja": "新しい世界を見せてくれる相手の、アイデアを形にするのがあなた" }
+    },
+    {
+      "key": "吸收", "color": "#3d8fd1", "icon": "💧",
+      "name": { "zh": "吸收型", "en": "Sponge", "ja": "吸収タイプ" },
+      "title": { "zh": "人間海綿資訊王", "en": "The Human Sponge Who Soaks Up Everything", "ja": "なんでも吸い込む情報王" },
+      "motto": { "zh": "好的能量全收下，廢話和負能量自動過濾。", "en": "I soak up all the good energy and filter out the noise and negativity.", "ja": "いいエネルギーは全部もらって、ムダ話とマイナス思考は自動でカット。" },
+      "desc": { "zh": "就像能吸住雨水的根，你很會從身邊吸收知識和經驗。朋友遇到問題，第一個想到的就是你。", "en": "Like a root that soaks up rainwater, you're great at absorbing knowledge and experience from everything around you. When friends get stuck, you're the first person they think of.", "ja": "雨水をたっぷり吸い込む根のように、あなたはまわりから知識や経験を吸収するのが得意。友だちが困ったとき、まっさきに思い浮かぶのがあなたです。" },
+      "skills": [
+        { "name": { "zh": "觀察力", "en": "Observation", "ja": "観察力" }, "stars": 5 },
+        { "name": { "zh": "學習力", "en": "Learning", "ja": "学ぶ力" }, "stars": 4 }
+      ],
+      "partner": "連結",
+      "partnerText": { "zh": "你負責知道、他負責認識，合起來無所不能", "en": "You know things, they know people. Together, nothing's out of reach.", "ja": "あなたは物知り、相手は顔が広い。ふたりそろえば怖いものなし" }
+    },
+    {
+      "key": "適應", "color": "#2f9aa6", "icon": "☀️",
+      "name": { "zh": "適應型", "en": "Chameleon", "ja": "適応タイプ" },
+      "title": { "zh": "哪裡都能開花的生存高手", "en": "The Survivor Who Blooms Anywhere", "ja": "どこでも花を咲かせるサバイバルの達人" },
+      "motto": { "zh": "環境再難，我也能在那裡開出花來。", "en": "No matter how tough things get, I'll still find a way to bloom.", "ja": "どんなに厳しい場所でも、ちゃんと花を咲かせてみせる。" },
+      "desc": { "zh": "就像會自己製造養分的綠色根，你不挑環境，到哪都能找到自己的生存方式。", "en": "Like a green root that helps make its own food, you're not picky about where you land. Wherever you go, you find your own way to thrive.", "ja": "自分で栄養をつくる緑色の根のように、あなたは環境を選びません。どこへ行っても、自分なりの生き方を見つけられます。" },
+      "skills": [
+        { "name": { "zh": "彈性", "en": "Flexibility", "ja": "柔軟さ" }, "stars": 5 },
+        { "name": { "zh": "生命力", "en": "Vitality", "ja": "生命力" }, "stars": 4 }
+      ],
+      "partner": "平衡",
+      "partnerText": { "zh": "你靈活、他穩定，一起應對任何變化", "en": "You're flexible, they're steady. Together you can handle any change.", "ja": "身軽なあなたと、どっしりした相手。どんな変化も一緒に乗り越えられる" }
+    },
+    {
+      "key": "探索", "color": "#e0873a", "icon": "🧭",
+      "name": { "zh": "探索型", "en": "Explorer", "ja": "探検タイプ" },
+      "title": { "zh": "好奇心爆棚的冒險家", "en": "The Adventurer Bursting with Curiosity", "ja": "好奇心あふれる冒険家" },
+      "motto": { "zh": "世界那麼大，不去走走怎麼知道哪裡好玩？", "en": "The world is huge. How will I know what's fun if I don't go see?", "ja": "世界はこんなに広いんだから、行ってみなきゃ何が楽しいかわからない！" },
+      "desc": { "zh": "就像朝空中伸展的根，你永遠在找下一個新鮮事。跟你在一起，生活不會無聊。", "en": "Like a root stretching out into the open air, you're always looking for the next new thing. With you around, life is never boring.", "ja": "空へ向かってぐんぐん伸びる根のように、あなたはいつも次の新しいことを探しています。あなたと一緒なら、毎日が退屈しません。" },
+      "skills": [
+        { "name": { "zh": "好奇心", "en": "Curiosity", "ja": "好奇心" }, "stars": 5 },
+        { "name": { "zh": "行動力", "en": "Initiative", "ja": "行動力" }, "stars": 4 }
+      ],
+      "partner": "附著",
+      "partnerText": { "zh": "你帶他出發，他幫你把夢想落實", "en": "You get them out the door, and they help make your dreams real.", "ja": "あなたが連れ出して、相手があなたの夢を形にしてくれる" }
+    },
+    {
+      "key": "平衡", "color": "#5f6fc4", "icon": "⚖️",
+      "name": { "zh": "平衡型", "en": "Balancer", "ja": "バランスタイプ" },
+      "title": { "zh": "團隊裡的定海神針", "en": "The Calm at the Center of the Team", "ja": "チームを支える大黒柱" },
+      "motto": { "zh": "外面再亂，我的心裡依然是一片安靜的森林。", "en": "However wild it gets out there, inside me it's still a quiet forest.", "ja": "外がどんなに騒がしくても、心の中は静かな森のまま。" },
+      "desc": { "zh": "就像從各方向支撐植株的根，你沉穩、想得周全，大家慌亂時都會看向你。", "en": "Like roots that brace a plant from every side, you're steady and you think things through. When everyone else panics, they look to you.", "ja": "あらゆる方向から株を支える根のように、あなたは落ち着いていて、よく考えて動けます。みんながあわてたとき、頼りにされるのはあなたです。" },
+      "skills": [
+        { "name": { "zh": "冷靜", "en": "Calm", "ja": "冷静さ" }, "stars": 5 },
+        { "name": { "zh": "判斷力", "en": "Judgment", "ja": "判断力" }, "stars": 4 }
+      ],
+      "partner": "適應",
+      "partnerText": { "zh": "他帶來彈性，你給他方向", "en": "They bring the flexibility, and you give them direction.", "ja": "相手が柔軟さを、あなたが方向をくれる" }
+    },
+    {
+      "key": "連結", "color": "#cf6390", "icon": "🍄",
+      "name": { "zh": "連結型", "en": "Connector", "ja": "つながりタイプ" },
+      "title": { "zh": "串起整片森林的社交達人", "en": "The Social Star Who Links the Whole Forest", "ja": "森じゅうをつなぐ社交の達人" },
+      "motto": { "zh": "一個人走得快，一群人走得遠。", "en": "Alone, you go fast. Together, you go far.", "ja": "ひとりなら速く、みんなとなら遠くまで行ける。" },
+      "desc": { "zh": "就像與真菌合作的根，你相信互相幫忙能讓大家都更好。你是把不同圈子串在一起的那個人。", "en": "Like roots that team up with fungi, you believe that helping each other makes everyone better. You're the one who brings different circles together.", "ja": "菌類と手を組む根のように、あなたは助け合えばみんながもっと良くなると信じています。いろいろなグループをつなぐのは、いつもあなたです。" },
+      "skills": [
+        { "name": { "zh": "人緣", "en": "Likability", "ja": "人望" }, "stars": 5 },
+        { "name": { "zh": "合作力", "en": "Teamwork", "ja": "協力する力" }, "stars": 4 }
+      ],
+      "partner": "吸收",
+      "partnerText": { "zh": "他給你情報，你幫他拓展人脈", "en": "They bring you the info, and you help them grow their network.", "ja": "相手が情報をくれて、あなたが人の輪を広げてあげる" }
+    },
+    {
+      "key": "守護", "color": "#2a5b8f", "icon": "🛡️",
+      "name": { "zh": "守護型", "en": "Guardian", "ja": "まもりタイプ" },
+      "title": { "zh": "溫柔又可靠的棲地騎士", "en": "The Gentle, Reliable Knight of the Habitat", "ja": "やさしく頼れるすみかの騎士" },
+      "motto": { "zh": "我的圈子不大，但圈子裡的人我一定罩。", "en": "My circle is small, but anyone in it? I've always got their back.", "ja": "仲間は多くないけど、その仲間は必ず守り抜く。" },
+      "desc": { "zh": "就像保護根部核心的外層，你重視身邊的人，也懂得守住自己的界線。", "en": "Like the outer layer that protects a root's core, you care deeply about the people around you, and you know how to keep your own boundaries too.", "ja": "根の芯を守る外側の層のように、あなたはまわりの人を大切にし、自分の線引きもきちんと守れます。" },
+      "skills": [
+        { "name": { "zh": "守護力", "en": "Protection", "ja": "守る力" }, "stars": 5 },
+        { "name": { "zh": "忠誠度", "en": "Loyalty", "ja": "誠実さ" }, "stars": 4 }
+      ],
+      "partner": "再生",
+      "partnerText": { "zh": "你讓他有地方休息，他讓你更勇敢", "en": "You give them a place to rest, and they make you braver.", "ja": "あなたが休める場所をつくり、相手があなたを勇敢にしてくれる" }
+    },
+    {
+      "key": "再生", "color": "#8d62c0", "icon": "🌱",
+      "name": { "zh": "再生型", "en": "Phoenix", "ja": "再生タイプ" },
+      "title": { "zh": "越挫越勇的復活王", "en": "The Comeback Champ Who Gets Stronger Every Time", "ja": "転ぶたびに強くなる復活王" },
+      "motto": { "zh": "跌倒沒關係，站起來的我會是 2.0 版本。", "en": "Falling down is fine. When I get back up, I'm version 2.0.", "ja": "転んでも大丈夫。起き上がったぼくはバージョン2.0だ。" },
+      "desc": { "zh": "就像受傷後會長出新根的蘭花，挫折只會讓你更強。你的樂觀會感染身邊每一個人。", "en": "Like an orchid that grows new roots after getting hurt, setbacks only make you stronger. Your optimism rubs off on everyone around you.", "ja": "傷ついても新しい根を伸ばす蘭のように、挫折はあなたをもっと強くするだけ。あなたの前向きさは、まわりのみんなにうつります。" },
+      "skills": [
+        { "name": { "zh": "復原力", "en": "Resilience", "ja": "回復力" }, "stars": 5 },
+        { "name": { "zh": "樂觀", "en": "Optimism", "ja": "前向きさ" }, "stars": 4 }
+      ],
+      "partner": "守護",
+      "partnerText": { "zh": "他在你低潮時陪著你，你帶他突破舒適圈", "en": "They stay with you through the lows, and you help them step out of their comfort zone.", "ja": "落ち込んだときは相手がそばにいて、あなたは相手を新しい世界へ連れ出す" }
+    }
+  ]
+}
